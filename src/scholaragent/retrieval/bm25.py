@@ -11,10 +11,49 @@ from scholaragent.schemas import ScholarshipRecord
 
 TOKEN_PATTERN = re.compile(r"[a-z0-9]+")
 
+# Terms that carry little or no discriminative value in this domain.
+STOPWORDS = frozenset(
+    {
+        "a",
+        "an",
+        "and",
+        "are",
+        "as",
+        "at",
+        "be",
+        "by",
+        "for",
+        "from",
+        "in",
+        "is",
+        "it",
+        "of",
+        "on",
+        "or",
+        "s",
+        "that",
+        "the",
+        "to",
+        "with",
+        "award",
+        "awards",
+        "fellowship",
+        "fellowships",
+        "grant",
+        "grants",
+        "scholarship",
+        "scholarships",
+    }
+)
+
 
 def tokenize(text: str) -> list[str]:
-    """Convert text into lowercase alphanumeric BM25 tokens."""
-    return TOKEN_PATTERN.findall(text.casefold())
+    """Return informative lowercase alphanumeric BM25 tokens."""
+    return [
+        token
+        for token in TOKEN_PATTERN.findall(text.casefold())
+        if token not in STOPWORDS
+    ]
 
 
 def scholarship_to_text(record: ScholarshipRecord) -> str:
@@ -67,13 +106,17 @@ class BM25ScholarshipIndex:
 
     def search(self, query: str, *, k: int = 5) -> list[SearchResult]:
         """Return the top-k lexical matches for a query."""
-        query_tokens = tokenize(query)
-
-        if not query_tokens:
+        if not query.strip():
             raise ValueError("Search query must not be empty.")
 
         if k < 1:
             raise ValueError("k must be at least 1.")
+
+        query_tokens = tokenize(query)
+
+        # A query containing only generic terms carries no searchable intent.
+        if not query_tokens:
+            return []
 
         if not self._vocabulary.intersection(query_tokens):
             return []

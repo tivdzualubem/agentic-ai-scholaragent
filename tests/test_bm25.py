@@ -45,7 +45,7 @@ def test_unknown_vocabulary_returns_no_results() -> None:
     """A query with no corpus overlap must not return arbitrary records."""
     index = BM25ScholarshipIndex(load_scholarships(DATASET))
 
-    assert index.search("xylophone archaeology mars", k=3) == []
+    assert index.search("xylophone archaeology scholarship on Mars", k=3) == []
 
 
 def test_empty_query_is_rejected() -> None:
@@ -66,3 +66,13 @@ def test_invalid_dataset_shape_is_rejected(tmp_path: Path) -> None:
         match="must contain a JSON list",
     ):
         load_scholarships(invalid_file)
+
+
+def test_generic_domain_terms_do_not_force_results() -> None:
+    """Generic scholarship vocabulary must not create false matches."""
+    index = BM25ScholarshipIndex(load_scholarships(DATASET))
+
+    assert index.search(
+        "scholarship fellowship grant",
+        k=3,
+    ) == []
