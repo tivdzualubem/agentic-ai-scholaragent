@@ -55,15 +55,14 @@ def search_and_screen(
 ) -> ScholarshipSearchReport:
     """Retrieve scholarships, assess eligibility, and rank useful matches.
 
-    Ranking favours:
+    Ranking first separates viable candidates from records with hard
+    eligibility failures. Query relevance is preserved among viable
+    candidates, while eligibility status and preference warnings act as
+    tie-breakers.
 
-    1. eligible records;
-    2. potentially eligible records requiring verification;
-    3. records missing applicant information;
-    4. clearly ineligible records.
-
-    Within the same status, fewer preference warnings and a higher BM25
-    score are preferred.
+    This prevents an unrelated but fully eligible scholarship from
+    outranking a query-specific opportunity that only needs manual
+    verification or additional applicant information.
     """
     retrieval_results = index.search(query, k=k)
 
@@ -88,9 +87,10 @@ def search_and_screen(
 
     screened.sort(
         key=lambda item: (
+            item.assessment.status is EligibilityStatus.NOT_ELIGIBLE,
+            -item.retrieval_score,
             STATUS_PRIORITY[item.assessment.status],
             len(item.assessment.preference_warnings),
-            -item.retrieval_score,
             item.retrieval_rank,
         )
     )
