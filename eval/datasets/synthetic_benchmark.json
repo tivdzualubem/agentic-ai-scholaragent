@@ -1,0 +1,178 @@
+{
+  "name": "ScholarAgent synthetic development benchmark",
+  "description": "A fictional benchmark for software validation only. It must not be reported as final experimental evidence.",
+  "as_of": "2026-06-27",
+  "cases": [
+    {
+      "case_id": "ai-masters-finland",
+      "query": "fully funded master's scholarship in artificial intelligence and data science in Finland",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Artificial Intelligence",
+          "Data Science"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 1.0,
+        "preferred_countries": [
+          "Finland"
+        ],
+        "requires_full_funding": true
+      },
+      "relevant_ids": [
+        "nordic-ai-masters-2027"
+      ],
+      "expected_statuses": {
+        "nordic-ai-masters-2027": "eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "civil-engineering-germany",
+      "query": "master's scholarship for civil and structural engineering in Germany",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Civil Engineering",
+          "Structural Engineering"
+        ],
+        "gpa": 3.5,
+        "gpa_scale": 4.0,
+        "language_scores": {
+          "IELTS": 7.0
+        },
+        "years_work_experience": 1.0,
+        "preferred_countries": [
+          "Germany"
+        ],
+        "requires_full_funding": false
+      },
+      "relevant_ids": [
+        "european-civil-engineering-award-2027"
+      ],
+      "expected_statuses": {
+        "european-civil-engineering-award-2027": "eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "public-health-sweden",
+      "query": "fully funded global public health master's fellowship in Sweden",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Public Health",
+          "Global Health"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 3.0,
+        "preferred_countries": [
+          "Sweden"
+        ],
+        "requires_full_funding": true
+      },
+      "relevant_ids": [
+        "global-public-health-fellowship-2027"
+      ],
+      "expected_statuses": {
+        "global-public-health-fellowship-2027": "potentially_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "data-science-netherlands",
+      "query": "data science excellence master's scholarship in the Netherlands",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Data Science",
+          "Computer Science"
+        ],
+        "gpa": 3.8,
+        "gpa_scale": 4.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 0.0,
+        "preferred_countries": [
+          "Netherlands"
+        ],
+        "requires_full_funding": false
+      },
+      "relevant_ids": [
+        "netherlands-data-excellence-2027"
+      ],
+      "expected_statuses": {
+        "netherlands-data-excellence-2027": "potentially_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "renewable-energy-bachelors",
+      "query": "bachelor's grant for renewable energy in Denmark",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Nigeria",
+        "target_degree_level": "bachelor",
+        "fields_of_study": [
+          "Renewable Energy",
+          "Environmental Engineering"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 6.5
+        },
+        "years_work_experience": 0.0,
+        "preferred_countries": [
+          "Denmark"
+        ],
+        "requires_full_funding": false
+      },
+      "relevant_ids": [
+        "sustainable-energy-bachelors-2027"
+      ],
+      "expected_statuses": {
+        "sustainable-energy-bachelors-2027": "eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "out-of-domain-no-match",
+      "query": "xylophone archaeology scholarship on Mars",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Archaeology"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {},
+        "years_work_experience": 0.0,
+        "preferred_countries": [],
+        "requires_full_funding": true
+      },
+      "relevant_ids": [],
+      "expected_statuses": {},
+      "expect_no_results": true
+    }
+  ]
+}
