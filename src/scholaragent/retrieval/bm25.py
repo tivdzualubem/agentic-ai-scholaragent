@@ -1,0 +1,96 @@
+"""Lexical BM25 scholarship-retrieval baseline."""
+
+from __future__ import annotations
+
+import re
+from dataclasses import dataclass
+
+from rank_bm25 import BM25Okapi
+
+from scholaragent.schemas import ScholarshipRecord
+
+TOKEN_PATTERN = re.compile(r"[a-z0-9]+")
+
+
+def tokenize(text: str) -> list[str]:
+    """Convert text into lowercase alphanumeric BM25 tokens."""
+    return TOKEN_PATTERN.findall(text.casefold())
+
+
+def scholarship_to_text(record: ScholarshipRecord) -> str:
+    """Convert searchable scholarship fields into one document."""
+    degree_levels = " ".join(level.value for level in record.degree_levels)
+
+    parts = [
+        record.title,
+        record.provider,
+        " ".join(record.host_countries),
+        degree_levels,
+        " ".join(record.eligible_nationalities),
+        " ".join(record.eligible_fields),
+        record.funding_type.value,
+        record.eligibility_text,
+    ]
+
+    return " ".join(part for part in parts if part)
+
+
+@dataclass(frozen=True, slots=True)
+class SearchResult:
+    """One ranked scholarship-search result."""
+
+    rank: int
+    score: float
+    scholarship: ScholarshipRecord
+
+
+class BM25ScholarshipIndex:
+    """A reproducible lexical-search baseline over scholarship records."""
+
+    def __init__(self, scholarships: list[ScholarshipRecord]) -> None:
+        if not scholarships:
+            raise ValueError(
+                "At least one scholarship is required to build the index."
+            )
+
+        self._scholarships = list(scholarships)
+        self._tokenized_corpus = [
+            tokenize(scholarship_to_text(record))
+            for record in self._scholarships
+        ]
+        self._vocabulary = {
+            token
+            for document in self._tokenized_corpus
+            for token in document
+        }
+        self._index = BM25Okapi(self._tokenized_corpus)
+
+    def search(self, query: str, *, k: int = 5) -> list[SearchResult]:
+        """Return the top-k lexical matches for a query."""
+        query_tokens = tokenize(query)
+
+        if not query_tokens:
+            raise ValueError("Search query must not be empty.")
+
+        if k < 1:
+            raise ValueError("k must be at least 1.")
+
+        if not self._vocabulary.intersection(query_tokens):
+            return []
+
+        scores = self._index.get_scores(query_tokens)
+
+        ranked_positions = sorted(
+            range(len(self._scholarships)),
+            key=lambda position: float(scores[position]),
+            reverse=True,
+        )[: min(k, len(self._scholarships))]
+
+        return [
+            SearchResult(
+                rank=rank,
+                score=float(scores[position]),
+                scholarship=self._scholarships[position],
+            )
+            for rank, position in enumerate(ranked_positions, start=1)
+        ]
