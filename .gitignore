@@ -1,0 +1,37 @@
+# Python virtual environment
+.venv/
+
+# Python generated files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Environment variables and secrets
+.env
+
+# Local vector databases and generated data
+chroma_db/
+data/processed/*
+!data/processed/.gitkeep
+eval/results/*
+!eval/results/.gitkeep
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Python package build metadata
+*.egg-info/
+build/
+dist/
