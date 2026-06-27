@@ -156,3 +156,39 @@ def test_invalid_top_k_is_rejected(
             k=0,
             as_of=AS_OF,
         )
+
+
+def test_query_relevance_is_preserved_among_viable_candidates(
+    profile: StudentProfile,
+    index: BM25ScholarshipIndex,
+) -> None:
+    """Manual review must not make an unrelated scholarship rank first."""
+    netherlands_profile = profile.model_copy(
+        update={
+            "preferred_countries": ["Netherlands"],
+            "requires_full_funding": False,
+            "gpa": 3.8,
+            "gpa_scale": 4.0,
+        }
+    )
+
+    report = search_and_screen(
+        query=(
+            "data science excellence master's scholarship "
+            "in the Netherlands"
+        ),
+        profile=netherlands_profile,
+        index=index,
+        k=3,
+        as_of=AS_OF,
+    )
+
+    assert report.results
+    assert (
+        report.results[0].scholarship.scholarship_id
+        == "netherlands-data-excellence-2027"
+    )
+    assert (
+        report.results[0].assessment.status
+        is EligibilityStatus.POTENTIALLY_ELIGIBLE
+    )
