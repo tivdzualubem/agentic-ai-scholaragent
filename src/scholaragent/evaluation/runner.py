@@ -4,7 +4,10 @@ from __future__ import annotations
 
 from pydantic import BaseModel, ConfigDict, Field
 
-from scholaragent.eligibility import assess_eligibility
+from scholaragent.eligibility import (
+    EligibilityStatus,
+    assess_eligibility,
+)
 from scholaragent.evaluation.benchmark import BenchmarkDataset
 from scholaragent.evaluation.metrics import (
     mean,
@@ -32,6 +35,7 @@ class CaseEvaluation(BaseModel):
 
     bm25_top1_hit: bool
     screened_top1_hit: bool
+    screened_top1_evaluated: bool
     no_result_correct: bool | None = None
 
     expected_statuses: dict[str, str]
@@ -48,12 +52,17 @@ class EvaluationSummary(BaseModel):
     total_cases: int = Field(ge=1)
     positive_cases: int = Field(ge=0)
     no_result_cases: int = Field(ge=0)
+    screened_actionable_cases: int = Field(ge=0)
 
     bm25_precision_at_k: float = Field(ge=0, le=1)
     bm25_recall_at_k: float = Field(ge=0, le=1)
     bm25_mrr: float = Field(ge=0, le=1)
     bm25_top1_hit_rate: float = Field(ge=0, le=1)
-    screened_top1_hit_rate: float = Field(ge=0, le=1)
+    screened_top1_hit_rate: float | None = Field(
+        default=None,
+        ge=0,
+        le=1,
+    )
     eligibility_status_accuracy: float = Field(ge=0, le=1)
     no_result_accuracy: float | None = Field(default=None, ge=0, le=1)
 
@@ -152,6 +161,7 @@ def evaluate_benchmark(
                     reciprocal_rank=0.0,
                     bm25_top1_hit=False,
                     screened_top1_hit=False,
+                    screened_top1_evaluated=False,
                     no_result_correct=no_result_correct,
                     expected_statuses={
                         key: value.value
@@ -187,11 +197,27 @@ def evaluate_benchmark(
             and screened_ids[0] in case.relevant_ids
         )
 
+        expected_status_values = list(
+            case.expected_statuses.values()
+        )
+
+        screened_top1_evaluated = (
+            not expected_status_values
+            or any(
+                status is not EligibilityStatus.NOT_ELIGIBLE
+                for status in expected_status_values
+            )
+        )
+
         precisions.append(precision)
         recalls.append(recall)
         reciprocal_ranks.append(rr)
         bm25_top1_hits.append(float(bm25_top1_hit))
-        screened_top1_hits.append(float(screened_top1_hit))
+
+        if screened_top1_evaluated:
+            screened_top1_hits.append(
+                float(screened_top1_hit)
+            )
 
         case_results.append(
             CaseEvaluation(
@@ -203,6 +229,9 @@ def evaluate_benchmark(
                 reciprocal_rank=rr,
                 bm25_top1_hit=bm25_top1_hit,
                 screened_top1_hit=screened_top1_hit,
+                screened_top1_evaluated=(
+                    screened_top1_evaluated
+                ),
                 expected_statuses={
                     key: value.value
                     for key, value
@@ -221,11 +250,18 @@ def evaluate_benchmark(
         total_cases=len(benchmark.cases),
         positive_cases=positive_count,
         no_result_cases=no_result_count,
+        screened_actionable_cases=len(
+            screened_top1_hits
+        ),
         bm25_precision_at_k=mean(precisions),
         bm25_recall_at_k=mean(recalls),
         bm25_mrr=mean(reciprocal_ranks),
         bm25_top1_hit_rate=mean(bm25_top1_hits),
-        screened_top1_hit_rate=mean(screened_top1_hits),
+        screened_top1_hit_rate=(
+            mean(screened_top1_hits)
+            if screened_top1_hits
+            else None
+        ),
         eligibility_status_accuracy=mean(status_matches),
         no_result_accuracy=(
             mean(no_result_matches)

@@ -64,10 +64,12 @@ def test_synthetic_evaluation_runs() -> None:
     assert summary.total_cases == 6
     assert summary.positive_cases == 5
     assert summary.no_result_cases == 1
+    assert summary.screened_actionable_cases == 5
 
     assert 0.0 <= summary.bm25_precision_at_k <= 1.0
     assert 0.0 <= summary.bm25_recall_at_k <= 1.0
     assert 0.0 <= summary.bm25_mrr <= 1.0
+    assert summary.screened_top1_hit_rate is not None
     assert 0.0 <= summary.screened_top1_hit_rate <= 1.0
 
     assert summary.eligibility_status_accuracy == 1.0
