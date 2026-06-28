@@ -1,3 +1,8 @@
+from scholaragent.retrieval.base import (
+    ScholarshipSearchIndex,
+    ScholarshipSearchResult,
+)
+
 from scholaragent.retrieval.hybrid import (
     HybridScholarshipIndex,
     HybridSearchResult,
@@ -29,6 +34,8 @@ from scholaragent.retrieval.loader import (
 )
 
 __all__ = [
+    "ScholarshipSearchResult",
+    "ScholarshipSearchIndex",
     "HybridSearchResult",
     "HybridScholarshipIndex",
     "DenseScholarshipIndex",

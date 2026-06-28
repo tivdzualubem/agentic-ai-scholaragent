@@ -10,7 +10,7 @@ from pydantic import BaseModel, ConfigDict, Field
 
 from scholaragent.eligibility import EligibilityStatus
 from scholaragent.pipeline import search_and_screen
-from scholaragent.retrieval import BM25ScholarshipIndex
+from scholaragent.retrieval import ScholarshipSearchIndex
 from scholaragent.retrieval.bm25 import tokenize
 from scholaragent.schemas import StudentProfile
 
@@ -86,7 +86,7 @@ def _build_profile_query(profile: StudentProfile) -> str:
 
 
 def build_scholar_agent_graph(
-    index: BM25ScholarshipIndex,
+    index: ScholarshipSearchIndex,
     *,
     default_top_k: int = 5,
 ):
