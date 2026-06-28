@@ -1,3 +1,10 @@
+from scholaragent.evaluation.retrieval_comparison import (
+    RetrievalCaseResult,
+    RetrievalComparison,
+    RetrieverMetrics,
+    compare_retrievers,
+    evaluate_retriever,
+)
 """Evaluation tools for ScholarAgent."""
 
 from scholaragent.evaluation.benchmark import (
@@ -19,6 +26,11 @@ from scholaragent.evaluation.runner import (
 )
 
 __all__ = [
+    "evaluate_retriever",
+    "compare_retrievers",
+    "RetrieverMetrics",
+    "RetrievalComparison",
+    "RetrievalCaseResult",
     "BenchmarkCase",
     "BenchmarkDataset",
     "BenchmarkError",
