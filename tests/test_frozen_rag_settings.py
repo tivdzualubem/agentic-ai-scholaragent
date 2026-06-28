@@ -32,7 +32,8 @@ def test_rag_configuration_records_partial_start() -> None:
     settings = _settings()
 
     assert settings["status"] == (
-        "operationally_amended_after_partial_start"
+        "operationally_amended_for_"
+"generation_failure_handling"
     )
     assert settings["partition"] == "held_out_test"
     assert settings["held_out_rag_test_used"] is True
@@ -169,3 +170,40 @@ def test_ablation_rules_remain_preregistered() -> None:
         plan["deterministic_fallback"]["trace_derived"]
         is True
     )
+
+def test_generation_failure_policy_is_disclosed() -> None:
+    """Transport failures must become bounded failed attempts."""
+    settings = _settings()
+
+    assert (
+        settings[
+            "generation_failure_policy_amendment_after_partial_start"
+        ]
+        is True
+    )
+
+    policy = settings["generation_failure_policy"]
+
+    assert policy["timeout_seconds"] == 900.0
+
+    assert policy[
+        "retry_beyond_existing_generation_budget"
+    ] is False
+
+    assert policy["failure_marker"] == (
+        "GENERATION_FAILED_DUE_TO_"
+        "OLLAMA_TRANSPORT_ERROR"
+    )
+
+    state = policy[
+        "execution_state_before_amendment"
+    ]
+
+    assert state["completed_baseline_cases"] == 5
+    assert state["completed_agentic_cases"] == 4
+    assert state[
+        "completed_raw_agentic_results"
+    ] == 4
+    assert state["observed_timeout_count_for_failed_stage"] == 2
+    assert state["final_comparison_generated"] is False
+    assert state["final_ablation_generated"] is False

@@ -295,6 +295,31 @@ preserved. The timed-out agentic request produced no saved case result and
 will be rerun. The final artifact must disclose this amendment and must not
 claim that the complete RAG evaluation used the original 240-second timeout.
 
+### Ollama generation-failure handling amendment
+
+After increasing the CPU transport timeout to 900 seconds, the second
+citation-repair generation for the Manitoba held-out case exceeded the
+timeout on two separate executions. The corresponding agentic case was not
+checkpointed, while five baseline cases and four complete agentic cases
+remained preserved.
+
+Before continuing, a deterministic transport-failure policy was recorded.
+An Ollama timeout or client transport error is treated as a failed generation
+attempt and converted to a fixed non-factual failure marker. The ordinary
+citation audit therefore fails. The existing bounded Agentic RAG workflow
+then continues within the preregistered generation budget and activates its
+verified deterministic fallback when that budget is exhausted.
+
+For the conventional baseline, the same failure marker produces a
+`citation_failed` result. No additional retries are introduced beyond the
+existing generation budget.
+
+This amendment does not change the model, temperature, prompts, retrieval
+configuration, benchmark, eligibility logic, citation rules, generation
+budget, or deterministic fallback. Final reporting will disclose the number
+of transport failures and will not count timeout-recovered fallback outputs
+as successful TinyLlama generations.
+
 ## 12. Reproducibility and freezing
 
 Before final evaluation:

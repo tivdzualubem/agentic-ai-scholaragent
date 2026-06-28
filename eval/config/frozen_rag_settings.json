@@ -1,5 +1,5 @@
 {
-  "status": "operationally_amended_after_partial_start",
+  "status": "operationally_amended_for_generation_failure_handling",
   "partition": "held_out_test",
   "source_commit": "26ed0ee0730ba6ea1c3f0712cb974da9ab1bc71b",
   "held_out_rag_test_used": true,
@@ -127,5 +127,46 @@
       "ablation rules"
     ],
     "checkpoint_policy": "The successfully completed first baseline case is preserved. The failed agentic request produced no saved result and will be rerun with the longer transport timeout."
+  },
+  "generation_failure_policy_amendment_after_partial_start": true,
+  "generation_failure_policy": {
+    "policy": "Treat an Ollama transport timeout or client transport error as a failed LLM generation attempt.",
+    "baseline_behavior": "Return a fixed non-factual failure marker. Citation auditing will classify the baseline answer as citation_failed.",
+    "agentic_behavior": "Return the same fixed non-factual failure marker. The citation audit will fail, the bounded generation budget will continue or terminate, and the existing verified deterministic fallback will be used after the budget is exhausted.",
+    "failure_marker": "GENERATION_FAILED_DUE_TO_OLLAMA_TRANSPORT_ERROR",
+    "timeout_seconds": 900.0,
+    "retry_beyond_existing_generation_budget": false,
+    "reason": "The Manitoba agentic citation-repair request exceeded the amended 900-second timeout on two separate executions. Other TinyLlama requests completed successfully, indicating an intermittent or prompt-specific Ollama generation stall rather than general CPU infeasibility.",
+    "execution_state_before_amendment": {
+      "completed_baseline_cases": 5,
+      "completed_agentic_cases": 4,
+      "completed_raw_agentic_results": 4,
+      "failed_case": "eligible-manitoba-phd-verified",
+      "failed_stage": "second agentic citation-repair generation",
+      "observed_timeout_count_for_failed_stage": 2,
+      "final_comparison_generated": false,
+      "final_ablation_generated": false
+    },
+    "selection_basis": "This policy addresses repeated transport failure only. It was not selected using answer correctness, citation scores, eligibility labels, retrieval metrics, or aggregate held-out RAG results.",
+    "unchanged_settings": [
+      "generator model",
+      "generation temperature",
+      "900-second request timeout",
+      "prompts",
+      "benchmark",
+      "scholarship corpus",
+      "embedding model",
+      "dense threshold",
+      "top-k",
+      "candidate-k",
+      "RRF constant",
+      "maximum retrieval attempts",
+      "maximum generation attempts",
+      "citation verification rules",
+      "deterministic fallback construction",
+      "ablation rules"
+    ],
+    "reporting_requirement": "Final artifacts must report transport failures separately and must not describe timeout-recovered fallback answers as successful LLM generations.",
+    "amendment_commit_parent": "307200829eb8e57d709591d27bd92cb26ed7c3f4"
   }
 }
