@@ -45,6 +45,15 @@ def build_parser() -> argparse.ArgumentParser:
         default=3,
     )
     parser.add_argument(
+        "--dense-threshold",
+        type=float,
+        default=0.67,
+        help=(
+            "Minimum cosine similarity for dense evidence. "
+            "The default is a synthetic development value."
+        ),
+    )
+    parser.add_argument(
         "--output",
         type=Path,
         default=None,
@@ -73,6 +82,7 @@ def main() -> None:
     hybrid = HybridScholarshipIndex(
         scholarships,
         embedder,
+        minimum_dense_score=args.dense_threshold,
     )
 
     comparison = compare_retrievers(
@@ -85,7 +95,11 @@ def main() -> None:
             ),
             "dense": (
                 lambda query, k:
-                dense.search(query, k=k)
+                dense.search(
+                    query,
+                    k=k,
+                    minimum_score=args.dense_threshold,
+                )
             ),
             "hybrid_rrf": (
                 lambda query, k:
@@ -100,6 +114,10 @@ def main() -> None:
 
     print(f"Benchmark: {comparison.benchmark_name}")
     print(f"Top-k: {comparison.k}")
+    print(
+        "Dense abstention threshold: "
+        f"{args.dense_threshold:.6f}"
+    )
     print()
     print(
         f"{'Retriever':<14}"

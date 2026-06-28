@@ -175,3 +175,56 @@ def test_hybrid_index_metadata() -> None:
     assert index.size == 6
     assert index.dense_dimension == 9
     assert index.rrf_constant == 60
+
+
+class OrthogonalOutOfDomainEmbeddingProvider:
+    """Return orthogonal vectors for an unsupported query."""
+
+    def embed(
+        self,
+        texts: Sequence[str],
+    ) -> list[list[float]]:
+        vectors: list[list[float]] = []
+
+        for text in texts:
+            lowered = text.casefold()
+
+            if "xylophone archaeology" in lowered:
+                vectors.append([0.0, 0.0, 1.0])
+            elif "nordic-ai-masters-2027" in lowered:
+                vectors.append([1.0, 0.0, 0.0])
+            else:
+                vectors.append([0.0, 1.0, 0.0])
+
+        return vectors
+
+
+def test_hybrid_threshold_abstains_on_unsupported_query() -> None:
+    """Hybrid retrieval should return no unsupported evidence."""
+    index = HybridScholarshipIndex(
+        load_scholarships(DATASET),
+        OrthogonalOutOfDomainEmbeddingProvider(),
+        minimum_dense_score=0.5,
+    )
+
+    results = index.search(
+        "xylophone archaeology scholarship on Mars",
+        k=3,
+        candidate_k=6,
+    )
+
+    assert results == []
+    assert index.minimum_dense_score == 0.5
+
+
+def test_hybrid_threshold_must_be_valid_cosine_score() -> None:
+    """Thresholds outside cosine similarity bounds are rejected."""
+    with pytest.raises(
+        ValueError,
+        match="between -1 and 1",
+    ):
+        HybridScholarshipIndex(
+            load_scholarships(DATASET),
+            KeywordEmbeddingProvider(),
+            minimum_dense_score=1.1,
+        )

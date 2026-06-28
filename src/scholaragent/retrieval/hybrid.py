@@ -40,6 +40,7 @@ class HybridScholarshipIndex:
         embedder: EmbeddingProvider,
         *,
         rrf_constant: int = 60,
+        minimum_dense_score: float | None = None,
     ) -> None:
         records = list(scholarships)
 
@@ -53,8 +54,17 @@ class HybridScholarshipIndex:
                 "rrf_constant must be at least 1."
             )
 
+        if (
+            minimum_dense_score is not None
+            and not -1.0 <= minimum_dense_score <= 1.0
+        ):
+            raise ValueError(
+                "minimum_dense_score must be between -1 and 1."
+            )
+
         self._records = records
         self._rrf_constant = rrf_constant
+        self._minimum_dense_score = minimum_dense_score
         self._bm25 = BM25ScholarshipIndex(records)
         self._dense = DenseScholarshipIndex(
             records,
@@ -75,6 +85,11 @@ class HybridScholarshipIndex:
     def rrf_constant(self) -> int:
         """Return the RRF smoothing constant."""
         return self._rrf_constant
+
+    @property
+    def minimum_dense_score(self) -> float | None:
+        """Return the configured semantic abstention threshold."""
+        return self._minimum_dense_score
 
     def search(
         self,
@@ -106,10 +121,26 @@ class HybridScholarshipIndex:
             k=candidate_k,
         )
 
+        effective_minimum_dense_score = (
+            self._minimum_dense_score
+            if minimum_dense_score is None
+            else minimum_dense_score
+        )
+
+        if (
+            effective_minimum_dense_score is not None
+            and not -1.0
+            <= effective_minimum_dense_score
+            <= 1.0
+        ):
+            raise ValueError(
+                "minimum_dense_score must be between -1 and 1."
+            )
+
         dense_results = self._dense.search(
             normalized_query,
             k=candidate_k,
-            minimum_score=minimum_dense_score,
+            minimum_score=effective_minimum_dense_score,
         )
 
         fused: dict[str, dict[str, object]] = {}
