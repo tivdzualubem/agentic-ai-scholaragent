@@ -18,3 +18,5 @@ Each record must:
 
 The current corpus is incomplete and will contain six scholarship identities
 before calibration begins.
+
+Current progress: 2 of 6 planned calibration scholarships.

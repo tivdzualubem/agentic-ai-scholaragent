@@ -76,3 +76,62 @@ def test_generic_domain_terms_do_not_force_results() -> None:
         "scholarship fellowship grant",
         k=3,
     ) == []
+
+
+def test_two_document_corpus_uses_discriminative_terms() -> None:
+    """Distinctive terms should rank correctly in a tiny corpus."""
+    from datetime import date
+
+    from scholaragent.schemas import ScholarshipRecord
+
+    records = [
+        ScholarshipRecord(
+            scholarship_id="alpha-academic-award",
+            title="Alpha Academic Excellence Award",
+            provider="Alpha University",
+            official_url=(
+                "https://example.org/alpha-academic-award"
+            ),
+            host_countries=["Australia"],
+            degree_levels=["master"],
+            source_last_checked=date(2026, 6, 28),
+            eligibility_text=(
+                "International master applicants require "
+                "a GPA of 6.7 and receive a tuition fee "
+                "reduction."
+            ),
+        ),
+        ScholarshipRecord(
+            scholarship_id="beta-research-award",
+            title="Beta Research Award",
+            provider="Beta University",
+            official_url=(
+                "https://example.org/beta-research-award"
+            ),
+            host_countries=["Australia"],
+            degree_levels=["phd"],
+            source_last_checked=date(2026, 6, 28),
+            eligibility_text=(
+                "International PhD applicants receive "
+                "a research stipend."
+            ),
+        ),
+    ]
+
+    index = BM25ScholarshipIndex(records)
+
+    results = index.search(
+        (
+            "Alpha Academic Excellence GPA 6.7 "
+            "master tuition fee reduction"
+        ),
+        k=2,
+    )
+
+    assert len(results) == 2
+    assert (
+        results[0].scholarship.scholarship_id
+        == "alpha-academic-award"
+    )
+    assert results[0].score > results[1].score
+    assert results[0].score > 0

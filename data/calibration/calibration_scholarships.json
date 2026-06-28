@@ -30,5 +30,38 @@
     "application_year": 2026,
     "source_last_checked": "2026-06-28",
     "eligibility_text": "Adelaide University's Adelaide Academic Excellence Scholarship provides a 50% tuition fee reduction for commencing international students applying to qualifying CRICOS-registered bachelor or master coursework degrees. Applicants using GPA for assessment require a minimum overall GPA of 6.7 on a 7.0 scale or a comparable result. The official page excludes specified programmes, Australia Awards recipients, and certain sponsored students. Semester 2 2026 applications closed on 22 May 2026."
+  },
+  {
+    "scholarship_id": "anu-phd-scholarship",
+    "title": "ANU PhD Scholarship",
+    "provider": "The Australian National University",
+    "official_url": "https://study.anu.edu.au/scholarships/find-scholarship/anu-phd-scholarship",
+    "host_countries": [
+      "Australia"
+    ],
+    "degree_levels": [
+      "phd"
+    ],
+    "eligible_nationalities": [
+      "All nationalities"
+    ],
+    "eligible_fields": [],
+    "manual_review_requirements": [
+      "Confirm admission or a complete application for admission to an ANU PhD or Professional Doctorate by Research programme.",
+      "Verify that the applicant's previous qualification satisfies the stated first-class honours, research master's or recognised-equivalent requirement.",
+      "Confirm the applicable international, domestic or later scholarship-round deadline for the intended commencement.",
+      "Confirm that all supporting documents and referee reports were complete when the admission application was submitted.",
+      "Confirm competitive selection based on academic merit and the relevant ANU college ranking process.",
+      "Verify tuition-fee liability and any separate tuition scholarship because the inspected page explicitly describes a stipend and allowances but not a universal tuition-fee waiver."
+    ],
+    "minimum_gpa": null,
+    "gpa_scale": null,
+    "minimum_work_experience_years": null,
+    "language_requirements": {},
+    "funding_type": "partially_funded",
+    "deadline": null,
+    "application_year": null,
+    "source_last_checked": "2026-06-28",
+    "eligibility_text": "The ANU PhD Scholarship supports domestic and international postgraduate research students across all fields of study. The official page lists a 2026 base stipend of AUD 39,069 per year, paid fortnightly for 3.5 years, with additional allowances. Applicants must apply for admission to an ANU PhD or Professional Doctorate by Research and normally hold first-class honours, a research master's qualification or a recognised equivalent. Scholarship round deadlines vary by applicant category and intended commencement."
   }
 ]

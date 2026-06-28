@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import math
 import re
 from dataclasses import dataclass
 
@@ -45,6 +46,36 @@ STOPWORDS = frozenset(
         "scholarships",
     }
 )
+
+
+def _positive_idf(
+    *,
+    document_count: int,
+    document_frequency: int,
+) -> float:
+    """Return positive-smoothed BM25 inverse document frequency."""
+    if document_count < 1:
+        raise ValueError(
+            "document_count must be at least 1."
+        )
+
+    if not 1 <= document_frequency <= document_count:
+        raise ValueError(
+            "document_frequency must be between 1 "
+            "and document_count."
+        )
+
+    return math.log1p(
+        (
+            document_count
+            - document_frequency
+            + 0.5
+        )
+        / (
+            document_frequency
+            + 0.5
+        )
+    )
 
 
 def tokenize(text: str) -> list[str]:
@@ -104,6 +135,43 @@ class BM25ScholarshipIndex:
             for token in document
         }
         self._index = BM25Okapi(self._tokenized_corpus)
+
+        # rank_bm25 uses Robertson IDF, which becomes zero for
+        # terms present in exactly half of a corpus and negative
+        # for more frequent terms. In very small corpora this can
+        # invert otherwise obvious lexical rankings. Retain BM25
+        # term-frequency and length normalization while replacing
+        # its IDF values with positive smoothing.
+        document_count = len(
+            self._tokenized_corpus
+        )
+        document_frequencies: dict[str, int] = {}
+
+        for document in self._tokenized_corpus:
+            for token in set(document):
+                document_frequencies[token] = (
+                    document_frequencies.get(
+                        token,
+                        0,
+                    )
+                    + 1
+                )
+
+        self._index.idf = {
+            token: _positive_idf(
+                document_count=document_count,
+                document_frequency=frequency,
+            )
+            for token, frequency
+            in document_frequencies.items()
+        }
+
+        self._index.average_idf = (
+            sum(self._index.idf.values())
+            / len(self._index.idf)
+            if self._index.idf
+            else 0.0
+        )
 
     def search(self, query: str, *, k: int = 5) -> list[SearchResult]:
         """Return the top-k lexical matches for a query."""

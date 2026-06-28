@@ -13,6 +13,16 @@
       "source_last_checked": "2026-06-28",
       "content_sha256": "2e2467c12b6aee5df61a4cdfcb6a6c5649829c5aa87566c8851dcf23dcd9b48c",
       "byte_size": 160781
+    },
+    {
+      "scholarship_id": "anu-phd-scholarship",
+      "snapshot_path": "data/sources/calibration/anu-phd-scholarship.json",
+      "source_url": "https://study.anu.edu.au/scholarships/find-scholarship/anu-phd-scholarship",
+      "source_type": "html",
+      "snapshot_title": "ANU PhD Scholarship | The Australian National University",
+      "source_last_checked": "2026-06-28",
+      "content_sha256": "603ffbe25b136e8e40fddad7f8da62eec4289d80f132e47f370d8eb704adb44a",
+      "byte_size": 48053
     }
   ]
 }
