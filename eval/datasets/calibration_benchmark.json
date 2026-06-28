@@ -1,0 +1,751 @@
+{
+  "name": "ScholarAgent official calibration benchmark",
+  "description": "A 24-case manually specified calibration benchmark over six official scholarship identities. It contains 20 positive cases with five labels for each eligibility status and four unsupported no-result cases. The fixed retrospective evaluation date is 2026-05-01. All eligible cases contain scholarship-scoped adjudicated manual evidence. The five insufficient-information cases use Adelaide because it is the only calibration record with a structured missing-data requirement. This partition is for calibration and development only, not held-out publication evidence.",
+  "as_of": "2026-05-01",
+  "cases": [
+    {
+      "case_id": "eligible-adelaide-master-verified",
+      "query": "Adelaide Academic Excellence Scholarship University of Adelaide international master GPA 6.7 fifty percent tuition reduction",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Artificial Intelligence"
+        ],
+        "gpa": 6.8,
+        "gpa_scale": 7.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Australia"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {
+          "adelaide-academic-excellence-scholarship-2026": [
+            "No structured nationality rule is available; inspect the official eligibility text.",
+            "Confirm that the applicant is an international student under Adelaide University's current definition.",
+            "Confirm that the intended CRICOS-registered bachelor's or master's degree satisfies the stated minimum duration after any credit or recognised prior learning.",
+            "Confirm that the intended degree is not one of the excluded programmes listed on the official scholarship page.",
+            "Confirm that the applicant is not an Australia Awards recipient.",
+            "Confirm that the applicant does not hold an international sponsorship tuition-fee waiver equal to or greater than the scholarship value.",
+            "Confirm selection by the scholarship panel because the award is competitive and places are limited."
+          ]
+        }
+      },
+      "relevant_ids": [
+        "adelaide-academic-excellence-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "adelaide-academic-excellence-scholarship-2026": "eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "eligible-anu-phd-verified",
+      "query": "ANU PhD Scholarship Australian National University doctoral research stipend 39069 first class honours",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "phd",
+        "fields_of_study": [
+          "Artificial Intelligence"
+        ],
+        "gpa": 4.5,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Australia"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {
+          "anu-phd-scholarship": [
+            "Confirm admission or a complete application for admission to an ANU PhD or Professional Doctorate by Research programme.",
+            "Verify that the applicant's previous qualification satisfies the stated first-class honours, research master's or recognised-equivalent requirement.",
+            "Confirm the applicable international, domestic or later scholarship-round deadline for the intended commencement.",
+            "Confirm that all supporting documents and referee reports were complete when the admission application was submitted.",
+            "Confirm competitive selection based on academic merit and the relevant ANU college ranking process.",
+            "Verify tuition-fee liability and any separate tuition scholarship because the inspected page explicitly describes a stipend and allowances but not a universal tuition-fee waiver."
+          ]
+        }
+      },
+      "relevant_ids": [
+        "anu-phd-scholarship"
+      ],
+      "expected_statuses": {
+        "anu-phd-scholarship": "eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "eligible-ferguson-development-verified",
+      "query": "Allan Nesta Ferguson Sheffield masters International Development full tuition 12500 maintenance stipend",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "International Development"
+        ],
+        "gpa": 4.5,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "United Kingdom"
+        ],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {
+          "allan-nesta-ferguson-masters-scholarships-2026": [
+            "No structured nationality rule is available; inspect the official eligibility text.",
+            "Verify that the applicant's country appears on the official eligible-countries list.",
+            "Confirm that the applicant held an offer for an eligible University of Sheffield course by 8 May 2026.",
+            "Confirm overseas tuition-fee status.",
+            "Confirm that the applicant does not already hold an equivalent or higher-level qualification.",
+            "Confirm compliance with the official previous-study restriction.",
+            "Confirm that the applicant was shortlisted and invited to submit the scholarship application.",
+            "Confirm competitive selection based on academic strength, rationale, work experience and future ambitions."
+          ]
+        }
+      },
+      "relevant_ids": [
+        "allan-nesta-ferguson-masters-scholarships-2026"
+      ],
+      "expected_statuses": {
+        "allan-nesta-ferguson-masters-scholarships-2026": "eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "eligible-eth-esop-verified",
+      "query": "ETH Zurich Excellence Scholarship Opportunity Programme ESOP master CHF 12000 tuition waiver top ten percent",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Computer Science"
+        ],
+        "gpa": 4.8,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Switzerland"
+        ],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {
+          "eth-excellence-scholarship-opportunity-programme-2027": [
+            "No structured nationality rule is available; inspect the official eligibility text.",
+            "Confirm application to an eligible ETH Zurich master's programme.",
+            "Verify that the applicant's bachelor results place them approximately in the top 10 percent of their programme.",
+            "Verify all required academic and programme-specific application documents.",
+            "Confirm that the intended master's programme lasts three or four semesters.",
+            "Confirm final competitive selection by ETH Zurich."
+          ]
+        }
+      },
+      "relevant_ids": [
+        "eth-excellence-scholarship-opportunity-programme-2027"
+      ],
+      "expected_statuses": {
+        "eth-excellence-scholarship-opportunity-programme-2027": "eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "eligible-auckland-doctoral-verified",
+      "query": "University of Auckland Doctoral Scholarship New Zealand PhD stipend 35468 tuition health insurance forty two months",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "phd",
+        "fields_of_study": [
+          "Machine Learning"
+        ],
+        "gpa": 4.5,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "New Zealand"
+        ],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {
+          "university-of-auckland-doctoral-scholarship-2026": [
+            "Confirm an eligible offer or place in a University of Auckland doctoral programme.",
+            "Confirm the correct domestic or international application round and deadline.",
+            "Verify compliance with the doctoral admission and scholarship-ranking requirements.",
+            "Confirm full-time doctoral enrolment and the applicable award duration.",
+            "Confirm final selection under the competitive scholarship scheme."
+          ]
+        }
+      },
+      "relevant_ids": [
+        "university-of-auckland-doctoral-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "university-of-auckland-doctoral-scholarship-2026": "eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "potential-adelaide-bachelor-unverified",
+      "query": "Adelaide Academic Excellence Scholarship international bachelor GPA 6.7 fifty percent tuition fee reduction",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "bachelor",
+        "fields_of_study": [
+          "Data Science"
+        ],
+        "gpa": 6.9,
+        "gpa_scale": 7.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Australia"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "adelaide-academic-excellence-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "adelaide-academic-excellence-scholarship-2026": "potentially_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "potential-anu-phd-unverified",
+      "query": "ANU PhD Scholarship postgraduate research Australia annual stipend doctoral candidate",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "phd",
+        "fields_of_study": [
+          "Machine Learning"
+        ],
+        "gpa": 4.5,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Australia"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "anu-phd-scholarship"
+      ],
+      "expected_statuses": {
+        "anu-phd-scholarship": "potentially_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "potential-ferguson-economy-unverified",
+      "query": "Sheffield Ferguson scholarship International Political Economy MA full tuition maintenance stipend",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "International Political Economy"
+        ],
+        "gpa": 4.5,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "United Kingdom"
+        ],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "allan-nesta-ferguson-masters-scholarships-2026"
+      ],
+      "expected_statuses": {
+        "allan-nesta-ferguson-masters-scholarships-2026": "potentially_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "potential-eth-esop-unverified",
+      "query": "ETH ESOP Excellence Scholarship Switzerland masters living costs tuition waiver outstanding bachelor",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Data Science"
+        ],
+        "gpa": 4.5,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Switzerland"
+        ],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "eth-excellence-scholarship-opportunity-programme-2027"
+      ],
+      "expected_statuses": {
+        "eth-excellence-scholarship-opportunity-programme-2027": "potentially_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "potential-auckland-phd-unverified",
+      "query": "Auckland Doctoral Scholarship competitive PhD New Zealand stipend tuition fees health insurance",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "phd",
+        "fields_of_study": [
+          "Civil Engineering"
+        ],
+        "gpa": 4.5,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "New Zealand"
+        ],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "university-of-auckland-doctoral-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "university-of-auckland-doctoral-scholarship-2026": "potentially_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "not-eligible-kth-expired-round",
+      "query": "KTH Scholarship Sweden master full tuition fee first priority fee paying student",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Data Science"
+        ],
+        "gpa": 4.5,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Sweden"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "kth-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "kth-scholarship-2026": "not_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "not-eligible-anu-wrong-degree",
+      "query": "ANU PhD Scholarship Australia doctoral research stipend honours",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Artificial Intelligence"
+        ],
+        "gpa": 4.5,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Australia"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "anu-phd-scholarship"
+      ],
+      "expected_statuses": {
+        "anu-phd-scholarship": "not_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "not-eligible-auckland-wrong-degree",
+      "query": "University Auckland Doctoral Scholarship PhD stipend tuition forty two months",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Computer Science"
+        ],
+        "gpa": 4.5,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "New Zealand"
+        ],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "university-of-auckland-doctoral-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "university-of-auckland-doctoral-scholarship-2026": "not_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "not-eligible-ferguson-field-mismatch",
+      "query": "Allan Nesta Ferguson Sheffield masters full tuition maintenance developing countries",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Artificial Intelligence"
+        ],
+        "gpa": 4.5,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "United Kingdom"
+        ],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "allan-nesta-ferguson-masters-scholarships-2026"
+      ],
+      "expected_statuses": {
+        "allan-nesta-ferguson-masters-scholarships-2026": "not_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "not-eligible-eth-wrong-degree",
+      "query": "ETH Excellence Scholarship Opportunity Programme Switzerland master CHF tuition waiver",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "phd",
+        "fields_of_study": [
+          "Computer Science"
+        ],
+        "gpa": 4.5,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Switzerland"
+        ],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "eth-excellence-scholarship-opportunity-programme-2027"
+      ],
+      "expected_statuses": {
+        "eth-excellence-scholarship-opportunity-programme-2027": "not_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "insufficient-adelaide-master-missing-gpa",
+      "query": "Adelaide Academic Excellence master international student GPA requirement tuition reduction",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Artificial Intelligence"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Australia"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "adelaide-academic-excellence-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "adelaide-academic-excellence-scholarship-2026": "insufficient_information"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "insufficient-adelaide-bachelor-missing-gpa",
+      "query": "Adelaide Academic Excellence bachelor scholarship Australia GPA 6.7 fifty percent tuition",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "bachelor",
+        "fields_of_study": [
+          "Data Science"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Australia"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "adelaide-academic-excellence-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "adelaide-academic-excellence-scholarship-2026": "insufficient_information"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "insufficient-adelaide-ai-missing-gpa",
+      "query": "University Adelaide excellence award international artificial intelligence coursework tuition fee reduction",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Nigeria",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Artificial Intelligence",
+          "Data Science"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Australia"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "adelaide-academic-excellence-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "adelaide-academic-excellence-scholarship-2026": "insufficient_information"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "insufficient-adelaide-engineering-missing-gpa",
+      "query": "Adelaide scholarship international engineering masters academic excellence tuition reduction",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Civil Engineering"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 4.0,
+        "preferred_countries": [
+          "Australia"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "adelaide-academic-excellence-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "adelaide-academic-excellence-scholarship-2026": "insufficient_information"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "insufficient-adelaide-coursework-missing-gpa",
+      "query": "Adelaide Academic Excellence coursework scholarship bachelor international tuition reduction",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "bachelor",
+        "fields_of_study": [
+          "Economics"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Australia"
+        ],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "adelaide-academic-excellence-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "adelaide-academic-excellence-scholarship-2026": "insufficient_information"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "no-result-mars-xylophone",
+      "query": "zephyrian xylophone archaeology bursary mars",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Archaeology"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [],
+      "expected_statuses": {},
+      "expect_no_results": true
+    },
+    {
+      "case_id": "no-result-venus-puppetry",
+      "query": "quasar puppetry endowment venus marionette",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Archaeology"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [],
+      "expected_statuses": {},
+      "expect_no_results": true
+    },
+    {
+      "case_id": "no-result-neptune-origami",
+      "query": "subaquatic origami neptune paperfolding abyssal",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Archaeology"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [],
+      "expected_statuses": {},
+      "expect_no_results": true
+    },
+    {
+      "case_id": "no-result-pluto-chronomancy",
+      "query": "chronomancy yodeling pluto timewizard vocalism",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Archaeology"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [],
+      "expected_statuses": {},
+      "expect_no_results": true
+    }
+  ]
+}

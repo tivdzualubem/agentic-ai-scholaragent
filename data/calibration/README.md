@@ -21,4 +21,6 @@ before calibration begins.
 
 Current progress: 6 of 6 planned calibration scholarships.
 
-The scholarship corpus is complete, but the calibration benchmark and parameter-selection run have not yet been created.
+The six-scholarship corpus and balanced 24-case calibration benchmark are complete. The parameter-selection run has not yet been performed.
+
+Calibration limitation: all five `insufficient_information` cases use the Adelaide record because it is currently the only calibration scholarship with a structured missing-data requirement. The held-out corpus must include broader structured missing-data coverage.
