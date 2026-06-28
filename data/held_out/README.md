@@ -27,9 +27,38 @@ minimum GPA of `7.5/10` is explicitly supported and is represented
 structurally.
 
 Current progress: six of six held-out scholarship identities, official
-source records, and the balanced 24-case benchmark are complete. No
-retrieval, RAG, or ablation evaluation has yet been run on this partition.
+source records, the balanced 24-case benchmark, the frozen retrieval
+comparison, and deterministic eligibility evaluation are complete. The
+held-out RAG comparison and ablation evaluation have not yet been run.
 
 The five `insufficient_information` benchmark cases use Maastricht's
 explicit `7.5/10` GPA requirement because it is the only held-out source
 with a numeric eligibility threshold whose scale is stated directly.
+
+## Frozen held-out retrieval results
+
+The one-time held-out evaluation used the calibration-selected settings
+without modification:
+
+- dense threshold: `0.60`;
+- retrieval top-k: `3`;
+- hybrid candidate-k: `9`;
+- reciprocal-rank-fusion constant: `60`;
+- embedding model: `nomic-embed-text:latest`.
+
+Retrieval results on the 20 positive and four unsupported cases were:
+
+| Retriever | Precision@3 | Recall@3 | MRR | Top-1 | No-result accuracy |
+|---|---:|---:|---:|---:|---:|
+| BM25 | 0.3333 | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
+| Dense | 0.3000 | 0.9000 | 0.5917 | 0.4000 | 1.0000 |
+| Hybrid RRF | 0.3333 | 1.0000 | 0.8750 | 0.7500 | 1.0000 |
+
+BM25 was the strongest retriever on this small held-out corpus. Hybrid RRF
+did not outperform BM25, and dense retrieval showed weaker ranking
+generalization. These results must be reported without post-test parameter
+adjustment.
+
+The deterministic eligibility engine reproduced all 20 held-out labels:
+accuracy, macro precision, macro recall, macro F1, and weighted F1 were all
+`1.0000`.

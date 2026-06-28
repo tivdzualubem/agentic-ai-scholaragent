@@ -21,6 +21,8 @@ eval/results/*
 !eval/results/official_retrieval_comparison_calibrated.json
 !eval/results/official_rag_comparison_tinyllama_development.json
 !eval/results/calibration_retrieval_threshold_sweep.json
+!eval/results/held_out_retrieval_comparison.json
+!eval/results/held_out_eligibility_evaluation.json
 
 # Streamlit
 .streamlit/secrets.toml

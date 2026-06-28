@@ -76,3 +76,38 @@ The frozen configuration is stored in
 `eval/config/frozen_retrieval_settings.json`. The held-out test partition
 was not used during threshold selection, and these calibration metrics are
 not final publication-level performance.
+
+## Final held-out retrieval and eligibility evaluation
+
+`held_out_retrieval_comparison.json` records the one-time comparison of BM25,
+dense retrieval, and hybrid reciprocal-rank fusion on the six-identity,
+24-case held-out benchmark.
+
+The settings were frozen before the held-out identities and labels were
+evaluated:
+
+- dense cosine-similarity threshold: `0.60`;
+- top-k: `3`;
+- hybrid candidate-k: `9`;
+- RRF constant: `60`;
+- embedding model: `nomic-embed-text:latest`.
+
+Final held-out retrieval metrics:
+
+| Retriever | Precision@3 | Recall@3 | MRR | Top-1 | No-result |
+|---|---:|---:|---:|---:|---:|
+| BM25 | 0.3333 | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
+| Dense | 0.3000 | 0.9000 | 0.5917 | 0.4000 | 1.0000 |
+| Hybrid RRF | 0.3333 | 1.0000 | 0.8750 | 0.7500 | 1.0000 |
+
+BM25 achieved the strongest ranking performance. Hybrid retrieval preserved
+perfect Recall@3 and abstention accuracy but did not exceed BM25. Dense
+retrieval missed two positive cases within the top three and achieved weaker
+top-one ranking performance.
+
+`held_out_eligibility_evaluation.json` records deterministic eligibility
+evaluation over 20 balanced labels. Accuracy, macro precision, macro recall,
+macro F1, and weighted F1 were all `1.0000`.
+
+No held-out threshold, prompt, query, retrieval, or RRF tuning was performed
+after these results were observed.
