@@ -17,6 +17,8 @@ data/processed/*
 !data/processed/.gitkeep
 eval/results/*
 !eval/results/.gitkeep
+!eval/results/README.md
+!eval/results/official_retrieval_comparison_calibrated.json
 
 # Streamlit
 .streamlit/secrets.toml

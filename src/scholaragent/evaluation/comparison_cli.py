@@ -45,12 +45,18 @@ def build_parser() -> argparse.ArgumentParser:
         default=3,
     )
     parser.add_argument(
+        "--embedding-model",
+        default="nomic-embed-text",
+        help="Ollama embedding model used for dense retrieval.",
+    )
+    parser.add_argument(
         "--dense-threshold",
         type=float,
         default=0.67,
         help=(
             "Minimum cosine similarity for dense evidence. "
-            "The default is a synthetic development value."
+            "The default is development-calibrated and must be "
+            "recalibrated before final evaluation."
         ),
     )
     parser.add_argument(
@@ -71,7 +77,7 @@ def main() -> None:
     )
 
     embedder = OllamaEmbeddingClient(
-        model="nomic-embed-text",
+        model=args.embedding_model,
     )
 
     bm25 = BM25ScholarshipIndex(scholarships)
@@ -88,6 +94,13 @@ def main() -> None:
     comparison = compare_retrievers(
         benchmark=benchmark,
         k=args.top_k,
+        embedding_model=args.embedding_model,
+        dense_threshold=args.dense_threshold,
+        calibration_scope=(
+            "Development-only calibration using synthetic and "
+            "small official-source development cases; recalibrate "
+            "on an independent calibration set before final testing."
+        ),
         retrievers={
             "bm25": (
                 lambda query, k:
@@ -114,9 +127,14 @@ def main() -> None:
 
     print(f"Benchmark: {comparison.benchmark_name}")
     print(f"Top-k: {comparison.k}")
+    print(f"Embedding model: {args.embedding_model}")
     print(
         "Dense abstention threshold: "
         f"{args.dense_threshold:.6f}"
+    )
+    print(
+        "Calibration scope: "
+        f"{comparison.calibration_scope}"
     )
     print()
     print(

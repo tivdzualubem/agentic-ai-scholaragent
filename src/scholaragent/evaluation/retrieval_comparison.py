@@ -65,6 +65,15 @@ class RetrievalComparison(BaseModel):
 
     benchmark_name: str
     k: int = Field(ge=1)
+
+    embedding_model: str | None = None
+    dense_threshold: float | None = Field(
+        default=None,
+        ge=-1,
+        le=1,
+    )
+    calibration_scope: str | None = None
+
     retrievers: list[RetrieverMetrics]
 
 
@@ -204,6 +213,9 @@ def compare_retrievers(
     benchmark: BenchmarkDataset,
     retrievers: Mapping[str, SearchFunction],
     k: int = 3,
+    embedding_model: str | None = None,
+    dense_threshold: float | None = None,
+    calibration_scope: str | None = None,
 ) -> RetrievalComparison:
     """Evaluate multiple retrievers using identical cases."""
     if not retrievers:
@@ -224,5 +236,8 @@ def compare_retrievers(
     return RetrievalComparison(
         benchmark_name=benchmark.name,
         k=k,
+        embedding_model=embedding_model,
+        dense_threshold=dense_threshold,
+        calibration_scope=calibration_scope,
         retrievers=metrics,
     )

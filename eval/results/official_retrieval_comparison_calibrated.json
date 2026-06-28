@@ -1,0 +1,191 @@
+{
+  "benchmark_name": "ScholarAgent official-source development benchmark",
+  "k": 3,
+  "embedding_model": "nomic-embed-text",
+  "dense_threshold": 0.67,
+  "calibration_scope": "Development-only calibration using synthetic and small official-source development cases; recalibrate on an independent calibration set before final testing.",
+  "retrievers": [
+    {
+      "retriever_name": "bm25",
+      "k": 3,
+      "positive_cases": 3,
+      "no_result_cases": 1,
+      "precision_at_k": 0.3333333333333333,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "top1_hit_rate": 1.0,
+      "no_result_accuracy": 1.0,
+      "cases": [
+        {
+          "case_id": "erasmus-mundus-worldwide-masters",
+          "retrieved_ids": [
+            "erasmus-mundus-joint-masters",
+            "si-global-professionals-2026",
+            "university-twente-scholarship-2027"
+          ],
+          "precision_at_k": 0.3333333333333333,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "top1_hit": true,
+          "no_result_correct": null
+        },
+        {
+          "case_id": "si-global-professionals-expired-round",
+          "retrieved_ids": [
+            "si-global-professionals-2026",
+            "erasmus-mundus-joint-masters",
+            "university-twente-scholarship-2027"
+          ],
+          "precision_at_k": 0.3333333333333333,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "top1_hit": true,
+          "no_result_correct": null
+        },
+        {
+          "case_id": "twente-non-eu-masters",
+          "retrieved_ids": [
+            "university-twente-scholarship-2027",
+            "erasmus-mundus-joint-masters",
+            "si-global-professionals-2026"
+          ],
+          "precision_at_k": 0.3333333333333333,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "top1_hit": true,
+          "no_result_correct": null
+        },
+        {
+          "case_id": "official-corpus-no-match",
+          "retrieved_ids": [],
+          "precision_at_k": 0.0,
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0.0,
+          "top1_hit": false,
+          "no_result_correct": true
+        }
+      ]
+    },
+    {
+      "retriever_name": "dense",
+      "k": 3,
+      "positive_cases": 3,
+      "no_result_cases": 1,
+      "precision_at_k": 0.3333333333333333,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "top1_hit_rate": 1.0,
+      "no_result_accuracy": 1.0,
+      "cases": [
+        {
+          "case_id": "erasmus-mundus-worldwide-masters",
+          "retrieved_ids": [
+            "erasmus-mundus-joint-masters",
+            "si-global-professionals-2026",
+            "university-twente-scholarship-2027"
+          ],
+          "precision_at_k": 0.3333333333333333,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "top1_hit": true,
+          "no_result_correct": null
+        },
+        {
+          "case_id": "si-global-professionals-expired-round",
+          "retrieved_ids": [
+            "si-global-professionals-2026",
+            "erasmus-mundus-joint-masters",
+            "university-twente-scholarship-2027"
+          ],
+          "precision_at_k": 0.3333333333333333,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "top1_hit": true,
+          "no_result_correct": null
+        },
+        {
+          "case_id": "twente-non-eu-masters",
+          "retrieved_ids": [
+            "university-twente-scholarship-2027",
+            "si-global-professionals-2026"
+          ],
+          "precision_at_k": 0.3333333333333333,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "top1_hit": true,
+          "no_result_correct": null
+        },
+        {
+          "case_id": "official-corpus-no-match",
+          "retrieved_ids": [],
+          "precision_at_k": 0.0,
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0.0,
+          "top1_hit": false,
+          "no_result_correct": true
+        }
+      ]
+    },
+    {
+      "retriever_name": "hybrid_rrf",
+      "k": 3,
+      "positive_cases": 3,
+      "no_result_cases": 1,
+      "precision_at_k": 0.3333333333333333,
+      "recall_at_k": 1.0,
+      "mrr": 1.0,
+      "top1_hit_rate": 1.0,
+      "no_result_accuracy": 1.0,
+      "cases": [
+        {
+          "case_id": "erasmus-mundus-worldwide-masters",
+          "retrieved_ids": [
+            "erasmus-mundus-joint-masters",
+            "si-global-professionals-2026",
+            "university-twente-scholarship-2027"
+          ],
+          "precision_at_k": 0.3333333333333333,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "top1_hit": true,
+          "no_result_correct": null
+        },
+        {
+          "case_id": "si-global-professionals-expired-round",
+          "retrieved_ids": [
+            "si-global-professionals-2026",
+            "erasmus-mundus-joint-masters",
+            "university-twente-scholarship-2027"
+          ],
+          "precision_at_k": 0.3333333333333333,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "top1_hit": true,
+          "no_result_correct": null
+        },
+        {
+          "case_id": "twente-non-eu-masters",
+          "retrieved_ids": [
+            "university-twente-scholarship-2027",
+            "si-global-professionals-2026",
+            "erasmus-mundus-joint-masters"
+          ],
+          "precision_at_k": 0.3333333333333333,
+          "recall_at_k": 1.0,
+          "reciprocal_rank": 1.0,
+          "top1_hit": true,
+          "no_result_correct": null
+        },
+        {
+          "case_id": "official-corpus-no-match",
+          "retrieved_ids": [],
+          "precision_at_k": 0.0,
+          "recall_at_k": 0.0,
+          "reciprocal_rank": 0.0,
+          "top1_hit": false,
+          "no_result_correct": true
+        }
+      ]
+    }
+  ]
+}

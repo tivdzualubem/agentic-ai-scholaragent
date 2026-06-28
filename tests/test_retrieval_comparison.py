@@ -97,6 +97,9 @@ def build_comparison():
     return compare_retrievers(
         benchmark=benchmark,
         k=3,
+        embedding_model="keyword-test-embedder",
+        dense_threshold=0.67,
+        calibration_scope="Deterministic test calibration.",
         retrievers={
             "bm25": (
                 lambda query, k:
@@ -121,6 +124,16 @@ def build_comparison():
 def test_three_retrievers_are_evaluated() -> None:
     """The comparison includes all required baselines."""
     comparison = build_comparison()
+
+    assert (
+        comparison.embedding_model
+        == "keyword-test-embedder"
+    )
+    assert comparison.dense_threshold == 0.67
+    assert (
+        comparison.calibration_scope
+        == "Deterministic test calibration."
+    )
 
     assert [
         metrics.retriever_name

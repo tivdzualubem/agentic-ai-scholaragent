@@ -58,6 +58,10 @@ def main() -> None:
     print(f"Cases: {summary.total_cases}")
     print(f"Positive cases: {summary.positive_cases}")
     print(f"No-result cases: {summary.no_result_cases}")
+    print(
+        "Actionable screening cases: "
+        f"{summary.screened_actionable_cases}"
+    )
     print()
     print(
         f"BM25 Precision@{summary.k}: "
@@ -72,9 +76,15 @@ def main() -> None:
         "BM25 top-1 hit rate: "
         f"{summary.bm25_top1_hit_rate:.4f}"
     )
-    print(
-        "Screened top-1 hit rate: "
+    screened_rate = (
         f"{summary.screened_top1_hit_rate:.4f}"
+        if summary.screened_top1_hit_rate is not None
+        else "n/a"
+    )
+
+    print(
+        "Actionable screened top-1 hit rate: "
+        f"{screened_rate}"
     )
     print(
         "Eligibility status accuracy: "
