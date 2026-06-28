@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from datetime import date
 from enum import StrEnum
+import re
 from typing import Any, Self
 
 from pydantic import (
@@ -79,6 +80,9 @@ class StudentProfile(BaseModel):
     years_work_experience: float = Field(default=0, ge=0, le=60)
     preferred_countries: list[str] = Field(default_factory=list)
     requires_full_funding: bool = True
+    verified_manual_requirements: dict[str, list[str]] = Field(
+        default_factory=dict
+    )
 
     @field_validator(
         "fields_of_study",
@@ -89,6 +93,67 @@ class StudentProfile(BaseModel):
     def clean_text_lists(cls, value: Any) -> Any:
         """Normalize user-supplied string lists."""
         return _clean_text_list(value)
+
+    @field_validator(
+        "verified_manual_requirements",
+        mode="before",
+    )
+    @classmethod
+    def clean_verified_manual_requirements(
+        cls,
+        value: Any,
+    ) -> Any:
+        """Normalize scholarship-scoped verified manual evidence."""
+        if value is None:
+            return {}
+
+        if not isinstance(value, dict):
+            return value
+
+        cleaned: dict[str, list[str]] = {}
+
+        for scholarship_id, requirements in value.items():
+            if not isinstance(scholarship_id, str):
+                raise ValueError(
+                    "Verified manual-evidence keys must be "
+                    "scholarship identifiers."
+                )
+
+            normalized_id = scholarship_id.strip()
+
+            if (
+                not 3 <= len(normalized_id) <= 100
+                or re.fullmatch(
+                    r"[a-z0-9][a-z0-9-]*",
+                    normalized_id,
+                )
+                is None
+            ):
+                raise ValueError(
+                    "Verified manual-evidence keys must be "
+                    "valid scholarship identifiers."
+                )
+
+            if not isinstance(requirements, list):
+                raise ValueError(
+                    "Verified manual evidence must be supplied "
+                    "as lists of requirement strings."
+                )
+
+            normalized_requirements = _clean_text_list(
+                requirements
+            )
+
+            existing = cleaned.get(
+                normalized_id,
+                [],
+            )
+
+            cleaned[normalized_id] = _clean_text_list(
+                existing + normalized_requirements
+            )
+
+        return cleaned
 
     @field_validator("language_scores")
     @classmethod

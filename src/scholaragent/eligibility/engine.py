@@ -330,6 +330,59 @@ def _assess_deadline(
         )
 
 
+def _apply_verified_manual_requirements(
+    profile: StudentProfile,
+    scholarship: ScholarshipRecord,
+    *,
+    manual: list[str],
+    passed: list[str],
+    warnings: list[str],
+) -> list[str]:
+    """Resolve exact scholarship-scoped manual requirements."""
+    verified = profile.verified_manual_requirements.get(
+        scholarship.scholarship_id,
+        [],
+    )
+
+    if not verified:
+        return manual
+
+    normalized_verified = {
+        _normalize(requirement)
+        for requirement in verified
+    }
+
+    matched: set[str] = set()
+    unresolved: list[str] = []
+
+    for requirement in manual:
+        normalized_requirement = _normalize(
+            requirement
+        )
+
+        if normalized_requirement in normalized_verified:
+            matched.add(normalized_requirement)
+            passed.append(
+                "Verified manual requirement: "
+                f"{requirement}"
+            )
+        else:
+            unresolved.append(requirement)
+
+    unmatched_count = len(
+        normalized_verified - matched
+    )
+
+    if unmatched_count:
+        warnings.append(
+            f"{unmatched_count} supplied manual-verification "
+            "item(s) did not exactly match a requirement for "
+            "this scholarship."
+        )
+
+    return unresolved
+
+
 def _assess_preferences(
     profile: StudentProfile,
     scholarship: ScholarshipRecord,
@@ -421,6 +474,14 @@ def assess_eligibility(
 
     manual.extend(
         scholarship.manual_review_requirements
+    )
+
+    manual = _apply_verified_manual_requirements(
+        profile,
+        scholarship,
+        manual=manual,
+        passed=passed,
+        warnings=warnings,
     )
 
     _assess_preferences(

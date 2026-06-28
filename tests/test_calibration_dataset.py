@@ -410,3 +410,42 @@ def test_bm25_ranks_each_calibration_record_first() -> None:
             == expected_id
         )
         assert results[0].score > 0
+
+
+def test_verified_anu_requirements_enable_eligible_status() -> None:
+    """Adjudicated ANU evidence should cover the eligible class."""
+    record = _records()[ANU_ID]
+
+    profile = _profile(
+        degree="phd",
+        field="Artificial Intelligence",
+        requires_full_funding=False,
+    ).model_copy(
+        update={
+            "verified_manual_requirements": {
+                ANU_ID: list(
+                    record.manual_review_requirements
+                ),
+            },
+        }
+    )
+
+    result = assess_eligibility(
+        profile,
+        record,
+        as_of=date(2026, 6, 28),
+    )
+
+    assert result.status is EligibilityStatus.ELIGIBLE
+    assert result.hard_failures == []
+    assert result.missing_information == []
+    assert result.manual_review_items == []
+    assert len(
+        [
+            check
+            for check in result.passed_checks
+            if check.startswith(
+                "Verified manual requirement:"
+            )
+        ]
+    ) == len(record.manual_review_requirements)

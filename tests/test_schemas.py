@@ -146,3 +146,45 @@ def test_manual_review_requirements_are_normalized() -> None:
         "Verify prior admission",
         "Confirm programme eligibility",
     ]
+
+
+def test_verified_manual_requirements_are_normalized() -> None:
+    """Verified evidence should be scoped, cleaned and deduplicated."""
+    profile = StudentProfile(
+        nationality="Nigerian",
+        target_degree_level="phd",
+        fields_of_study=["Artificial Intelligence"],
+        verified_manual_requirements={
+            " anu-phd-scholarship ": [
+                " Confirm doctoral admission ",
+                "confirm doctoral admission",
+                "",
+                "Verify scholarship selection",
+            ],
+        },
+    )
+
+    assert profile.verified_manual_requirements == {
+        "anu-phd-scholarship": [
+            "Confirm doctoral admission",
+            "Verify scholarship selection",
+        ],
+    }
+
+
+def test_verified_manual_requirements_reject_invalid_id() -> None:
+    """Verified evidence must use a stable scholarship identifier."""
+    with pytest.raises(
+        ValidationError,
+        match="valid scholarship identifiers",
+    ):
+        StudentProfile(
+            nationality="Nigerian",
+            target_degree_level="phd",
+            fields_of_study=["Artificial Intelligence"],
+            verified_manual_requirements={
+                "Invalid Scholarship ID": [
+                    "Confirm doctoral admission",
+                ],
+            },
+        )
