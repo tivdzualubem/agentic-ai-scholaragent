@@ -5,6 +5,11 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
+from scholaragent.evaluation.defaults import (
+    CALIBRATED_DENSE_THRESHOLD,
+    DEFAULT_EMBEDDING_MODEL,
+    DEFAULT_RETRIEVAL_TOP_K,
+)
 from scholaragent.evaluation import load_benchmark
 from scholaragent.evaluation.retrieval_comparison import (
     compare_retrievers,
@@ -42,21 +47,21 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--top-k",
         type=int,
-        default=3,
+        default=DEFAULT_RETRIEVAL_TOP_K,
     )
     parser.add_argument(
         "--embedding-model",
-        default="nomic-embed-text",
+        default=DEFAULT_EMBEDDING_MODEL,
         help="Ollama embedding model used for dense retrieval.",
     )
     parser.add_argument(
         "--dense-threshold",
         type=float,
-        default=0.67,
+        default=CALIBRATED_DENSE_THRESHOLD,
         help=(
             "Minimum cosine similarity for dense evidence. "
-            "The default is development-calibrated and must be "
-            "recalibrated before final evaluation."
+            "The default was selected on the independent calibration partition and "
+            "frozen before held-out evaluation."
         ),
     )
     parser.add_argument(
@@ -97,9 +102,9 @@ def main() -> None:
         embedding_model=args.embedding_model,
         dense_threshold=args.dense_threshold,
         calibration_scope=(
-            "Development-only calibration using synthetic and "
-            "small official-source development cases; recalibrate "
-            "on an independent calibration set before final testing."
+            "Frozen using the independent six-scholarship, "
+            "24-case calibration partition; held-out test "
+            "data was not used."
         ),
         retrievers={
             "bm25": (

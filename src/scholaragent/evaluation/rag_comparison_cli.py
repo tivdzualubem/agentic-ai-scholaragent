@@ -5,6 +5,11 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
+from scholaragent.evaluation.defaults import (
+    CALIBRATED_DENSE_THRESHOLD,
+    DEFAULT_EMBEDDING_MODEL,
+    DEFAULT_RETRIEVAL_TOP_K,
+)
 from scholaragent.evaluation.benchmark import (
     BenchmarkCase,
     load_benchmark,
@@ -52,12 +57,12 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument(
         "--embedding-model",
-        default="nomic-embed-text",
+        default=DEFAULT_EMBEDDING_MODEL,
     )
     parser.add_argument(
         "--dense-threshold",
         type=float,
-        default=0.67,
+        default=CALIBRATED_DENSE_THRESHOLD,
     )
     parser.add_argument(
         "--temperature",
@@ -72,7 +77,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--top-k",
         type=int,
-        default=3,
+        default=DEFAULT_RETRIEVAL_TOP_K,
     )
     parser.add_argument(
         "--max-retrieval-attempts",

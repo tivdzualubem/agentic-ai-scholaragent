@@ -20,6 +20,7 @@ eval/results/*
 !eval/results/README.md
 !eval/results/official_retrieval_comparison_calibrated.json
 !eval/results/official_rag_comparison_tinyllama_development.json
+!eval/results/calibration_retrieval_threshold_sweep.json
 
 # Streamlit
 .streamlit/secrets.toml

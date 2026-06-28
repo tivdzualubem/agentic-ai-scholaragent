@@ -21,6 +21,6 @@ before calibration begins.
 
 Current progress: 6 of 6 planned calibration scholarships.
 
-The six-scholarship corpus and balanced 24-case calibration benchmark are complete. The parameter-selection run has not yet been performed.
+The six-scholarship corpus, balanced 24-case calibration benchmark, and retrieval parameter-selection sweep are complete. The frozen dense cosine-similarity threshold is `0.60`; held-out test data was not used during selection.
 
 Calibration limitation: all five `insufficient_information` cases use the Adelaide record because it is currently the only calibration scholarship with a structured missing-data requirement. The held-out corpus must include broader structured missing-data coverage.

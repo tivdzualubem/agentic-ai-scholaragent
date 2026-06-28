@@ -148,8 +148,7 @@ Expired deadlines are hard failures relative to the benchmark `as_of` date.
 Only the calibration partition may be used for dense-threshold selection or
 other tunable retrieval parameters.
 
-The current dense threshold of `0.67` is development-only and is not frozen
-for final evaluation.
+The independent calibration sweep selected and froze a dense cosine-similarity threshold of `0.60`. The sweep used only the six-scholarship, 24-case calibration partition; held-out test data was not used.
 
 Calibration will:
 

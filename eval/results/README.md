@@ -22,7 +22,7 @@ Configuration:
 
 - Generator: `tinyllama:latest`
 - Embeddings: `nomic-embed-text`
-- Dense threshold: `0.67`
+- Historical development dense threshold: `0.67`
 - Official development cases: 3 positive and 1 unsupported
 - Retrieval budget: 2 attempts
 - Generation budget: 2 attempts
@@ -52,3 +52,27 @@ These results come from a very small development benchmark and a
 development-calibrated dense threshold. They must not be presented as
 final publication-level evidence.
 <!-- official-rag-development:end -->
+
+## Independent calibration threshold sweep
+
+`calibration_retrieval_threshold_sweep.json` records the predefined
+13-value dense-threshold sweep over the six-scholarship, 24-case official
+calibration partition.
+
+The selection objective equally weights dense top-1 accuracy, dense
+no-result accuracy, hybrid top-1 accuracy, and hybrid no-result accuracy.
+The selected and frozen dense cosine-similarity threshold is `0.60`.
+
+At the selected threshold:
+
+- dense top-1 hit rate: `0.50`;
+- dense no-result accuracy: `1.00`;
+- dense MRR: `0.6667`;
+- hybrid RRF top-1 hit rate: `0.90`;
+- hybrid RRF no-result accuracy: `1.00`;
+- hybrid RRF MRR: `0.95`.
+
+The frozen configuration is stored in
+`eval/config/frozen_retrieval_settings.json`. The held-out test partition
+was not used during threshold selection, and these calibration metrics are
+not final publication-level performance.
