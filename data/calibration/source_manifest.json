@@ -1,0 +1,18 @@
+{
+  "dataset": "data/calibration/calibration_scholarships.json",
+  "created_on": "2026-06-28",
+  "partition": "calibration",
+  "purpose": "Calibration-only official-source corpus. It may be used for parameter selection but must not be used as held-out final evidence.",
+  "records": [
+    {
+      "scholarship_id": "adelaide-academic-excellence-scholarship-2026",
+      "snapshot_path": "data/sources/calibration/adelaide-academic-excellence-scholarship.json",
+      "source_url": "https://adelaide.edu.au/study/scholarships/int/adelaide-academic-excellence-scholarship-50/",
+      "source_type": "html",
+      "snapshot_title": "Adelaide Academic Excellence Scholarship (50%) | Adelaide University",
+      "source_last_checked": "2026-06-28",
+      "content_sha256": "2e2467c12b6aee5df61a4cdfcb6a6c5649829c5aa87566c8851dcf23dcd9b48c",
+      "byte_size": 160781
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "scholarship_id": "adelaide-academic-excellence-scholarship-2026",
+    "title": "Adelaide Academic Excellence Scholarship",
+    "provider": "Adelaide University",
+    "official_url": "https://adelaide.edu.au/study/scholarships/int/adelaide-academic-excellence-scholarship-50/",
+    "host_countries": [
+      "Australia"
+    ],
+    "degree_levels": [
+      "bachelor",
+      "master"
+    ],
+    "eligible_nationalities": [],
+    "eligible_fields": [],
+    "manual_review_requirements": [
+      "Confirm that the applicant is an international student under Adelaide University's current definition.",
+      "Confirm that the intended CRICOS-registered bachelor's or master's degree satisfies the stated minimum duration after any credit or recognised prior learning.",
+      "Confirm that the intended degree is not one of the excluded programmes listed on the official scholarship page.",
+      "Confirm that the applicant is not an Australia Awards recipient.",
+      "Confirm that the applicant does not hold an international sponsorship tuition-fee waiver equal to or greater than the scholarship value.",
+      "Confirm selection by the scholarship panel because the award is competitive and places are limited."
+    ],
+    "minimum_gpa": 6.7,
+    "gpa_scale": 7.0,
+    "minimum_work_experience_years": null,
+    "language_requirements": {},
+    "funding_type": "tuition_only",
+    "deadline": "2026-05-22",
+    "application_year": 2026,
+    "source_last_checked": "2026-06-28",
+    "eligibility_text": "Adelaide University's Adelaide Academic Excellence Scholarship provides a 50% tuition fee reduction for commencing international students applying to qualifying CRICOS-registered bachelor or master coursework degrees. Applicants using GPA for assessment require a minimum overall GPA of 6.7 on a 7.0 scale or a comparable result. The official page excludes specified programmes, Australia Awards recipients, and certain sponsored students. Semester 2 2026 applications closed on 22 May 2026."
+  }
+]
