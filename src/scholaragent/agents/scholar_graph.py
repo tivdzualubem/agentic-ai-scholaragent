@@ -9,6 +9,10 @@ from langgraph.graph import END, START, StateGraph
 from pydantic import BaseModel, ConfigDict, Field
 
 from scholaragent.eligibility import EligibilityStatus
+from scholaragent.grounding import (
+    GroundedScholarshipReport,
+    build_grounded_report,
+)
 from scholaragent.pipeline import search_and_screen
 from scholaragent.retrieval import ScholarshipSearchIndex
 from scholaragent.retrieval.bm25 import tokenize
@@ -40,6 +44,7 @@ class ScholarAgentOutcome(BaseModel):
     evidence_sufficient: bool
     explanation: str
     candidates: list[AgentCandidate]
+    grounded_report: GroundedScholarshipReport | None = None
 
 
 class ScholarAgentState(TypedDict, total=False):
@@ -262,6 +267,12 @@ def build_scholar_agent_graph(
             )
             status = "abstained"
 
+        grounded_report = build_grounded_report(
+            state["report"],
+            as_of=state["as_of"],
+            include_ineligible=False,
+        )
+
         outcome = ScholarAgentOutcome(
             status=status,
             original_query=state["original_query"],
@@ -273,6 +284,7 @@ def build_scholar_agent_graph(
             ),
             explanation=explanation,
             candidates=candidates,
+            grounded_report=grounded_report,
         )
 
         return {"outcome": outcome}
