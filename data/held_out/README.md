@@ -26,6 +26,10 @@ for manual verification rather than inventing a numeric scale. Maastricht's
 minimum GPA of `7.5/10` is explicitly supported and is represented
 structurally.
 
-Current progress: six of six held-out scholarship identities and official
-source records are complete. The held-out benchmark has not yet been created
-or evaluated.
+Current progress: six of six held-out scholarship identities, official
+source records, and the balanced 24-case benchmark are complete. No
+retrieval, RAG, or ablation evaluation has yet been run on this partition.
+
+The five `insufficient_information` benchmark cases use Maastricht's
+explicit `7.5/10` GPA requirement because it is the only held-out source
+with a numeric eligibility threshold whose scale is stated directly.
