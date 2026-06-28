@@ -1,8 +1,8 @@
 {
-  "status": "frozen_before_held_out_rag",
+  "status": "operationally_amended_after_partial_start",
   "partition": "held_out_test",
   "source_commit": "26ed0ee0730ba6ea1c3f0712cb974da9ab1bc71b",
-  "held_out_rag_test_used": false,
+  "held_out_rag_test_used": true,
   "parameter_selection_after_test": false,
   "held_out_tuning_permitted": false,
   "inputs": {
@@ -26,7 +26,7 @@
   "generator": {
     "model": "tinyllama:latest",
     "temperature": 0.0,
-    "timeout_seconds": 240.0
+    "timeout_seconds": 900.0
   },
   "retrieval": {
     "embedding_model": "nomic-embed-text:latest",
@@ -93,5 +93,39 @@
   "planned_outputs": {
     "comparison": "eval/results/held_out_rag_comparison.json",
     "ablation": "eval/results/held_out_rag_ablation.json"
+  },
+  "held_out_rag_test_completed": false,
+  "operational_parameter_amendment_after_partial_start": true,
+  "preregistration_commit": "07b9b44f12d09e60736d0bc2609a653e89060867",
+  "operational_amendment": {
+    "amendment_type": "transport_timeout_only",
+    "original_timeout_seconds": 240.0,
+    "amended_timeout_seconds": 900.0,
+    "reason": "CPU inference completed the first 8,132-character TinyLlama request in 234.67 seconds, leaving only 5.33 seconds before the original transport timeout. The following agentic request exceeded 240 seconds and was terminated by the HTTP client.",
+    "execution_state_before_amendment": {
+      "completed_baseline_cases": 1,
+      "completed_agentic_cases": 0,
+      "final_comparison_generated": false,
+      "final_ablation_generated": false,
+      "aggregate_rag_metrics_observed": false,
+      "partial_case_output_observed": true
+    },
+    "selection_basis": "The amendment is based only on wall-clock transport failure on CPU, not on answer quality, citation performance, retrieval performance, or benchmark labels.",
+    "unchanged_settings": [
+      "generator model",
+      "generation temperature",
+      "prompts",
+      "benchmark",
+      "scholarship corpus",
+      "embedding model",
+      "dense threshold",
+      "top-k",
+      "candidate-k",
+      "RRF constant",
+      "maximum retrieval attempts",
+      "maximum generation attempts",
+      "ablation rules"
+    ],
+    "checkpoint_policy": "The successfully completed first baseline case is preserved. The failed agentic request produced no saved result and will be rerun with the longer transport timeout."
   }
 }

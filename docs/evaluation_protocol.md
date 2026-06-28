@@ -268,6 +268,33 @@ completions. A citation-safe deterministic fallback is evidence of bounded
 safety recovery, not evidence that the generator successfully followed the
 citation format.
 
+### CPU transport-timeout amendment
+
+The held-out RAG execution began with the preregistered 240-second HTTP
+transport timeout. The first TinyLlama baseline request contained 8,132
+prompt characters and completed in 234.67 seconds. The immediately following
+agentic request exceeded 240 seconds and was terminated by the HTTP client.
+
+Before any aggregate RAG or ablation result was generated, the transport
+timeout was increased from 240 to 900 seconds. This was an operational
+feasibility amendment for CPU inference, not performance tuning.
+
+The following remained unchanged:
+
+- `tinyllama:latest`;
+- temperature `0.0`;
+- all prompts;
+- the frozen benchmark and corpus;
+- embedding model and dense threshold;
+- top-k, candidate-k, and RRF constant;
+- retrieval and generation attempt budgets;
+- all preregistered ablation rules.
+
+One successfully completed baseline result was already checkpointed and is
+preserved. The timed-out agentic request produced no saved case result and
+will be rerun. The final artifact must disclose this amendment and must not
+claim that the complete RAG evaluation used the original 240-second timeout.
+
 ## 12. Reproducibility and freezing
 
 Before final evaluation:
