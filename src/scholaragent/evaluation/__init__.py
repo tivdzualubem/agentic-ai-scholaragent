@@ -1,3 +1,11 @@
+from scholaragent.evaluation.rag_comparison import (
+    GeneratorFactory,
+    RAGCaseResult,
+    RAGComparison,
+    RAGSystemMetrics,
+    RAGSystemName,
+    evaluate_rag_comparison,
+)
 from scholaragent.evaluation.retrieval_comparison import (
     RetrievalCaseResult,
     RetrievalComparison,
@@ -26,6 +34,12 @@ from scholaragent.evaluation.runner import (
 )
 
 __all__ = [
+    "GeneratorFactory",
+    "RAGCaseResult",
+    "RAGComparison",
+    "RAGSystemMetrics",
+    "RAGSystemName",
+    "evaluate_rag_comparison",
     "evaluate_retriever",
     "compare_retrievers",
     "RetrieverMetrics",
