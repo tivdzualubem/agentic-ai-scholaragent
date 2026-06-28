@@ -169,11 +169,30 @@ def build_scholar_agent_graph(
                 ),
             }
 
+        top_retrieved = min(
+            results,
+            key=lambda item: item.retrieval_rank,
+        )
+
+        if (
+            top_retrieved.assessment.status
+            is EligibilityStatus.NOT_ELIGIBLE
+        ):
+            return {
+                "evidence_sufficient": True,
+                "grade_reason": (
+                    "The top-ranked retrieved scholarship is "
+                    "relevant but contains hard eligibility "
+                    "failures. Preserve it as explanatory evidence "
+                    "without recommending it."
+                ),
+            }
+
         return {
             "evidence_sufficient": False,
             "grade_reason": (
-                "Retrieved scholarships contain hard eligibility "
-                "failures for the supplied profile."
+                "Retrieved evidence was insufficient for a "
+                "recommendation or a grounded eligibility explanation."
             ),
         }
 
@@ -246,12 +265,18 @@ def build_scholar_agent_graph(
             is not EligibilityStatus.NOT_ELIGIBLE
         ]
 
-        completed = (
-            state["evidence_sufficient"]
-            and bool(candidates)
+        grounded_report = build_grounded_report(
+            state["report"],
+            as_of=state["as_of"],
+            include_explanatory_ineligible=True,
         )
 
-        if completed:
+        completed = (
+            state["evidence_sufficient"]
+            and bool(grounded_report.candidates)
+        )
+
+        if completed and candidates:
             explanation = (
                 f"Found {len(candidates)} viable scholarship "
                 "candidate(s) supported by retrieved evidence."
@@ -259,19 +284,22 @@ def build_scholar_agent_graph(
             status: Literal["completed", "abstained"] = (
                 "completed"
             )
+        elif completed:
+            explanation = (
+                "Found a highly relevant scholarship match, but "
+                "it contains hard eligibility failures. It is "
+                "retained only as explanatory evidence and is not "
+                "an actionable recommendation."
+            )
+            status = "completed"
         else:
             explanation = (
                 "ScholarAgent abstained because it could not find "
-                "sufficient evidence for a viable scholarship. "
+                "sufficient evidence for either a viable scholarship "
+                "or a relevant eligibility explanation. "
                 f"Reason: {state['grade_reason']}"
             )
             status = "abstained"
-
-        grounded_report = build_grounded_report(
-            state["report"],
-            as_of=state["as_of"],
-            include_ineligible=False,
-        )
 
         outcome = ScholarAgentOutcome(
             status=status,

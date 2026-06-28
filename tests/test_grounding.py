@@ -231,3 +231,50 @@ def test_manual_requirements_receive_verified_citations() -> None:
         citation_id in claim.citation_ids
         for claim in candidate.claims
     )
+
+
+def test_top_ranked_ineligible_match_is_explanatory() -> None:
+    """A relevant expired result must be explained, not recommended."""
+    records = load_scholarships(
+        Path(
+            "data/official/"
+            "official_scholarships.json"
+        )
+    )
+
+    report = search_and_screen(
+        query=(
+            "Swedish Institute global professionals "
+            "scholarship leadership work experience"
+        ),
+        profile=build_profile(),
+        index=BM25ScholarshipIndex(records),
+        k=3,
+        as_of=date(2026, 6, 28),
+    )
+
+    grounded = build_grounded_report(
+        report,
+        as_of=date(2026, 6, 28),
+        include_explanatory_ineligible=True,
+    )
+
+    assert grounded.candidates
+
+    first = grounded.candidates[0]
+
+    assert (
+        first.scholarship_id
+        == "si-global-professionals-2026"
+    )
+    assert (
+        first.candidate_role
+        == "explanatory_ineligible"
+    )
+    assert first.eligibility_status == "not_eligible"
+
+    assert all(
+        candidate.eligibility_status != "not_eligible"
+        for candidate in grounded.candidates
+        if candidate.candidate_role == "recommendation"
+    )

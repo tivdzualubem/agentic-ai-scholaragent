@@ -192,3 +192,59 @@ def test_agentic_rag_abstains_before_generation() -> None:
     assert result.repair_attempts == 0
     assert result.grounded_report.candidates == []
     assert generator.prompts == []
+
+
+def test_agentic_rag_fallback_explains_ineligible_match() -> None:
+    """Fallback must explain the expired top match without recommending it."""
+    records = load_scholarships(
+        Path(
+            "data/official/"
+            "official_scholarships.json"
+        )
+    )
+
+    generator = SequenceGenerator(
+        [
+            "An uncited answer.",
+            "Another uncited answer.",
+        ]
+    )
+
+    result = run_agentic_rag(
+        query=(
+            "Swedish Institute global professionals "
+            "scholarship leadership work experience"
+        ),
+        profile=build_profile(),
+        index=BM25ScholarshipIndex(records),
+        generator=generator,
+        generator_name="always-invalid-generator",
+        as_of=date(2026, 6, 28),
+        top_k=1,
+        max_retrieval_attempts=2,
+        max_generation_attempts=2,
+    )
+
+    assert result.status == "completed_fallback"
+    assert result.fallback_used is True
+    assert result.citation_audit.passed is True
+
+    first = result.grounded_report.candidates[0]
+
+    assert (
+        first.scholarship_id
+        == "si-global-professionals-2026"
+    )
+    assert (
+        first.candidate_role
+        == "explanatory_ineligible"
+    )
+
+    assert (
+        "Explanatory result only—not a recommendation."
+        in result.answer
+    )
+    assert (
+        "[si-global-professionals-2026:source_identity]"
+        in result.answer
+    )

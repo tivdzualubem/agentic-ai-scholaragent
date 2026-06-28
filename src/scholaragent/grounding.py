@@ -16,6 +16,12 @@ from scholaragent.pipeline import (
 from scholaragent.schemas import ScholarshipRecord
 
 
+CandidateRole = Literal[
+    "recommendation",
+    "explanatory_ineligible",
+]
+
+
 EvidenceField = Literal[
     "source_identity",
     "host_countries",
@@ -73,6 +79,7 @@ class GroundedCandidateReport(BaseModel):
     source_last_checked: date
 
     eligibility_status: str
+    candidate_role: CandidateRole = "recommendation"
     assessment_note: str
 
     claims: list[GroundedClaim] = Field(min_length=1)
@@ -472,6 +479,8 @@ def verify_candidate_citations(
 
 def build_grounded_candidate(
     screened: ScreenedScholarship,
+    *,
+    candidate_role: CandidateRole = "recommendation",
 ) -> GroundedCandidateReport:
     """Build and verify one grounded candidate report."""
     scholarship = screened.scholarship
@@ -483,6 +492,7 @@ def build_grounded_candidate(
         official_url=str(scholarship.official_url),
         source_last_checked=scholarship.source_last_checked,
         eligibility_status=screened.assessment.status.value,
+        candidate_role=candidate_role,
         assessment_note=(
             "This eligibility status is a deterministic "
             "ScholarAgent screening result, not an official "
@@ -511,21 +521,74 @@ def build_grounded_report(
     *,
     as_of: date,
     include_ineligible: bool = False,
+    include_explanatory_ineligible: bool = False,
 ) -> GroundedScholarshipReport:
-    """Create a ranked grounded report from screened results."""
-    screened_results = [
+    """Create a ranked grounded report from screened results.
+
+    Viable records are represented as recommendation candidates.
+
+    When requested, a top-ranked retrieved record with a hard
+    eligibility failure is retained as explanatory evidence. It is
+    never assigned the recommendation role.
+    """
+    recommendation_results = [
         result
         for result in report.results
-        if (
-            include_ineligible
-            or result.assessment.status
-            is not EligibilityStatus.NOT_ELIGIBLE
-        )
+        if result.assessment.status
+        is not EligibilityStatus.NOT_ELIGIBLE
     ]
 
+    selected: list[
+        tuple[ScreenedScholarship, CandidateRole]
+    ] = []
+
+    if include_ineligible:
+        selected = [
+            (
+                result,
+                (
+                    "explanatory_ineligible"
+                    if result.assessment.status
+                    is EligibilityStatus.NOT_ELIGIBLE
+                    else "recommendation"
+                ),
+            )
+            for result in report.results
+        ]
+    else:
+        top_retrieved = min(
+            report.results,
+            key=lambda item: item.retrieval_rank,
+            default=None,
+        )
+
+        if (
+            include_explanatory_ineligible
+            and top_retrieved is not None
+            and top_retrieved.assessment.status
+            is EligibilityStatus.NOT_ELIGIBLE
+        ):
+            selected.append(
+                (
+                    top_retrieved,
+                    "explanatory_ineligible",
+                )
+            )
+
+        selected.extend(
+            (
+                result,
+                "recommendation",
+            )
+            for result in recommendation_results
+        )
+
     candidates = [
-        build_grounded_candidate(result)
-        for result in screened_results
+        build_grounded_candidate(
+            result,
+            candidate_role=role,
+        )
+        for result, role in selected
     ]
 
     return GroundedScholarshipReport(

@@ -139,7 +139,15 @@ def build_deterministic_fallback_answer(
             "grounded candidate."
         )
 
-    candidate = grounded_report.candidates[0]
+    candidate = next(
+        (
+            item
+            for item in grounded_report.candidates
+            if item.candidate_role
+            == "explanatory_ineligible"
+        ),
+        grounded_report.candidates[0],
+    )
 
     preferred_suffixes = (
         ":claim:identity",
@@ -168,8 +176,21 @@ def build_deterministic_fallback_answer(
 
     bullets: list[str] = []
 
-    for claim in selected_claims[:4]:
+    for position, claim in enumerate(
+        selected_claims[:4],
+        start=1,
+    ):
         claim_text = claim.text
+
+        if (
+            position == 1
+            and candidate.candidate_role
+            == "explanatory_ineligible"
+        ):
+            claim_text = (
+                "Explanatory result only—not a recommendation. "
+                + claim_text
+            )
 
         if claim.claim_id.endswith(
             ":claim:eligibility"

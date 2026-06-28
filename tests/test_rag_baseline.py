@@ -181,3 +181,54 @@ def test_single_pass_rag_rejects_partially_uncited_bullets() -> None:
     assert len(
         result.citation_audit.uncited_bullets
     ) == 1
+
+
+def test_single_pass_rag_explains_ineligible_top_match() -> None:
+    """The baseline may explain an expired match without recommending it."""
+    records = load_scholarships(
+        Path(
+            "data/official/"
+            "official_scholarships.json"
+        )
+    )
+
+    generator = CapturingGenerator(
+        (
+            "- The SI Scholarship for Global Professionals is "
+            "offered by the Swedish Institute "
+            "[si-global-professionals-2026:source_identity].\n"
+            "- The listed application deadline was 2026-02-25 "
+            "[si-global-professionals-2026:deadline]."
+        )
+    )
+
+    result = run_single_pass_rag(
+        query=(
+            "Swedish Institute global professionals "
+            "scholarship leadership work experience"
+        ),
+        profile=build_profile(),
+        index=BM25ScholarshipIndex(records),
+        generator=generator,
+        generator_name="deterministic-test-generator",
+        as_of=date(2026, 6, 28),
+        top_k=3,
+    )
+
+    assert result.status == "completed"
+    assert result.citation_audit.passed is True
+
+    first = result.grounded_report.candidates[0]
+
+    assert (
+        first.scholarship_id
+        == "si-global-professionals-2026"
+    )
+    assert (
+        first.candidate_role
+        == "explanatory_ineligible"
+    )
+
+    assert "Candidate role: explanatory_ineligible" in (
+        generator.prompts[0]
+    )

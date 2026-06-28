@@ -92,6 +92,10 @@ def build_single_pass_prompt(
             f"Official source: {candidate.official_url}"
         )
         context_lines.append(
+            "Candidate role: "
+            f"{candidate.candidate_role}"
+        )
+        context_lines.append(
             "Eligibility screening: "
             f"{candidate.eligibility_status}"
         )
@@ -119,6 +123,15 @@ def build_single_pass_prompt(
 
 Use only the VERIFIED EVIDENCE below. Do not use outside knowledge.
 Do not invent eligibility rules, benefits, deadlines, or universities.
+
+Candidate-role rules:
+1. A recommendation candidate may be suggested to the student.
+2. An explanatory_ineligible candidate is included only to explain a
+   highly relevant retrieved match that failed eligibility screening.
+3. Never recommend or describe an explanatory_ineligible candidate as
+   currently eligible, open, or actionable.
+4. When an explanatory_ineligible candidate is present, address it
+   before discussing any recommendation candidates.
 
 Answer the student's question in 2 to 4 concise bullet points.
 
@@ -257,7 +270,7 @@ def run_single_pass_rag(
     grounded_report = build_grounded_report(
         search_report,
         as_of=as_of,
-        include_ineligible=False,
+        include_explanatory_ineligible=True,
     )
 
     if not grounded_report.candidates:
