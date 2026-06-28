@@ -97,6 +97,7 @@ def test_agentic_rag_rewrites_and_repairs() -> None:
     )
 
     assert result.status == "completed"
+    assert result.fallback_used is False
 
     assert result.retrieval_calls == 2
     assert result.query_rewrites == 1
@@ -120,8 +121,8 @@ def test_agentic_rag_rewrites_and_repairs() -> None:
     )
 
 
-def test_agentic_rag_fails_safely_after_budget() -> None:
-    """Persistent citation failure should stop at the budget."""
+def test_agentic_rag_uses_verified_fallback_after_budget() -> None:
+    """Persistent LLM failure should use verified fallback output."""
     generator = SequenceGenerator(
         [
             "An uncited answer.",
@@ -144,14 +145,24 @@ def test_agentic_rag_fails_safely_after_budget() -> None:
         max_generation_attempts=2,
     )
 
-    assert result.status == "citation_failed"
+    assert result.status == "completed_fallback"
     assert result.retrieval_calls == 1
     assert result.query_rewrites == 0
 
     assert result.generation_calls == 2
     assert result.repair_attempts == 1
-    assert result.citation_audit.passed is False
-    assert len(result.audit_history) == 2
+    assert result.fallback_used is True
+
+    assert result.citation_audit.passed is True
+    assert len(result.audit_history) == 3
+    assert result.audit_history[0].passed is False
+    assert result.audit_history[1].passed is False
+    assert result.audit_history[2].passed is True
+
+    assert (
+        "[nordic-ai-masters-2027:source_identity]"
+        in result.answer
+    )
 
 
 def test_agentic_rag_abstains_before_generation() -> None:
@@ -175,6 +186,7 @@ def test_agentic_rag_abstains_before_generation() -> None:
     )
 
     assert result.status == "abstained"
+    assert result.fallback_used is False
     assert result.retrieval_calls == 1
     assert result.generation_calls == 0
     assert result.repair_attempts == 0

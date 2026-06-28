@@ -150,3 +150,34 @@ def test_single_pass_rag_abstains_without_generation() -> None:
     assert result.grounded_report.candidates == []
     assert result.citation_audit.passed is True
     assert generator.prompts == []
+
+
+def test_single_pass_rag_rejects_partially_uncited_bullets() -> None:
+    """One citation must not validate other uncited bullets."""
+    generator = CapturingGenerator(
+        (
+            "- The scholarship is hosted in Finland "
+            "[nordic-ai-masters-2027:host_countries].\n"
+            "- It includes additional unsupported information."
+        )
+    )
+
+    result = run_single_pass_rag(
+        query=(
+            "Find a fully funded artificial intelligence "
+            "master's scholarship in Finland"
+        ),
+        profile=build_profile(),
+        index=build_index(),
+        generator=generator,
+        generator_name="partial-citation-generator",
+        as_of=AS_OF,
+        top_k=3,
+    )
+
+    assert result.status == "citation_failed"
+    assert result.citation_audit.passed is False
+    assert result.citation_audit.bullet_count == 2
+    assert len(
+        result.citation_audit.uncited_bullets
+    ) == 1

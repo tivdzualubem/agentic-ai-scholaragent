@@ -25,6 +25,14 @@ CITATION_PATTERN = re.compile(
     r"\[([a-z0-9][a-z0-9-]*:[a-z_]+)\]"
 )
 
+BULLET_PATTERN = re.compile(
+    r"^\s*(?:[-*•]|\d+[.)])\s+(.+?)\s*$"
+)
+
+TRAILING_CITATIONS_PATTERN = re.compile(
+    r"(?:\[[a-z0-9][a-z0-9-]*:[a-z_]+\]\s*)+[.!?]?\s*$"
+)
+
 
 class RAGCitationAudit(BaseModel):
     """Citation audit for a generated RAG answer."""
@@ -36,6 +44,8 @@ class RAGCitationAudit(BaseModel):
     cited_ids: list[str]
     available_ids: list[str]
     invalid_ids: list[str]
+    bullet_count: int = Field(default=0, ge=0)
+    uncited_bullets: list[str] = Field(default_factory=list)
     errors: list[str]
 
 
@@ -137,7 +147,7 @@ def audit_generated_answer(
     answer: str,
     grounded_report: GroundedScholarshipReport,
 ) -> RAGCitationAudit:
-    """Check whether generated citation identifiers are valid."""
+    """Check citation validity and bullet-level citation coverage."""
     available_ids = sorted(
         {
             evidence.citation_id
@@ -156,6 +166,21 @@ def audit_generated_answer(
         set(cited_ids) - set(available_ids)
     )
 
+    bullets: list[str] = []
+
+    for line in answer.splitlines():
+        match = BULLET_PATTERN.match(line)
+
+        if match is not None:
+            bullets.append(match.group(1).strip())
+
+    uncited_bullets = [
+        bullet
+        for bullet in bullets
+        if TRAILING_CITATIONS_PATTERN.search(bullet)
+        is None
+    ]
+
     errors: list[str] = []
 
     if not cited_ids:
@@ -169,15 +194,33 @@ def audit_generated_answer(
             + ", ".join(invalid_ids)
         )
 
+    if not bullets:
+        errors.append(
+            "The generated answer is not formatted as "
+            "2 to 4 bullet points."
+        )
+    elif not 2 <= len(bullets) <= 4:
+        errors.append(
+            "The generated answer must contain between "
+            "2 and 4 bullet points."
+        )
+
+    if uncited_bullets:
+        errors.append(
+            "Every bullet must end with at least one "
+            "citation marker."
+        )
+
     return RAGCitationAudit(
         citation_required=True,
         passed=not errors,
         cited_ids=cited_ids,
         available_ids=available_ids,
         invalid_ids=invalid_ids,
+        bullet_count=len(bullets),
+        uncited_bullets=uncited_bullets,
         errors=errors,
     )
-
 
 def run_single_pass_rag(
     *,

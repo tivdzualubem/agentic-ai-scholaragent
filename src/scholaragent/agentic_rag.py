@@ -33,6 +33,7 @@ class AgenticRAGResult(BaseModel):
 
     status: Literal[
         "completed",
+        "completed_fallback",
         "abstained",
         "citation_failed",
     ]
@@ -46,6 +47,7 @@ class AgenticRAGResult(BaseModel):
     generation_calls: int = Field(ge=0)
     query_rewrites: int = Field(ge=0)
     repair_attempts: int = Field(ge=0)
+    fallback_used: bool = False
 
     grounded_report: GroundedScholarshipReport
     citation_audit: RAGCitationAudit
@@ -124,6 +126,75 @@ Mandatory repair rules:
 
 REPAIRED ANSWER:
 """
+
+
+
+def build_deterministic_fallback_answer(
+    grounded_report: GroundedScholarshipReport,
+) -> str:
+    """Build a citation-safe extractive answer from verified claims."""
+    if not grounded_report.candidates:
+        raise ValueError(
+            "A fallback answer requires at least one "
+            "grounded candidate."
+        )
+
+    candidate = grounded_report.candidates[0]
+
+    preferred_suffixes = (
+        ":claim:identity",
+        ":claim:location",
+        ":claim:funding",
+        ":claim:eligibility",
+    )
+
+    selected_claims = []
+
+    for suffix in preferred_suffixes:
+        claim = next(
+            (
+                item
+                for item in candidate.claims
+                if item.claim_id.endswith(suffix)
+            ),
+            None,
+        )
+
+        if claim is not None:
+            selected_claims.append(claim)
+
+    if len(selected_claims) < 2:
+        selected_claims = candidate.claims[:4]
+
+    bullets: list[str] = []
+
+    for claim in selected_claims[:4]:
+        claim_text = claim.text
+
+        if claim.claim_id.endswith(
+            ":claim:eligibility"
+        ):
+            claim_text += (
+                " Confirm final eligibility on the "
+                "official source before applying."
+            )
+
+        markers = " ".join(
+            f"[{citation_id}]"
+            for citation_id in claim.citation_ids
+        )
+
+        bullets.append(
+            f"- {claim_text} {markers}"
+        )
+
+    if not 2 <= len(bullets) <= 4:
+        raise RuntimeError(
+            "Verified fallback could not construct "
+            "2 to 4 cited bullets."
+        )
+
+    return "\n".join(bullets)
 
 
 def build_agentic_rag_graph(
@@ -518,6 +589,40 @@ def run_agentic_rag(
         }
     )
 
-    return AgenticRAGResult.model_validate(
+    result = AgenticRAGResult.model_validate(
         state["result"]
+    )
+
+    if result.status != "citation_failed":
+        return result
+
+    fallback_answer = build_deterministic_fallback_answer(
+        result.grounded_report
+    )
+
+    fallback_audit = audit_generated_answer(
+        answer=fallback_answer,
+        grounded_report=result.grounded_report,
+    )
+
+    updated_data = result.model_dump()
+    updated_data.update(
+        {
+            "answer": fallback_answer,
+            "fallback_used": True,
+            "citation_audit": fallback_audit,
+            "audit_history": [
+                *result.audit_history,
+                fallback_audit,
+            ],
+        }
+    )
+
+    if fallback_audit.passed:
+        updated_data["status"] = (
+            "completed_fallback"
+        )
+
+    return AgenticRAGResult.model_validate(
+        updated_data
     )
