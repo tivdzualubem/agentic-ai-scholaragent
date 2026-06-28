@@ -1,3 +1,8 @@
+from scholaragent.retrieval.hybrid import (
+    HybridScholarshipIndex,
+    HybridSearchResult,
+)
+
 from scholaragent.retrieval.dense import (
     DenseScholarshipIndex,
     DenseSearchResult,
@@ -24,6 +29,8 @@ from scholaragent.retrieval.loader import (
 )
 
 __all__ = [
+    "HybridSearchResult",
+    "HybridScholarshipIndex",
     "DenseScholarshipIndex",
     "DenseSearchResult",
     "EmbeddingClientError",
