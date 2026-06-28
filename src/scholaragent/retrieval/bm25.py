@@ -67,6 +67,7 @@ def scholarship_to_text(record: ScholarshipRecord) -> str:
         degree_levels,
         " ".join(record.eligible_nationalities),
         " ".join(record.eligible_fields),
+        " ".join(record.manual_review_requirements),
         record.funding_type.value,
         record.eligibility_text,
     ]

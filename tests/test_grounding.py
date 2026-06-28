@@ -193,3 +193,41 @@ def test_abstained_graph_has_no_grounded_candidates() -> None:
         outcome.grounded_report.all_citations_verified
         is False
     )
+
+
+def test_manual_requirements_receive_verified_citations() -> None:
+    """Manual-review conditions must appear as grounded evidence."""
+    screened = build_search_report().results[0]
+
+    scholarship = screened.scholarship.model_copy(
+        update={
+            "manual_review_requirements": [
+                "Confirm admission before applying."
+            ]
+        }
+    )
+
+    updated_screened = screened.model_copy(
+        update={"scholarship": scholarship}
+    )
+
+    candidate = build_grounded_candidate(
+        updated_screened
+    )
+
+    citation_id = (
+        f"{scholarship.scholarship_id}:"
+        "manual_review_requirements"
+    )
+
+    assert candidate.verification.passed is True
+
+    assert any(
+        evidence.citation_id == citation_id
+        for evidence in candidate.evidence
+    )
+
+    assert any(
+        citation_id in claim.citation_ids
+        for claim in candidate.claims
+    )

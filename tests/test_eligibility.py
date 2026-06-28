@@ -133,3 +133,33 @@ def test_funding_preference_is_reported_separately() -> None:
         "full funding" in warning
         for warning in assessment.preference_warnings
     )
+
+
+def test_recorded_manual_requirements_prevent_full_eligibility() -> None:
+    """Unmodelled official conditions require manual verification."""
+    scholarship = _records_by_id()[
+        "nordic-ai-masters-2027"
+    ].model_copy(
+        update={
+            "manual_review_requirements": [
+                "Confirm prior admission to the programme.",
+                "Verify programme-specific document requirements.",
+            ]
+        }
+    )
+
+    assessment = assess_eligibility(
+        _ai_profile(),
+        scholarship,
+        as_of=AS_OF,
+    )
+
+    assert (
+        assessment.status
+        is EligibilityStatus.POTENTIALLY_ELIGIBLE
+    )
+    assert assessment.hard_failures == []
+    assert assessment.manual_review_items == [
+        "Confirm prior admission to the programme.",
+        "Verify programme-specific document requirements.",
+    ]

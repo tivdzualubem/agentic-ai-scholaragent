@@ -22,6 +22,7 @@ EvidenceField = Literal[
     "degree_levels",
     "eligible_nationalities",
     "eligible_fields",
+    "manual_review_requirements",
     "funding_type",
     "deadline",
     "eligibility_text",
@@ -174,6 +175,20 @@ def build_evidence_snippets(
             )
         )
 
+    if scholarship.manual_review_requirements:
+        evidence_rows.append(
+            (
+                "manual_review_requirements",
+                (
+                    "Requirements needing authoritative "
+                    "manual verification: "
+                    f"{_join_values(
+                        scholarship.manual_review_requirements
+                    )}."
+                ),
+            )
+        )
+
     if scholarship.deadline is not None:
         evidence_rows.append(
             (
@@ -287,6 +302,28 @@ def build_grounded_claims(
                     _citation_id(
                         identifier,
                         "eligible_nationalities",
+                    )
+                ],
+            )
+        )
+
+    if scholarship.manual_review_requirements:
+        claims.append(
+            GroundedClaim(
+                claim_id=(
+                    f"{identifier}:claim:manual_review"
+                ),
+                text=(
+                    "The following conditions require manual "
+                    "verification against the official source: "
+                    f"{_join_values(
+                        scholarship.manual_review_requirements
+                    )}."
+                ),
+                citation_ids=[
+                    _citation_id(
+                        identifier,
+                        "manual_review_requirements",
                     )
                 ],
             )

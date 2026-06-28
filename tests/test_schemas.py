@@ -121,3 +121,28 @@ def test_models_reject_unknown_fields() -> None:
             fields_of_study=["Artificial Intelligence"],
             private_note="must not be silently accepted",
         )
+
+
+def test_manual_review_requirements_are_normalized() -> None:
+    """Manual-review requirements should be cleaned and deduplicated."""
+    scholarship = ScholarshipRecord(
+        scholarship_id="manual-review-example",
+        title="Manual Review Scholarship",
+        provider="Example University",
+        official_url="https://example.edu/manual-review",
+        host_countries=["Finland"],
+        degree_levels=["master"],
+        manual_review_requirements=[
+            " Verify prior admission ",
+            "verify prior admission",
+            "",
+            "Confirm programme eligibility",
+        ],
+        source_last_checked="2026-06-28",
+        eligibility_text="Additional conditions require verification.",
+    )
+
+    assert scholarship.manual_review_requirements == [
+        "Verify prior admission",
+        "Confirm programme eligibility",
+    ]

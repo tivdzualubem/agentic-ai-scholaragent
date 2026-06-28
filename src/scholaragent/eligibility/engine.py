@@ -351,6 +351,11 @@ def assess_eligibility(
         passed=passed,
         failures=failures,
     )
+
+    manual.extend(
+        scholarship.manual_review_requirements
+    )
+
     _assess_preferences(
         profile,
         scholarship,

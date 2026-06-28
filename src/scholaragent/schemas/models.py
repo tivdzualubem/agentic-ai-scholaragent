@@ -151,6 +151,9 @@ class ScholarshipRecord(BaseModel):
     degree_levels: list[DegreeLevel] = Field(min_length=1)
     eligible_nationalities: list[str] = Field(default_factory=list)
     eligible_fields: list[str] = Field(default_factory=list)
+    manual_review_requirements: list[str] = Field(
+        default_factory=list
+    )
 
     minimum_gpa: float | None = Field(default=None, ge=0)
     gpa_scale: float | None = Field(default=None, gt=0)
@@ -172,6 +175,7 @@ class ScholarshipRecord(BaseModel):
         "host_countries",
         "eligible_nationalities",
         "eligible_fields",
+        "manual_review_requirements",
         mode="before",
     )
     @classmethod
