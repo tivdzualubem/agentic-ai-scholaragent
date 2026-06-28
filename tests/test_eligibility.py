@@ -163,3 +163,58 @@ def test_recorded_manual_requirements_prevent_full_eligibility() -> None:
         "Confirm prior admission to the programme.",
         "Verify programme-specific document requirements.",
     ]
+
+
+def test_ai_field_matches_broad_stem_category() -> None:
+    """AI should match an explicitly recorded STEM category."""
+    scholarship = _records_by_id()[
+        "nordic-ai-masters-2027"
+    ].model_copy(
+        update={
+            "eligible_fields": ["STEM"],
+        }
+    )
+
+    assessment = assess_eligibility(
+        _ai_profile(),
+        scholarship,
+        as_of=AS_OF,
+    )
+
+    assert assessment.status is EligibilityStatus.ELIGIBLE
+    assert any(
+        "broad STEM" in check
+        for check in assessment.passed_checks
+    )
+    assert not any(
+        "fields of study" in failure
+        for failure in assessment.hard_failures
+    )
+
+
+def test_humanities_field_does_not_match_stem_category() -> None:
+    """Broad category matching must remain conservative."""
+    scholarship = _records_by_id()[
+        "nordic-ai-masters-2027"
+    ].model_copy(
+        update={
+            "eligible_fields": ["STEM"],
+        }
+    )
+
+    assessment = assess_eligibility(
+        _ai_profile(
+            fields_of_study=["Literature"],
+        ),
+        scholarship,
+        as_of=AS_OF,
+    )
+
+    assert (
+        assessment.status
+        is EligibilityStatus.NOT_ELIGIBLE
+    )
+    assert any(
+        "fields of study" in failure
+        for failure in assessment.hard_failures
+    )

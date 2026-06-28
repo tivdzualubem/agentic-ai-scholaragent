@@ -106,6 +106,20 @@ def test_official_records_are_screened_conservatively() -> None:
         ].hard_failures
     )
 
+    assert not any(
+        "fields of study" in failure
+        for failure in results[
+            "si-global-professionals-2026"
+        ].hard_failures
+    )
+
+    assert any(
+        "broad STEM" in check
+        for check in results[
+            "si-global-professionals-2026"
+        ].passed_checks
+    )
+
     assert (
         results[
             "university-twente-scholarship-2027"

@@ -32,6 +32,26 @@ BROAD_NATIONALITY_MARKERS = {
 }
 
 
+STEM_FIELD_MARKERS = {
+    "artificial intelligence",
+    "data science",
+    "machine learning",
+    "computer science",
+    "software engineering",
+    "information technology",
+    "cybersecurity",
+    "statistics",
+    "mathematics",
+    "engineering",
+    "physics",
+    "chemistry",
+    "biology",
+    "biotechnology",
+    "environmental science",
+    "renewable energy",
+}
+
+
 def _normalize(value: str) -> str:
     """Normalize text for case-insensitive comparisons."""
     return " ".join(value.casefold().split())
@@ -48,6 +68,42 @@ def _overlaps(left: Iterable[str], right: Iterable[str]) -> bool:
                 return True
 
     return False
+
+
+def _matches_broad_field_category(
+    profile_fields: Iterable[str],
+    eligible_fields: Iterable[str],
+) -> bool:
+    """Match explicit fields against supported broad categories."""
+    normalized_eligible = {
+        _normalize(field)
+        for field in eligible_fields
+    }
+
+    has_stem_category = any(
+        field == "stem"
+        or (
+            "science" in field
+            and "technology" in field
+            and "engineering" in field
+            and "mathematics" in field
+        )
+        for field in normalized_eligible
+    )
+
+    if not has_stem_category:
+        return False
+
+    normalized_profile = [
+        _normalize(field)
+        for field in profile_fields
+    ]
+
+    return any(
+        marker in profile_field
+        for profile_field in normalized_profile
+        for marker in STEM_FIELD_MARKERS
+    )
 
 
 def _assess_nationality(
@@ -141,11 +197,22 @@ def _assess_field(
         scholarship.eligible_fields,
     ):
         passed.append("At least one field of study matches.")
-    else:
-        failures.append(
-            "The applicant's fields of study do not match the recorded "
-            "eligible fields."
+        return
+
+    if _matches_broad_field_category(
+        profile.fields_of_study,
+        scholarship.eligible_fields,
+    ):
+        passed.append(
+            "At least one field of study matches the broad "
+            "STEM eligibility category."
         )
+        return
+
+    failures.append(
+        "The applicant's fields of study do not match the recorded "
+        "eligible fields."
+    )
 
 
 def _assess_gpa(
