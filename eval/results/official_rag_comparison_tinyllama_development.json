@@ -1,0 +1,355 @@
+{
+  "benchmark_name": "ScholarAgent official-source development benchmark",
+  "benchmark_as_of": "2026-06-28",
+  "top_k": 3,
+  "generator_name": "tinyllama:latest",
+  "embedding_model": "nomic-embed-text",
+  "dense_threshold": 0.67,
+  "evaluation_scope": "Small official-source development benchmark. Thresholds and results are development-only and must not be reported as final publication evidence.",
+  "systems": [
+    {
+      "system_name": "single_pass_rag",
+      "generator_name": "tinyllama:latest",
+      "total_cases": 4,
+      "positive_cases": 3,
+      "no_result_cases": 1,
+      "positive_completion_rate": 0.0,
+      "positive_citation_pass_rate": 0.0,
+      "positive_relevant_grounding_rate": 1.0,
+      "positive_relevant_citation_rate": 0.0,
+      "no_result_accuracy": 1.0,
+      "mean_latency_seconds": 126.44732786749955,
+      "mean_retrieval_calls": 1.0,
+      "mean_generation_calls": 0.75,
+      "mean_query_rewrites": 0.0,
+      "mean_repair_attempts": 0.0,
+      "positive_fallback_rate": 0.0,
+      "cases": [
+        {
+          "system_name": "single_pass_rag",
+          "case_id": "erasmus-mundus-worldwide-masters",
+          "expected_relevant_ids": [
+            "erasmus-mundus-joint-masters"
+          ],
+          "expect_no_results": false,
+          "status": "citation_failed",
+          "answer": "Citation rules:\n1. Every factual bullet must end with at least one exact citation marker.\n2. Copy citations exactly as provided.\n3. Do not create new citations or bibliography or references sections.\n\nStudents' Question:\nErasmus Mundu's Join Masters Scholarships is offered by European Union Eraism+, and the opportunity is hosted in Multiple countries in Europe and beyond. The following conditions require manual verification against the official source: Confirm that the selected consortium programme is currently offered and accpeted scholarship applications., Verify the program's eligibility information states: Student's from all over the world may apply directly to the institution running a chosen Eraism+, and the following requirements and deadline. Most applications are submitted between October and January, but each programme publishes its own requirements and deadline.\n\nAnswer:\nCitation rules:\n1. Every factual bullet must end with at least one exact citation marker.\n2. Copy citations exactly as provided.\n3. Do not create new citations or bibliography or references sections.",
+          "final_query": "Erasmus Mundus joint master's full scholarship for international students including travel visa and living allowance",
+          "latency_seconds": 137.13841470099942,
+          "retrieval_calls": 1,
+          "generation_calls": 1,
+          "query_rewrites": 0,
+          "repair_attempts": 0,
+          "fallback_used": false,
+          "citation_passed": false,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 6,
+          "citation_errors": [
+            "The generated answer contains no citation markers.",
+            "The generated answer must contain between 2 and 4 bullet points.",
+            "Every bullet must end with at least one citation marker."
+          ],
+          "audit_history_passed": [
+            false
+          ],
+          "grounded_candidate_ids": [
+            "erasmus-mundus-joint-masters",
+            "university-twente-scholarship-2027"
+          ],
+          "candidate_roles": {
+            "erasmus-mundus-joint-masters": "recommendation",
+            "university-twente-scholarship-2027": "recommendation"
+          },
+          "cited_scholarship_ids": [],
+          "relevant_grounded": true,
+          "relevant_citation": false,
+          "positive_completed": false,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "single_pass_rag",
+          "case_id": "si-global-professionals-expired-round",
+          "expected_relevant_ids": [
+            "si-global-professionals-2026"
+          ],
+          "expect_no_results": false,
+          "status": "citation_failed",
+          "answer": "Based on the given text, here are some additional details about the scholarships offered by the University of Twente and the University of Tuebingen:\n\n1. University of Twente Scholarship: This scholarship is offered to non-EU/EEA students applying to qualifying University of Twente MSc programmes. The value is EUR 3,000 to EUR 22,000 for one year and is compensation for study-related costs rather than direct payment of tuition or living costs. Applicants need prior provisional admissions, must satisfy visa and English-language requirements, and belong to the best 5 to 10 percent of their graduating class.\n\n2. University of Tuebingen Scholarship: This scholarship is offered to students from non-EU/EEA countries who are enrolling in a Master's programme at the University of Tuebingen. The value is €3,000 for one year and is awarded based on academic merit and financial need. Applicants must be among the best 5 to 10 percent of their graduating class.\n\nBoth scholarships require applicants to meet specific eligibility criteria, such as prior provisional admissions, visa and English-language requirements, and belonging to the best 5 to 10 percent of their graduating class. Applicants must also demonstrate academic merit and financial need in order to be considered for these scholarships.",
+          "final_query": "Swedish Institute global professionals scholarship for STEM master's applicants with leadership and work experience full tuition monthly allowance",
+          "latency_seconds": 183.99664883600053,
+          "retrieval_calls": 1,
+          "generation_calls": 1,
+          "query_rewrites": 0,
+          "repair_attempts": 0,
+          "fallback_used": false,
+          "citation_passed": false,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 2,
+          "citation_errors": [
+            "The generated answer contains no citation markers.",
+            "Every bullet must end with at least one citation marker."
+          ],
+          "audit_history_passed": [
+            false
+          ],
+          "grounded_candidate_ids": [
+            "si-global-professionals-2026",
+            "erasmus-mundus-joint-masters",
+            "university-twente-scholarship-2027"
+          ],
+          "candidate_roles": {
+            "si-global-professionals-2026": "explanatory_ineligible",
+            "erasmus-mundus-joint-masters": "recommendation",
+            "university-twente-scholarship-2027": "recommendation"
+          },
+          "cited_scholarship_ids": [],
+          "relevant_grounded": true,
+          "relevant_citation": false,
+          "positive_completed": false,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "single_pass_rag",
+          "case_id": "twente-non-eu-masters",
+          "expected_relevant_ids": [
+            "university-twente-scholarship-2027"
+          ],
+          "expect_no_results": false,
+          "status": "citation_failed",
+          "answer": "Citation rules:\n1. Every factual bullet must end with at least one exact citation marker.\n2. Copy citations exactly as provided.\n3. Do not create new citations or bibliography or references sections.\n\nStudents' Question:\nUniversity of Tweten Scholarship for non-EU MSc students in the Netherlands IELTS 6.5\n\nVerified Eligibility Screening:\nThe opportunity is hosted in Multiple countries in Europe and beyond.\n\nFunding Type:\nPartially funded by University of Tweten master's programme and a qualified University of Tweten student.\n\nNationality Eligibility:\nApplicants must hold a bachelor's degree, be in their final bachelor year, and graduate before the programme starts.\n\nFull Scholarship May Be Offered to Best-Ranked Students and Cover Participation Costs While Contributing to Travel, Visa, and Living Allowance.\n\nMost Applications Are Submitted Between October and January, But Each Programme Publishes Its Own Requirements and Deadline.\n\nManual Review Required:\nStudent's Question:\nCan you provide me with the eligibility criteria for the University of Tweten Scholarship in the Netherlands?",
+          "final_query": "University of Twente scholarship for non-EU MSc students in the Netherlands IELTS 6.5 award up to 22000 euros",
+          "latency_seconds": 184.53437199099972,
+          "retrieval_calls": 1,
+          "generation_calls": 1,
+          "query_rewrites": 0,
+          "repair_attempts": 0,
+          "fallback_used": false,
+          "citation_passed": false,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 3,
+          "citation_errors": [
+            "The generated answer contains no citation markers.",
+            "Every bullet must end with at least one citation marker."
+          ],
+          "audit_history_passed": [
+            false
+          ],
+          "grounded_candidate_ids": [
+            "university-twente-scholarship-2027",
+            "erasmus-mundus-joint-masters"
+          ],
+          "candidate_roles": {
+            "university-twente-scholarship-2027": "recommendation",
+            "erasmus-mundus-joint-masters": "recommendation"
+          },
+          "cited_scholarship_ids": [],
+          "relevant_grounded": true,
+          "relevant_citation": false,
+          "positive_completed": false,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "single_pass_rag",
+          "case_id": "official-corpus-no-match",
+          "expected_relevant_ids": [],
+          "expect_no_results": true,
+          "status": "abstained",
+          "answer": "No sufficiently supported scholarship candidate was retrieved.",
+          "final_query": "xylophone archaeology scholarship on Mars",
+          "latency_seconds": 0.11987594199854357,
+          "retrieval_calls": 1,
+          "generation_calls": 0,
+          "query_rewrites": 0,
+          "repair_attempts": 0,
+          "fallback_used": false,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            true
+          ],
+          "grounded_candidate_ids": [],
+          "candidate_roles": {},
+          "cited_scholarship_ids": [],
+          "relevant_grounded": null,
+          "relevant_citation": null,
+          "positive_completed": null,
+          "no_result_correct": true
+        }
+      ]
+    },
+    {
+      "system_name": "agentic_rag",
+      "generator_name": "tinyllama:latest",
+      "total_cases": 4,
+      "positive_cases": 3,
+      "no_result_cases": 1,
+      "positive_completion_rate": 1.0,
+      "positive_citation_pass_rate": 1.0,
+      "positive_relevant_grounding_rate": 1.0,
+      "positive_relevant_citation_rate": 1.0,
+      "no_result_accuracy": 1.0,
+      "mean_latency_seconds": 230.56000878300074,
+      "mean_retrieval_calls": 1.0,
+      "mean_generation_calls": 1.5,
+      "mean_query_rewrites": 0.0,
+      "mean_repair_attempts": 0.75,
+      "positive_fallback_rate": 1.0,
+      "cases": [
+        {
+          "system_name": "agentic_rag",
+          "case_id": "erasmus-mundus-worldwide-masters",
+          "expected_relevant_ids": [
+            "erasmus-mundus-joint-masters"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Erasmus Mundus Joint Masters Scholarships is offered by European Union Erasmus+. [erasmus-mundus-joint-masters:source_identity]\n- The opportunity is hosted in Multiple countries in Europe and beyond. [erasmus-mundus-joint-masters:host_countries]\n- Its listed funding type is fully funded. [erasmus-mundus-joint-masters:funding_type]\n- The official eligibility information states: Students from all over the world may apply directly to the institution running a chosen Erasmus Mundus Joint Master. Applicants must hold a bachelor's degree, be in their final bachelor year and graduate before the programme starts, or demonstrate an officially recognised equivalent. Full scholarships may be offered to best-ranked students and cover participation costs while contributing to travel, visa, and a living allowance. Most applications are submitted between October and January, but each programme publishes its own requirements and deadline. Confirm final eligibility on the official source before applying. [erasmus-mundus-joint-masters:eligibility_text]",
+          "final_query": "Erasmus Mundus joint master's full scholarship for international students including travel visa and living allowance",
+          "latency_seconds": 235.12939038100012,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "erasmus-mundus-joint-masters",
+            "university-twente-scholarship-2027"
+          ],
+          "candidate_roles": {
+            "erasmus-mundus-joint-masters": "recommendation",
+            "university-twente-scholarship-2027": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "erasmus-mundus-joint-masters"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "si-global-professionals-expired-round",
+          "expected_relevant_ids": [
+            "si-global-professionals-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Explanatory result only—not a recommendation. SI Scholarship for Global Professionals is offered by Swedish Institute. [si-global-professionals-2026:source_identity]\n- The opportunity is hosted in Sweden. [si-global-professionals-2026:host_countries]\n- Its listed funding type is fully funded. [si-global-professionals-2026:funding_type]\n- The official eligibility information states: The scholarship supports full-time one- or two-year master's studies at Swedish universities. Applicants must be citizens of one of 34 eligible countries, apply to an eligible master's programme, be liable for tuition fees, and demonstrate work and leadership experience. The inspected 2026 application round closed on 25 February 2026. Funding includes full tuition coverage, a monthly allowance of SEK 12,000, and a one-time travel grant subject to the official conditions. Confirm final eligibility on the official source before applying. [si-global-professionals-2026:eligibility_text]",
+          "final_query": "Swedish Institute global professionals scholarship for STEM master's applicants with leadership and work experience full tuition monthly allowance",
+          "latency_seconds": 410.1764326490011,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "si-global-professionals-2026",
+            "erasmus-mundus-joint-masters",
+            "university-twente-scholarship-2027"
+          ],
+          "candidate_roles": {
+            "si-global-professionals-2026": "explanatory_ineligible",
+            "erasmus-mundus-joint-masters": "recommendation",
+            "university-twente-scholarship-2027": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "si-global-professionals-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "twente-non-eu-masters",
+          "expected_relevant_ids": [
+            "university-twente-scholarship-2027"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- University of Twente Scholarship is offered by University of Twente. [university-twente-scholarship-2027:source_identity]\n- The opportunity is hosted in Netherlands. [university-twente-scholarship-2027:host_countries]\n- Its listed funding type is partially funded. [university-twente-scholarship-2027:funding_type]\n- The official eligibility information states: The University of Twente Scholarship supports excellent non-EU/EEA students applying to qualifying University of Twente MSc programmes. Its listed value is EUR 3,000 to EUR 22,000 for one year and is compensation for study-related costs rather than direct payment of tuition or living costs. Applicants need prior provisional admission, must satisfy visa and English-language requirements, and should belong to the best 5 to 10 percent of their graduating class. The inspected application deadline is 1 April 2027. Confirm final eligibility on the official source before applying. [university-twente-scholarship-2027:eligibility_text]",
+          "final_query": "University of Twente scholarship for non-EU MSc students in the Netherlands IELTS 6.5 award up to 22000 euros",
+          "latency_seconds": 276.81567977800114,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "university-twente-scholarship-2027",
+            "erasmus-mundus-joint-masters"
+          ],
+          "candidate_roles": {
+            "university-twente-scholarship-2027": "recommendation",
+            "erasmus-mundus-joint-masters": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "university-twente-scholarship-2027"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "official-corpus-no-match",
+          "expected_relevant_ids": [],
+          "expect_no_results": true,
+          "status": "abstained",
+          "answer": "ScholarAgent abstained because it could not retrieve sufficient verified evidence.",
+          "final_query": "xylophone archaeology scholarship on Mars",
+          "latency_seconds": 0.11853232400062552,
+          "retrieval_calls": 1,
+          "generation_calls": 0,
+          "query_rewrites": 0,
+          "repair_attempts": 0,
+          "fallback_used": false,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [],
+          "grounded_candidate_ids": [],
+          "candidate_roles": {},
+          "cited_scholarship_ids": [],
+          "relevant_grounded": null,
+          "relevant_citation": null,
+          "positive_completed": null,
+          "no_result_correct": true
+        }
+      ]
+    }
+  ]
+}

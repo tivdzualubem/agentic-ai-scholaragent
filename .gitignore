@@ -19,6 +19,7 @@ eval/results/*
 !eval/results/.gitkeep
 !eval/results/README.md
 !eval/results/official_retrieval_comparison_calibrated.json
+!eval/results/official_rag_comparison_tinyllama_development.json
 
 # Streamlit
 .streamlit/secrets.toml
