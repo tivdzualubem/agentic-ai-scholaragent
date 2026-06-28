@@ -1,0 +1,103 @@
+[
+  {
+    "scholarship_id": "erasmus-mundus-joint-masters",
+    "title": "Erasmus Mundus Joint Masters Scholarships",
+    "provider": "European Union Erasmus+",
+    "official_url": "https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters",
+    "host_countries": [
+      "Multiple countries in Europe and beyond"
+    ],
+    "degree_levels": [
+      "master"
+    ],
+    "eligible_nationalities": [
+      "All nationalities"
+    ],
+    "eligible_fields": [],
+    "manual_review_requirements": [
+      "Confirm that the selected consortium programme is currently offered and accepts scholarship applications.",
+      "Verify the programme-specific academic field, admission criteria, language requirements, documents, and exact deadline.",
+      "Confirm that the applicant holds a bachelor's degree or officially recognised equivalent and will graduate before the master's programme starts."
+    ],
+    "minimum_gpa": null,
+    "gpa_scale": null,
+    "minimum_work_experience_years": null,
+    "language_requirements": {},
+    "funding_type": "fully_funded",
+    "deadline": null,
+    "application_year": null,
+    "source_last_checked": "2026-06-28",
+    "eligibility_text": "Students from all over the world may apply directly to the institution running a chosen Erasmus Mundus Joint Master. Applicants must hold a bachelor's degree, be in their final bachelor year and graduate before the programme starts, or demonstrate an officially recognised equivalent. Full scholarships may be offered to best-ranked students and cover participation costs while contributing to travel, visa, and a living allowance. Most applications are submitted between October and January, but each programme publishes its own requirements and deadline."
+  },
+  {
+    "scholarship_id": "si-global-professionals-2026",
+    "title": "SI Scholarship for Global Professionals",
+    "provider": "Swedish Institute",
+    "official_url": "https://si.se/en/apply/scholarships/swedish-institute-scholarships-for-global-professionals/",
+    "host_countries": [
+      "Sweden"
+    ],
+    "degree_levels": [
+      "master"
+    ],
+    "eligible_nationalities": [
+      "Applicants from 34 eligible countries"
+    ],
+    "eligible_fields": [
+      "Governance",
+      "Public Health",
+      "Entrepreneurship and Innovation",
+      "STEM"
+    ],
+    "manual_review_requirements": [
+      "Verify that the applicant's citizenship appears on the current official list of 34 eligible countries.",
+      "Verify that the selected Swedish master's programme is eligible for the SI scholarship.",
+      "Confirm tuition-fee liability through University Admissions.",
+      "Verify the official work-experience and leadership-evidence requirements.",
+      "Check the next application cycle because the inspected 2026 scholarship round is closed."
+    ],
+    "minimum_gpa": null,
+    "gpa_scale": null,
+    "minimum_work_experience_years": null,
+    "language_requirements": {},
+    "funding_type": "fully_funded",
+    "deadline": "2026-02-25",
+    "application_year": 2026,
+    "source_last_checked": "2026-06-28",
+    "eligibility_text": "The scholarship supports full-time one- or two-year master's studies at Swedish universities. Applicants must be citizens of one of 34 eligible countries, apply to an eligible master's programme, be liable for tuition fees, and demonstrate work and leadership experience. The inspected 2026 application round closed on 25 February 2026. Funding includes full tuition coverage, a monthly allowance of SEK 12,000, and a one-time travel grant subject to the official conditions."
+  },
+  {
+    "scholarship_id": "university-twente-scholarship-2027",
+    "title": "University of Twente Scholarship",
+    "provider": "University of Twente",
+    "official_url": "https://www.utwente.nl/en/education/scholarship-finder/university-of-twente-scholarship/",
+    "host_countries": [
+      "Netherlands"
+    ],
+    "degree_levels": [
+      "master"
+    ],
+    "eligible_nationalities": [
+      "Applicants from non-EU/EEA countries"
+    ],
+    "eligible_fields": [],
+    "manual_review_requirements": [
+      "Confirm provisional admission to a qualifying University of Twente master's programme and possession of a student number.",
+      "Verify non-EU/EEA status and confirm that the applicant is not Dutch, an EU/EEA student, a current UT student, or a UT graduate.",
+      "Verify visa eligibility and the IELTS 6.0 speaking subscore or TOEFL iBT 20 speaking requirement.",
+      "Confirm that the applicant is among the best 5 to 10 percent of the graduating class.",
+      "Check programme and faculty exclusions on the official scholarship page."
+    ],
+    "minimum_gpa": null,
+    "gpa_scale": null,
+    "minimum_work_experience_years": null,
+    "language_requirements": {
+      "IELTS": 6.5
+    },
+    "funding_type": "partially_funded",
+    "deadline": "2027-04-01",
+    "application_year": 2027,
+    "source_last_checked": "2026-06-28",
+    "eligibility_text": "The University of Twente Scholarship supports excellent non-EU/EEA students applying to qualifying University of Twente MSc programmes. Its listed value is EUR 3,000 to EUR 22,000 for one year and is compensation for study-related costs rather than direct payment of tuition or living costs. Applicants need prior provisional admission, must satisfy visa and English-language requirements, and should belong to the best 5 to 10 percent of their graduating class. The inspected application deadline is 1 April 2027."
+  }
+]

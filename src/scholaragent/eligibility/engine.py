@@ -193,7 +193,7 @@ def _assess_work_experience(
     required = scholarship.minimum_work_experience_years
 
     if required is None:
-        passed.append("No minimum work-experience requirement is recorded.")
+        passed.append("No structured numeric work-experience threshold is recorded.")
         return
 
     if profile.years_work_experience >= required:
@@ -217,7 +217,7 @@ def _assess_language(
 ) -> None:
     """Check each structured language-test requirement."""
     if not scholarship.language_requirements:
-        passed.append("No structured language-score requirement is recorded.")
+        passed.append("No structured language-score threshold is recorded.")
         return
 
     for test_name, required_score in (
