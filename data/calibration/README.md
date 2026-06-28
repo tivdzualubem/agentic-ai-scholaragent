@@ -19,4 +19,6 @@ Each record must:
 The current corpus is incomplete and will contain six scholarship identities
 before calibration begins.
 
-Current progress: 2 of 6 planned calibration scholarships.
+Current progress: 6 of 6 planned calibration scholarships.
+
+The scholarship corpus is complete, but the calibration benchmark and parameter-selection run have not yet been created.

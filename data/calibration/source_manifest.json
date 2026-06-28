@@ -15,6 +15,16 @@
       "byte_size": 160781
     },
     {
+      "scholarship_id": "allan-nesta-ferguson-masters-scholarships-2026",
+      "snapshot_path": "data/sources/calibration/allan-nesta-ferguson-masters-scholarships-2026.json",
+      "source_url": "https://sheffield.ac.uk/international/fees-and-funding/scholarships/postgraduate/ferguson",
+      "source_type": "html",
+      "snapshot_title": "Allan and Nesta Ferguson Charitable Trust Masters Scholarships | International students | The University of Sheffield",
+      "source_last_checked": "2026-06-28",
+      "content_sha256": "07b63f45a4839bcf105ed23a4cc8716f82f8afc6e0bd19a397205f4296c0c397",
+      "byte_size": 74166
+    },
+    {
       "scholarship_id": "anu-phd-scholarship",
       "snapshot_path": "data/sources/calibration/anu-phd-scholarship.json",
       "source_url": "https://study.anu.edu.au/scholarships/find-scholarship/anu-phd-scholarship",
@@ -23,6 +33,36 @@
       "source_last_checked": "2026-06-28",
       "content_sha256": "603ffbe25b136e8e40fddad7f8da62eec4289d80f132e47f370d8eb704adb44a",
       "byte_size": 48053
+    },
+    {
+      "scholarship_id": "eth-excellence-scholarship-opportunity-programme-2027",
+      "snapshot_path": "data/sources/calibration/eth-excellence-scholarship-opportunity-programme-2027.json",
+      "source_url": "https://ethz.ch/students/en/studies/financial/scholarships/excellencescholarship.html",
+      "source_type": "html",
+      "snapshot_title": "Excellence Scholarship & Opportunity Programme – Student portal | ETH Zurich",
+      "source_last_checked": "2026-06-28",
+      "content_sha256": "b9a23c53bc35b03f613718e4e4b054162dbd01d3cd3fac200326aa53f8be64c5",
+      "byte_size": 52000
+    },
+    {
+      "scholarship_id": "kth-scholarship-2026",
+      "snapshot_path": "data/sources/calibration/kth-scholarship-2026.json",
+      "source_url": "https://www.kth.se/en/studies/master/admissions/scholarships/kth-scholarship-1.72827",
+      "source_type": "html",
+      "snapshot_title": "KTH Scholarship | KTH | Sweden",
+      "source_last_checked": "2026-06-28",
+      "content_sha256": "3dfb3c86def051215da96bd77e89f3d14cb2c51fb675dd7f2e4e32e8fabf2c41",
+      "byte_size": 47375
+    },
+    {
+      "scholarship_id": "university-of-auckland-doctoral-scholarship-2026",
+      "snapshot_path": "data/sources/calibration/university-of-auckland-doctoral-scholarship-2026.json",
+      "source_url": "https://www.auckland.ac.nz/en/study/scholarships-and-awards/scholarship-types/postgraduate-scholarships/doctoral-scholarships.html",
+      "source_type": "html",
+      "snapshot_title": "University of Auckland Doctoral Scholarships – University of Auckland",
+      "source_last_checked": "2026-06-28",
+      "content_sha256": "55bd14c52f96eb1a5892d312244c5bd1eba5b8c23b95c8ad1b526d9087711fe1",
+      "byte_size": 260981
     }
   ]
 }

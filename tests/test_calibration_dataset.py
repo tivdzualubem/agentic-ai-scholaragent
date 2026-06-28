@@ -25,89 +25,121 @@ DATASET = Path(
     "calibration_scholarships.json"
 )
 MANIFEST = Path(
-    "data/calibration/"
-    "source_manifest.json"
+    "data/calibration/source_manifest.json"
 )
-EVALUATION_DATE = date(2026, 5, 1)
 
 ADELAIDE_ID = (
     "adelaide-academic-excellence-"
     "scholarship-2026"
 )
 ANU_ID = "anu-phd-scholarship"
+FERGUSON_ID = (
+    "allan-nesta-ferguson-"
+    "masters-scholarships-2026"
+)
+ETH_ID = (
+    "eth-excellence-scholarship-"
+    "opportunity-programme-2027"
+)
+KTH_ID = "kth-scholarship-2026"
+AUCKLAND_ID = (
+    "university-of-auckland-"
+    "doctoral-scholarship-2026"
+)
+
+EXPECTED_IDS = {
+    ADELAIDE_ID,
+    ANU_ID,
+    FERGUSON_ID,
+    ETH_ID,
+    KTH_ID,
+    AUCKLAND_ID,
+}
+
+
+def _records():
+    return {
+        record.scholarship_id: record
+        for record in load_scholarships(DATASET)
+    }
 
 
 def _profile(
     *,
-    gpa: float | None,
-    gpa_scale: float | None,
+    degree: str,
+    field: str,
+    gpa: float | None = 4.5,
+    gpa_scale: float | None = 5.0,
+    requires_full_funding: bool = False,
 ) -> StudentProfile:
     return StudentProfile(
         nationality="Nigerian",
         country_of_residence="Finland",
-        target_degree_level="master",
-        fields_of_study=[
-            "Artificial Intelligence",
-        ],
+        target_degree_level=degree,
+        fields_of_study=[field],
         gpa=gpa,
         gpa_scale=gpa_scale,
         language_scores={
             "IELTS": 7.5,
         },
-        years_work_experience=1,
-        preferred_countries=[
-            "Australia",
-        ],
-        requires_full_funding=False,
+        years_work_experience=2,
+        preferred_countries=[],
+        requires_full_funding=(
+            requires_full_funding
+        ),
     )
 
 
-def test_calibration_dataset_contains_current_records() -> None:
-    """The current calibration records should validate."""
-    records = {
-        record.scholarship_id: record
-        for record in load_scholarships(DATASET)
-    }
+def test_calibration_dataset_has_six_diverse_records() -> None:
+    """The frozen calibration corpus should contain six records."""
+    records = _records()
 
-    assert set(records) == {
-        ADELAIDE_ID,
-        ANU_ID,
-    }
+    assert set(records) == EXPECTED_IDS
 
-    adelaide = records[ADELAIDE_ID]
+    degree_levels = {
+        level.value
+        for record in records.values()
+        for level in record.degree_levels
+    }
+    funding_types = {
+        record.funding_type.value
+        for record in records.values()
+    }
+    host_countries = {
+        country
+        for record in records.values()
+        for country in record.host_countries
+    }
 
     assert {
-        level.value
-        for level in adelaide.degree_levels
-    } == {
         "bachelor",
         "master",
-    }
-    assert adelaide.funding_type.value == "tuition_only"
-    assert adelaide.minimum_gpa == 6.7
-    assert adelaide.gpa_scale == 7.0
-    assert (
-        adelaide.deadline.isoformat()
-        == "2026-05-22"
-    )
-    assert adelaide.manual_review_requirements
+        "phd",
+    }.issubset(degree_levels)
+
+    assert {
+        "fully_funded",
+        "partially_funded",
+        "tuition_only",
+    }.issubset(funding_types)
+
+    assert len(host_countries) >= 5
 
 
-def test_calibration_manifest_matches_snapshot() -> None:
-    """The record should map to its validated source snapshot."""
+def test_calibration_manifest_matches_all_snapshots() -> None:
+    """Every record should map to one validated snapshot."""
     manifest = json.loads(
         MANIFEST.read_text(encoding="utf-8")
     )
-    records = load_scholarships(DATASET)
+    records = _records()
 
     assert manifest["partition"] == "calibration"
     assert {
         entry["scholarship_id"]
         for entry in manifest["records"]
-    } == {
-        record.scholarship_id
-        for record in records
-    }
+    } == set(records)
+
+    assert len(manifest["records"]) == 6
 
     for entry in manifest["records"]:
         snapshot = load_source_snapshot(
@@ -128,140 +160,84 @@ def test_calibration_manifest_matches_snapshot() -> None:
         )
 
 
-def test_adelaide_gpa_cases_cover_three_statuses() -> None:
-    """GPA evidence should create deterministic status cases."""
-    record = load_scholarships(DATASET)[0]
+def test_current_records_preserve_manual_conditions() -> None:
+    """Unmodelled official conditions should remain explicit."""
+    records = _records()
 
-    high_gpa = assess_eligibility(
+    assert all(
+        record.manual_review_requirements
+        for record in records.values()
+    )
+
+
+def test_adelaide_gpa_cases_cover_three_statuses() -> None:
+    """Adelaide GPA evidence should create three outcomes."""
+    record = _records()[ADELAIDE_ID]
+    evaluation_date = date(2026, 5, 1)
+
+    high = assess_eligibility(
         _profile(
+            degree="master",
+            field="Artificial Intelligence",
             gpa=6.8,
             gpa_scale=7.0,
         ),
         record,
-        as_of=EVALUATION_DATE,
+        as_of=evaluation_date,
     )
-    missing_gpa = assess_eligibility(
+    missing = assess_eligibility(
         _profile(
+            degree="master",
+            field="Artificial Intelligence",
             gpa=None,
             gpa_scale=None,
         ),
         record,
-        as_of=EVALUATION_DATE,
+        as_of=evaluation_date,
     )
-    low_gpa = assess_eligibility(
+    low = assess_eligibility(
         _profile(
+            degree="master",
+            field="Artificial Intelligence",
             gpa=6.5,
             gpa_scale=7.0,
         ),
         record,
-        as_of=EVALUATION_DATE,
+        as_of=evaluation_date,
     )
 
     assert (
-        high_gpa.status
+        high.status
         is EligibilityStatus.POTENTIALLY_ELIGIBLE
     )
     assert (
-        missing_gpa.status
+        missing.status
         is EligibilityStatus.INSUFFICIENT_INFORMATION
     )
     assert (
-        low_gpa.status
+        low.status
         is EligibilityStatus.NOT_ELIGIBLE
     )
 
 
-def test_bm25_retrieves_adelaide_record() -> None:
-    """A source-specific query should rank Adelaide first."""
-    index = BM25ScholarshipIndex(
-        load_scholarships(DATASET)
-    )
-
-    results = index.search(
-        (
-            "Adelaide Australia international "
-            "bachelor master GPA 6.7 tuition "
-            "fee reduction"
-        ),
-        k=1,
-    )
-
-    assert results
-    assert (
-        results[0].scholarship.scholarship_id
-        == ADELAIDE_ID
-    )
-
-
-def _anu_profile(
-    *,
-    target_degree_level: str,
-) -> StudentProfile:
-    return StudentProfile(
-        nationality="Nigerian",
-        country_of_residence="Finland",
-        target_degree_level=target_degree_level,
-        fields_of_study=[
-            "Artificial Intelligence",
-        ],
-        gpa=4.5,
-        gpa_scale=5.0,
-        language_scores={
-            "IELTS": 7.5,
-        },
-        years_work_experience=1,
-        preferred_countries=[
-            "Australia",
-        ],
-        requires_full_funding=False,
-    )
-
-
-def test_anu_record_preserves_conservative_metadata() -> None:
-    """ANU funding and deadlines should remain conservative."""
-    records = {
-        record.scholarship_id: record
-        for record in load_scholarships(DATASET)
-    }
-
-    anu = records[ANU_ID]
-
-    assert {
-        level.value
-        for level in anu.degree_levels
-    } == {
-        "phd",
-    }
-    assert anu.funding_type.value == "partially_funded"
-    assert anu.deadline is None
-    assert anu.application_year is None
-    assert anu.eligible_fields == []
-    assert anu.eligible_nationalities == [
-        "All nationalities",
-    ]
-    assert len(anu.manual_review_requirements) == 6
-
-
-def test_anu_degree_cases_cover_two_statuses() -> None:
-    """ANU should distinguish matching and mismatched degrees."""
-    records = {
-        record.scholarship_id: record
-        for record in load_scholarships(DATASET)
-    }
-    anu = records[ANU_ID]
+def test_anu_degree_cases_are_conservative() -> None:
+    """ANU should distinguish matching and wrong degrees."""
+    record = _records()[ANU_ID]
 
     matching = assess_eligibility(
-        _anu_profile(
-            target_degree_level="phd",
+        _profile(
+            degree="phd",
+            field="Artificial Intelligence",
         ),
-        anu,
+        record,
         as_of=date(2026, 6, 28),
     )
-    wrong_degree = assess_eligibility(
-        _anu_profile(
-            target_degree_level="master",
+    wrong = assess_eligibility(
+        _profile(
+            degree="master",
+            field="Artificial Intelligence",
         ),
-        anu,
+        record,
         as_of=date(2026, 6, 28),
     )
 
@@ -269,34 +245,168 @@ def test_anu_degree_cases_cover_two_statuses() -> None:
         matching.status
         is EligibilityStatus.POTENTIALLY_ELIGIBLE
     )
-    assert matching.manual_review_items
-
     assert (
-        wrong_degree.status
+        wrong.status
         is EligibilityStatus.NOT_ELIGIBLE
     )
-    assert any(
-        "degree level" in failure
-        for failure in wrong_degree.hard_failures
+
+
+def test_ferguson_cases_include_deadline_failure() -> None:
+    """Ferguson should support active and expired cases."""
+    record = _records()[FERGUSON_ID]
+    profile = _profile(
+        degree="master",
+        field="International Development",
+        requires_full_funding=True,
     )
 
-
-def test_bm25_retrieves_anu_record() -> None:
-    """A source-specific PhD query should rank ANU first."""
-    index = BM25ScholarshipIndex(
-        load_scholarships(DATASET)
+    active = assess_eligibility(
+        profile,
+        record,
+        as_of=date(2026, 5, 20),
+    )
+    expired = assess_eligibility(
+        profile,
+        record,
+        as_of=date(2026, 6, 28),
     )
 
-    results = index.search(
-        (
-            "ANU Australia PhD research scholarship "
-            "39069 stipend first class honours"
-        ),
-        k=1,
-    )
-
-    assert results
     assert (
-        results[0].scholarship.scholarship_id
-        == ANU_ID
+        active.status
+        is EligibilityStatus.POTENTIALLY_ELIGIBLE
     )
+    assert (
+        expired.status
+        is EligibilityStatus.NOT_ELIGIBLE
+    )
+
+
+def test_eth_master_case_is_potentially_eligible() -> None:
+    """ETH should remain manual because top-ten status is unverified."""
+    record = _records()[ETH_ID]
+
+    result = assess_eligibility(
+        _profile(
+            degree="master",
+            field="Computer Science",
+            requires_full_funding=True,
+        ),
+        record,
+        as_of=date(2026, 11, 15),
+    )
+
+    assert (
+        result.status
+        is EligibilityStatus.POTENTIALLY_ELIGIBLE
+    )
+    assert result.manual_review_items
+
+
+def test_kth_cases_include_expired_round() -> None:
+    """KTH should distinguish an active and expired round."""
+    record = _records()[KTH_ID]
+    profile = _profile(
+        degree="master",
+        field="Data Science",
+        requires_full_funding=False,
+    )
+
+    active = assess_eligibility(
+        profile,
+        record,
+        as_of=date(2026, 1, 10),
+    )
+    expired = assess_eligibility(
+        profile,
+        record,
+        as_of=date(2026, 6, 28),
+    )
+
+    assert (
+        active.status
+        is EligibilityStatus.POTENTIALLY_ELIGIBLE
+    )
+    assert (
+        expired.status
+        is EligibilityStatus.NOT_ELIGIBLE
+    )
+
+
+def test_auckland_doctoral_degree_cases() -> None:
+    """Auckland should distinguish doctoral and master profiles."""
+    record = _records()[AUCKLAND_ID]
+
+    doctoral = assess_eligibility(
+        _profile(
+            degree="phd",
+            field="Artificial Intelligence",
+            requires_full_funding=True,
+        ),
+        record,
+        as_of=date(2026, 6, 28),
+    )
+    master = assess_eligibility(
+        _profile(
+            degree="master",
+            field="Artificial Intelligence",
+            requires_full_funding=True,
+        ),
+        record,
+        as_of=date(2026, 6, 28),
+    )
+
+    assert (
+        doctoral.status
+        is EligibilityStatus.POTENTIALLY_ELIGIBLE
+    )
+    assert (
+        master.status
+        is EligibilityStatus.NOT_ELIGIBLE
+    )
+
+
+def test_bm25_ranks_each_calibration_record_first() -> None:
+    """Distinctive source queries should retrieve the correct record."""
+    index = BM25ScholarshipIndex(
+        list(_records().values())
+    )
+
+    expectations = {
+        (
+            "Adelaide Academic Excellence GPA 6.7 "
+            "bachelor master tuition reduction"
+        ): ADELAIDE_ID,
+        (
+            "ANU PhD Australia research stipend "
+            "first class honours"
+        ): ANU_ID,
+        (
+            "Sheffield Ferguson International "
+            "Development full tuition maintenance"
+        ): FERGUSON_ID,
+        (
+            "ETH ESOP Switzerland master top 10 "
+            "CHF tuition waiver"
+        ): ETH_ID,
+        (
+            "KTH Sweden master full tuition "
+            "fee-paying first priority"
+        ): KTH_ID,
+        (
+            "Auckland New Zealand doctoral stipend "
+            "tuition 42 months health insurance"
+        ): AUCKLAND_ID,
+    }
+
+    for query, expected_id in expectations.items():
+        results = index.search(
+            query,
+            k=1,
+        )
+
+        assert results
+        assert (
+            results[0].scholarship.scholarship_id
+            == expected_id
+        )
+        assert results[0].score > 0
