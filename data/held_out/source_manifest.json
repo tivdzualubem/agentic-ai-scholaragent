@@ -1,0 +1,67 @@
+{
+  "dataset": "data/held_out/held_out_scholarships.json",
+  "source_root": "data/sources/held_out",
+  "partition": "held_out_test",
+  "records": [
+    {
+      "scholarship_id": "bristol-think-big-scholarships-2026",
+      "snapshot_path": "data/sources/held_out/bristol-think-big-scholarships-2026.json",
+      "source_url": "https://www.bristol.ac.uk/students/support/finances/scholarships/think-big-scholarships/",
+      "source_type": "html",
+      "snapshot_title": "Think Big Scholarships for international students | Current students | University of Bristol",
+      "source_last_checked": "2026-06-28",
+      "content_sha256": "bd81815375959600c2357849eaeaa5cd14b0443e7384ae76d9080d1ce0a1d5a4",
+      "byte_size": 108362
+    },
+    {
+      "scholarship_id": "glasgow-global-leadership-scholarship-2026",
+      "snapshot_path": "data/sources/held_out/glasgow-global-leadership-scholarship-2026.json",
+      "source_url": "https://www.gla.ac.uk/scholarships/globalleadershipscholarship/",
+      "source_type": "html",
+      "snapshot_title": "University of Glasgow - Scholarships & funding - Global Leadership Scholarship",
+      "source_last_checked": "2026-06-28",
+      "content_sha256": "627a7fe898445fe1cea5bf938430909bf841d558222c70459149325ad883e5d0",
+      "byte_size": 52067
+    },
+    {
+      "scholarship_id": "aalto-university-excellence-scholarship",
+      "snapshot_path": "data/sources/held_out/aalto-university-excellence-scholarship.json",
+      "source_url": "https://www.aalto.fi/en/international-students/scholarships-study-right-started-on-or-after-1-august-2025",
+      "source_type": "html",
+      "snapshot_title": "Scholarships (study right started on or after 1 August 2025) | Aalto University",
+      "source_last_checked": "2026-06-28",
+      "content_sha256": "187fc7ef08ffa493ee51cfa926e774008847622249a33bbd16d003946fbb4e66",
+      "byte_size": 147611
+    },
+    {
+      "scholarship_id": "waikato-vice-chancellors-international-excellence-scholarship",
+      "snapshot_path": "data/sources/held_out/waikato-vice-chancellors-international-excellence-scholarship.json",
+      "source_url": "https://www.waikato.ac.nz/study/scholarships/find-a-scholarship/vice-chancellors-international-excellence-scholarship/",
+      "source_type": "html",
+      "snapshot_title": "Vice Chancellor's International Excellence Scholarship :: University of Waikato",
+      "source_last_checked": "2026-06-28",
+      "content_sha256": "17bdb6f769b6491b57c78a8cd6418e437857c8f38f061b305cb58975c7ee9de1",
+      "byte_size": 207817
+    },
+    {
+      "scholarship_id": "university-of-manitoba-graduate-fellowship",
+      "snapshot_path": "data/sources/held_out/university-of-manitoba-graduate-fellowship.json",
+      "source_url": "https://umanitoba.ca/graduate-studies/funding-awards/university-manitoba-graduate-fellowship-umgf",
+      "source_type": "html",
+      "snapshot_title": "University of Manitoba Graduate Fellowship (UMGF) | Faculty of Graduate and Postdoctoral Studies | University of Manitoba",
+      "source_last_checked": "2026-06-28",
+      "content_sha256": "1e676df0f15ad254369c834cd68f934eba3ed5efc8fa8f42b7de2369881e7255",
+      "byte_size": 69994
+    },
+    {
+      "scholarship_id": "maastricht-university-nl-high-potential-scholarship-2026",
+      "snapshot_path": "data/sources/held_out/maastricht-university-nl-high-potential-scholarship-2026.json",
+      "source_url": "https://www.maastrichtuniversity.nl/studeren/toelating-inschrijving/financing-your-studies/scholarships/maastricht-university-nl-high",
+      "source_type": "html",
+      "snapshot_title": "Maastricht University NL-High Potential scholarship - Maastricht University",
+      "source_last_checked": "2026-06-28",
+      "content_sha256": "6558c464b33c469c6ee7f31185e76c62ff7699cee0f3f73f63851c430bd88359",
+      "byte_size": 663886
+    }
+  ]
+}

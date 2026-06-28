@@ -1,0 +1,193 @@
+[
+  {
+    "scholarship_id": "bristol-think-big-scholarships-2026",
+    "title": "Think Big Scholarships",
+    "provider": "University of Bristol",
+    "official_url": "https://www.bristol.ac.uk/students/support/finances/scholarships/think-big-scholarships/",
+    "host_countries": [
+      "United Kingdom"
+    ],
+    "degree_levels": [
+      "bachelor",
+      "master"
+    ],
+    "eligible_nationalities": [
+      "International students"
+    ],
+    "eligible_fields": [],
+    "manual_review_requirements": [
+      "Confirm the applicant has applied for an eligible University of Bristol course starting in September 2026.",
+      "Confirm the applicant is classed as an overseas student for fee purposes.",
+      "Confirm the selected course appears in the official Think Big eligible-course list."
+    ],
+    "minimum_gpa": null,
+    "gpa_scale": null,
+    "minimum_work_experience_years": null,
+    "language_requirements": {},
+    "funding_type": "tuition_only",
+    "deadline": "2026-04-10",
+    "application_year": 2026,
+    "source_last_checked": "2026-06-28",
+    "eligibility_text": "The University of Bristol Think Big scheme provides funding towards tuition fees for international students studying eligible undergraduate or postgraduate courses. Applicants must have applied for an eligible course beginning in September 2026 and must be classed as overseas students for fee purposes. Applications close at 10:00 UK time on 10 April 2026."
+  },
+  {
+    "scholarship_id": "glasgow-global-leadership-scholarship-2026",
+    "title": "Global Leadership Scholarship",
+    "provider": "University of Glasgow",
+    "official_url": "https://www.gla.ac.uk/scholarships/globalleadershipscholarship/",
+    "host_countries": [
+      "United Kingdom"
+    ],
+    "degree_levels": [
+      "master"
+    ],
+    "eligible_nationalities": [],
+    "eligible_fields": [],
+    "manual_review_requirements": [
+      "Confirm the applicant has International or EU fee status.",
+      "Confirm the applicant holds an offer for an eligible full-time, one-year, in-person postgraduate taught master's programme starting in September 2026.",
+      "Confirm the applicant demonstrates academic excellence equivalent to UK first-class honours.",
+      "Confirm the proposed qualification and programme are not excluded by the official scholarship rules."
+    ],
+    "minimum_gpa": null,
+    "gpa_scale": null,
+    "minimum_work_experience_years": null,
+    "language_requirements": {},
+    "funding_type": "tuition_only",
+    "deadline": "2026-07-17",
+    "application_year": 2026,
+    "source_last_checked": "2026-06-28",
+    "eligibility_text": "The University of Glasgow Global Leadership Scholarship is a one-year tuition-fee discount for International fee students beginning an eligible postgraduate taught master's programme in any discipline in academic session 2026/2027. Applicants must demonstrate academic excellence equivalent to UK first-class honours and hold an eligible full-time programme offer. The stated deadline is 17 July 2026."
+  },
+  {
+    "scholarship_id": "aalto-university-excellence-scholarship",
+    "title": "Aalto University Excellence Scholarship",
+    "provider": "Aalto University",
+    "official_url": "https://www.aalto.fi/en/international-students/scholarships-study-right-started-on-or-after-1-august-2025",
+    "host_countries": [
+      "Finland"
+    ],
+    "degree_levels": [
+      "bachelor",
+      "master"
+    ],
+    "eligible_nationalities": [],
+    "eligible_fields": [],
+    "manual_review_requirements": [
+      "Confirm the applicant is liable to pay tuition fees and applied for the scholarship during the admission process.",
+      "Confirm the applicant satisfies the selected programme's admission and scholarship evaluation criteria.",
+      "Confirm the applicant is selected among the highest-achieving candidates through the competitive programme assessment.",
+      "Confirm the applicant accepts all scholarship terms by the programme-specific deadline.",
+      "Confirm the applicant can maintain the required full-time study progress for continuation in later academic years."
+    ],
+    "minimum_gpa": null,
+    "gpa_scale": null,
+    "minimum_work_experience_years": null,
+    "language_requirements": {},
+    "funding_type": "tuition_only",
+    "deadline": null,
+    "application_year": null,
+    "source_last_checked": "2026-06-28",
+    "eligibility_text": "Aalto University Excellence Scholarships are competitive merit-based tuition-fee waivers covering the full tuition fee. Tuition-fee students apply during admission to an eligible bachelor's or master's programme. The award does not cover living or other study-related costs. Programme-specific selection criteria and deadlines require manual verification."
+  },
+  {
+    "scholarship_id": "waikato-vice-chancellors-international-excellence-scholarship",
+    "title": "Vice-Chancellor's International Excellence Scholarship",
+    "provider": "University of Waikato",
+    "official_url": "https://www.waikato.ac.nz/study/scholarships/find-a-scholarship/vice-chancellors-international-excellence-scholarship/",
+    "host_countries": [
+      "New Zealand"
+    ],
+    "degree_levels": [
+      "bachelor",
+      "master"
+    ],
+    "eligible_nationalities": [
+      "International students"
+    ],
+    "eligible_fields": [],
+    "manual_review_requirements": [
+      "Confirm the applicant is enrolling at the University of Waikato for the first time.",
+      "Confirm the applicant has applied for or received an offer for an eligible undergraduate or taught postgraduate programme.",
+      "Confirm the application is submitted before the deadline for the applicant's intended trimester.",
+      "Confirm the applicant demonstrates excellent academic achievement under the official selection process."
+    ],
+    "minimum_gpa": null,
+    "gpa_scale": null,
+    "minimum_work_experience_years": null,
+    "language_requirements": {},
+    "funding_type": "tuition_only",
+    "deadline": null,
+    "application_year": null,
+    "source_last_checked": "2026-06-28",
+    "eligibility_text": "The University of Waikato Vice-Chancellor's International Excellence Scholarship provides up to NZD 15,000 towards tuition fees for talented international students enrolling for the first time in an undergraduate or taught postgraduate programme. It is available across all study areas. Applications are reviewed monthly and use different deadlines for different trimesters, so no single deadline is recorded."
+  },
+  {
+    "scholarship_id": "university-of-manitoba-graduate-fellowship",
+    "title": "University of Manitoba Graduate Fellowship",
+    "provider": "University of Manitoba",
+    "official_url": "https://umanitoba.ca/graduate-studies/funding-awards/university-manitoba-graduate-fellowship-umgf",
+    "host_countries": [
+      "Canada"
+    ],
+    "degree_levels": [
+      "master",
+      "phd"
+    ],
+    "eligible_nationalities": [
+      "All nationalities"
+    ],
+    "eligible_fields": [],
+    "manual_review_requirements": [
+      "Confirm the applicant has achieved the official minimum admission GPA of 3.0 and any higher departmental threshold; the source page does not state the GPA scale.",
+      "Confirm the applicant is admitted to an eligible University of Manitoba master's or PhD programme and is not a pre-master's or occasional student.",
+      "Confirm the graduate programme is eligible for Tri-Agency funding.",
+      "Confirm the applicant's department or unit recommends the applicant for the fellowship.",
+      "Confirm the applicant will be registered full-time and progressing satisfactorily in the recommending unit.",
+      "Confirm the applicant satisfies the award-history, account-hold, grade, and concurrent-funding restrictions."
+    ],
+    "minimum_gpa": null,
+    "gpa_scale": null,
+    "minimum_work_experience_years": null,
+    "language_requirements": {},
+    "funding_type": "partially_funded",
+    "deadline": null,
+    "application_year": null,
+    "source_last_checked": "2026-06-28",
+    "eligibility_text": "The University of Manitoba Graduate Fellowship supports eligible master's and PhD students in graduate fields that qualify for Tri-Agency funding. Master's awards are valued at CAD 20,000 per year and doctoral awards at CAD 25,000 per year. All citizenships may apply. The page states a minimum admission GPA of 3.0 but does not identify its scale, so the numeric threshold remains a manual-review condition. Application timing and nomination are managed by departments or units."
+  },
+  {
+    "scholarship_id": "maastricht-university-nl-high-potential-scholarship-2026",
+    "title": "Maastricht University NL-High Potential Scholarship",
+    "provider": "Maastricht University",
+    "official_url": "https://www.maastrichtuniversity.nl/studeren/toelating-inschrijving/financing-your-studies/scholarships/maastricht-university-nl-high",
+    "host_countries": [
+      "Netherlands"
+    ],
+    "degree_levels": [
+      "master"
+    ],
+    "eligible_nationalities": [
+      "Applicants from outside the European Union"
+    ],
+    "eligible_fields": [],
+    "manual_review_requirements": [
+      "Confirm the applicant holds an eligible nationality outside the EU/EEA and satisfies the applicable Netherlands visa and residence-permit requirements.",
+      "Confirm the applicant applied to a participating full-time Maastricht University master's programme and meets its admission requirements.",
+      "Confirm the applicant has not participated in a degree-seeking higher-education programme in the Netherlands, except for permitted exchange study.",
+      "Confirm the applicant is not older than 35 years on 1 September 2026.",
+      "Review the official preference for applicants who have not already obtained a master's degree.",
+      "Confirm the applicant accepts the scholarship ambassador commitment.",
+      "Confirm all required documents and programme-admission steps were completed by their official deadlines."
+    ],
+    "minimum_gpa": 7.5,
+    "gpa_scale": 10.0,
+    "minimum_work_experience_years": null,
+    "language_requirements": {},
+    "funding_type": "fully_funded",
+    "deadline": "2026-02-01",
+    "application_year": 2026,
+    "source_last_checked": "2026-06-28",
+    "eligibility_text": "The Maastricht University NL-High Potential programme offers full scholarships including a tuition-fee waiver and monthly stipend for high-achieving applicants from outside the European Union who are admitted to a participating master's programme. Applicants must present a GPA of at least 7.5 on a 10.0 scale and must not be older than 35 on 1 September 2026. The scholarship deadline is 1 February 2026."
+  }
+]
