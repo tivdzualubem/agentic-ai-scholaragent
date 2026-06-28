@@ -24,11 +24,13 @@ from scholaragent.evaluation.benchmark import (
 from scholaragent.evaluation.metrics import (
     mean,
     precision_at_k,
+    precision_recall_f1,
     recall_at_k,
     reciprocal_rank,
 )
 from scholaragent.evaluation.runner import (
     CaseEvaluation,
+    EligibilityStatusMetrics,
     EvaluationSummary,
     evaluate_benchmark,
 )
@@ -49,11 +51,13 @@ __all__ = [
     "BenchmarkDataset",
     "BenchmarkError",
     "CaseEvaluation",
+    "EligibilityStatusMetrics",
     "EvaluationSummary",
     "evaluate_benchmark",
     "load_benchmark",
     "mean",
     "precision_at_k",
+    "precision_recall_f1",
     "recall_at_k",
     "reciprocal_rank",
 ]

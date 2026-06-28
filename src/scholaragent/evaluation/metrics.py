@@ -71,3 +71,49 @@ def mean(values: Sequence[float]) -> float:
         raise ValueError("mean requires at least one value.")
 
     return sum(values) / len(values)
+
+
+def precision_recall_f1(
+    *,
+    true_positives: int,
+    false_positives: int,
+    false_negatives: int,
+) -> tuple[float, float, float]:
+    """Calculate precision, recall, and F1 from confusion counts."""
+    for name, value in (
+        ("true_positives", true_positives),
+        ("false_positives", false_positives),
+        ("false_negatives", false_negatives),
+    ):
+        if value < 0:
+            raise ValueError(
+                f"{name} must be non-negative."
+            )
+
+    precision_denominator = (
+        true_positives + false_positives
+    )
+    recall_denominator = (
+        true_positives + false_negatives
+    )
+
+    precision = (
+        true_positives / precision_denominator
+        if precision_denominator
+        else 0.0
+    )
+
+    recall = (
+        true_positives / recall_denominator
+        if recall_denominator
+        else 0.0
+    )
+
+    f1 = (
+        2 * precision * recall
+        / (precision + recall)
+        if precision + recall
+        else 0.0
+    )
+
+    return precision, recall, f1

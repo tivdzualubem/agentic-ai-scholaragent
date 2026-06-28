@@ -8,6 +8,7 @@ from scholaragent.evaluation import (
     evaluate_benchmark,
     load_benchmark,
     precision_at_k,
+    precision_recall_f1,
     recall_at_k,
     reciprocal_rank,
 )
@@ -87,3 +88,46 @@ def test_invalid_k_is_rejected() -> None:
             scholarships=load_scholarships(SCHOLARSHIPS),
             k=0,
         )
+
+
+def test_precision_recall_f1_from_confusion_counts() -> None:
+    """Classification metrics should match known confusion counts."""
+    precision, recall, f1 = precision_recall_f1(
+        true_positives=2,
+        false_positives=1,
+        false_negatives=2,
+    )
+
+    assert precision == pytest.approx(2 / 3)
+    assert recall == pytest.approx(0.5)
+    assert f1 == pytest.approx(4 / 7)
+
+
+def test_synthetic_evaluation_reports_eligibility_f1() -> None:
+    """Perfect development predictions should have perfect F1."""
+    summary = evaluate_benchmark(
+        benchmark=load_benchmark(BENCHMARK),
+        scholarships=load_scholarships(SCHOLARSHIPS),
+        k=3,
+    )
+
+    assert summary.eligibility_evaluated_labels > 0
+    assert summary.eligibility_status_accuracy == 1.0
+    assert summary.eligibility_macro_precision == 1.0
+    assert summary.eligibility_macro_recall == 1.0
+    assert summary.eligibility_macro_f1 == 1.0
+    assert summary.eligibility_weighted_f1 == 1.0
+
+    active = [
+        metrics
+        for metrics in (
+            summary.eligibility_per_status.values()
+        )
+        if metrics.support > 0
+    ]
+
+    assert active
+    assert all(
+        metrics.f1 == 1.0
+        for metrics in active
+    )

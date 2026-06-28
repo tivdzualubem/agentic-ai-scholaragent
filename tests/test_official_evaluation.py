@@ -54,8 +54,28 @@ def test_official_benchmark_evaluation_is_reproducible() -> None:
     assert summary.bm25_mrr == 1.0
     assert summary.bm25_top1_hit_rate == 1.0
     assert summary.screened_top1_hit_rate == 1.0
+    assert summary.eligibility_evaluated_labels == 3
     assert summary.eligibility_status_accuracy == 1.0
+    assert summary.eligibility_macro_precision == 1.0
+    assert summary.eligibility_macro_recall == 1.0
+    assert summary.eligibility_macro_f1 == 1.0
+    assert summary.eligibility_weighted_f1 == 1.0
     assert summary.no_result_accuracy == 1.0
+
+    potential = summary.eligibility_per_status[
+        "potentially_eligible"
+    ]
+    ineligible = summary.eligibility_per_status[
+        "not_eligible"
+    ]
+
+    assert potential.support == 2
+    assert potential.true_positives == 2
+    assert potential.f1 == 1.0
+
+    assert ineligible.support == 1
+    assert ineligible.true_positives == 1
+    assert ineligible.f1 == 1.0
 
     cases = {
         case.case_id: case
