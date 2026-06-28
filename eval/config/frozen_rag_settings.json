@@ -1,0 +1,97 @@
+{
+  "status": "frozen_before_held_out_rag",
+  "partition": "held_out_test",
+  "source_commit": "26ed0ee0730ba6ea1c3f0712cb974da9ab1bc71b",
+  "held_out_rag_test_used": false,
+  "parameter_selection_after_test": false,
+  "held_out_tuning_permitted": false,
+  "inputs": {
+    "benchmark": {
+      "path": "eval/datasets/held_out_benchmark.json",
+      "sha256": "60407eabc5415cc85c3c51b73dd6ecb1405530163a90194e1401de7fec3e6aaf"
+    },
+    "corpus": {
+      "path": "data/held_out/held_out_scholarships.json",
+      "sha256": "69a0858024d1853660b754bb4c223cb151ce554882be96483fffe9358955e4a2"
+    },
+    "retrieval_settings": {
+      "path": "eval/config/frozen_retrieval_settings.json",
+      "sha256": "79ac757cda48eb310edb5fd004e12cc2106361d8f414c5cb0879e58f5081c700"
+    },
+    "retrieval_results": {
+      "path": "eval/results/held_out_retrieval_comparison.json",
+      "sha256": "5c75b1ff8318d556d6efe732ce89b7f4d5ebd7232b6430a22eb6905c97d7e02b"
+    }
+  },
+  "generator": {
+    "model": "tinyllama:latest",
+    "temperature": 0.0,
+    "timeout_seconds": 240.0
+  },
+  "retrieval": {
+    "embedding_model": "nomic-embed-text:latest",
+    "embedding_dimension": 768,
+    "dense_threshold": 0.6,
+    "top_k": 3,
+    "candidate_k": 9,
+    "candidate_k_resolution": "HybridScholarshipIndex.search receives candidate_k=None and deterministically computes max(top_k * 3, top_k), which equals 9 when top_k is 3.",
+    "rrf_constant": 60,
+    "rrf_resolution": "HybridScholarshipIndex constructor default is 60 and was verified before held-out RAG execution."
+  },
+  "agent_budgets": {
+    "max_retrieval_attempts": 2,
+    "max_generation_attempts": 2
+  },
+  "systems": [
+    {
+      "name": "single_pass_rag",
+      "description": "One retrieval call and at most one generation call, with deterministic citation auditing and no repair."
+    },
+    {
+      "name": "agentic_rag",
+      "description": "Bounded retrieval rewriting, one citation repair opportunity, deterministic citation verification, and verified fallback after the generation budget is exhausted."
+    }
+  ],
+  "metrics": [
+    "positive_completion_rate",
+    "positive_citation_pass_rate",
+    "positive_relevant_grounding_rate",
+    "positive_relevant_citation_rate",
+    "no_result_accuracy",
+    "mean_latency_seconds",
+    "mean_retrieval_calls",
+    "mean_generation_calls",
+    "mean_query_rewrites",
+    "mean_repair_attempts",
+    "positive_fallback_rate"
+  ],
+  "ablation_plan": {
+    "retrieval": {
+      "method": "Use the already frozen held-out BM25, dense, and hybrid RRF comparison artifact.",
+      "artifact": "eval/results/held_out_retrieval_comparison.json",
+      "no_rerun": true
+    },
+    "query_rewriting": {
+      "method": "Measure observed query-rewrite frequency in the full Agentic RAG trace. If no case is rewritten, report zero observed contribution on this benchmark and do not manufacture an effect. If one or more cases are rewritten, rerun only those predetermined affected cases with max_retrieval_attempts=1 and all other settings unchanged.",
+      "selection_rule_frozen_before_test": true
+    },
+    "citation_repair": {
+      "method": "Derive the no-repair counterfactual from each full-run audit history. The initial audit is the state before repair. Cases whose initial audit fails are treated as proceeding directly to the same deterministic fallback; no additional LLM sampling is required.",
+      "trace_derived": true
+    },
+    "deterministic_fallback": {
+      "method": "Derive the no-fallback counterfactual from the full run. Any completed_fallback case is classified as citation_failed, while direct or repaired completions and abstentions are left unchanged.",
+      "trace_derived": true
+    }
+  },
+  "interpretation_constraints": [
+    "Fallback-completed answers must be reported separately from direct LLM completions.",
+    "A perfect citation rate caused by deterministic fallback must not be described as successful TinyLlama citation generation.",
+    "No prompt, model, threshold, retrieval setting, budget, or ablation rule may be changed after held-out RAG results are observed.",
+    "BM25's held-out retrieval advantage is specific to this small lexically distinctive corpus and must not be presented as universal superiority."
+  ],
+  "planned_outputs": {
+    "comparison": "eval/results/held_out_rag_comparison.json",
+    "ablation": "eval/results/held_out_rag_ablation.json"
+  }
+}

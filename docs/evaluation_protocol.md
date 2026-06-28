@@ -238,6 +238,36 @@ Any ablation requiring an implementation toggle must be added before final
 test execution. The held-out test data must not be used to design or tune the
 ablation configuration.
 
+### Frozen held-out RAG ablation procedure
+
+Before running the held-out RAG comparison, the following configuration is
+frozen in `eval/config/frozen_rag_settings.json`:
+
+- generator: `tinyllama:latest`;
+- generation temperature: `0.0`;
+- request timeout: `240` seconds;
+- top-k: `3`;
+- hybrid candidate-k: `9`;
+- dense threshold: `0.60`;
+- RRF constant: `60`;
+- maximum retrieval attempts: `2`;
+- maximum generation attempts: `2`.
+
+The retrieval ablation uses the already frozen held-out BM25, dense, and
+hybrid comparison. Citation-repair and deterministic-fallback ablations are
+derived from the full Agentic RAG audit traces so that they do not introduce
+additional stochastic LLM samples.
+
+Query rewriting is evaluated using a rule fixed before test execution. If the
+full trace contains no rewrites, its observed contribution is reported as zero
+for this benchmark. If rewrites occur, only the affected cases are rerun with
+`max_retrieval_attempts=1`; every other parameter remains unchanged.
+
+Fallback-completed outputs are always separated from direct or repaired LLM
+completions. A citation-safe deterministic fallback is evidence of bounded
+safety recovery, not evidence that the generator successfully followed the
+citation format.
+
 ## 12. Reproducibility and freezing
 
 Before final evaluation:
