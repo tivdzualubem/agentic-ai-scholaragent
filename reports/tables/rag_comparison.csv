@@ -1,0 +1,3 @@
+system,positive_completion_rate,positive_citation_pass_rate,positive_relevant_grounding_rate,positive_relevant_citation_rate,no_result_accuracy,mean_latency_seconds,mean_generation_calls,positive_fallback_rate
+single_pass_rag,0.0,0.0,0.95,0.05,1.0,140.2514352841669,0.8333333333333334,0.0
+agentic_rag,1.0,1.0,0.95,0.7,1.0,293.06379520137534,1.6666666666666667,1.0

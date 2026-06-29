@@ -1,0 +1,62 @@
+% Auto-generated from tracked ScholarAgent results.
+% Do not edit metric values manually.
+
+\begin{table}[htbp]
+\centering
+\caption{Primary held-out retrieval results at k=3}
+\label{tab:retrieval-k3}
+\begin{tabular}{lrrrrr}
+\hline
+Retriever & P@k & R@k & MRR & Top-1 & No-result \\
+\hline
+bm25 & 0.333 & 1.000 & 1.000 & 1.000 & 1.000 \\
+dense & 0.300 & 0.900 & 0.592 & 0.400 & 1.000 \\
+hybrid\_rrf & 0.333 & 1.000 & 0.875 & 0.750 & 1.000 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Supplemental held-out retrieval results at k=5}
+\label{tab:retrieval-k5}
+\begin{tabular}{lrrrrr}
+\hline
+Retriever & P@k & R@k & MRR & Top-1 & No-result \\
+\hline
+bm25 & 0.200 & 1.000 & 1.000 & 1.000 & 1.000 \\
+dense & 0.190 & 0.950 & 0.604 & 0.400 & 1.000 \\
+hybrid\_rrf & 0.200 & 1.000 & 0.875 & 0.750 & 1.000 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Eligibility classification by status}
+\label{tab:eligibility-status}
+\begin{tabular}{lrrrr}
+\hline
+Status & Support & Precision & Recall & F1 \\
+\hline
+eligible & 5 & 1.000 & 1.000 & 1.000 \\
+potentially\_eligible & 5 & 1.000 & 1.000 & 1.000 \\
+not\_eligible & 5 & 1.000 & 1.000 & 1.000 \\
+insufficient\_information & 5 & 1.000 & 1.000 & 1.000 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\caption{Single-pass and Agentic RAG comparison}
+\label{tab:rag-comparison}
+\begin{tabular}{lrrrrrr}
+\hline
+System & Completion & Citation & Grounding & Relevant citation & No-result & Latency (s) \\
+\hline
+single\_pass\_rag & 0.000 & 0.000 & 0.950 & 0.050 & 1.000 & 140.251 \\
+agentic\_rag & 1.000 & 1.000 & 0.950 & 0.700 & 1.000 & 293.064 \\
+\hline
+\end{tabular}
+\end{table}

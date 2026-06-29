@@ -1,0 +1,5 @@
+status,support,precision,recall,f1
+eligible,5,1.0,1.0,1.0
+potentially_eligible,5,1.0,1.0,1.0
+not_eligible,5,1.0,1.0,1.0
+insufficient_information,5,1.0,1.0,1.0

@@ -1,0 +1,3 @@
+configuration,completion_or_acceptance_rate,citation_pass_rate,relevant_grounding_rate,relevant_citation_rate,unsafe_acceptance_rate,mean_generation_calls,fallback_rate
+without_verification,1.0,0.0,0.95,0.05,1.0,0.8333333333333334,0.0
+with_verification,1.0,1.0,0.95,0.7,0.0,1.6666666666666667,1.0
