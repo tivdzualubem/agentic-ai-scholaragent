@@ -7,7 +7,7 @@ sdk: docker
 app_port: 7860
 suggested_hardware: cpu-basic
 startup_duration_timeout: 1h
-short_description: Evidence-grounded scholarship discovery and eligibility verification
+short_description: Verified scholarship discovery and eligibility agent
 tags:
   - agentic-ai
   - rag
