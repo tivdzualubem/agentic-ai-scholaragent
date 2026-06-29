@@ -267,3 +267,23 @@ verified deterministic fallback.
 The traces were extracted from the completed held-out evaluation. They
 perform no new model calls, involve no post-test tuning, and are
 descriptive rather than independent confirmatory evidence.
+
+## Expired-opportunity handling
+
+`expired_opportunity_handling.json` and
+`docs/expired_handling.md` document how ScholarAgent handles relevant
+scholarships whose recorded application deadline has passed.
+
+The deterministic eligibility engine assigns `not_eligible` when the
+deadline is earlier than the assessment date. The scholarship may remain
+available as an explanatory match, but it is not presented as an active
+recommendation.
+
+The artifact covers:
+
+- the KTH Scholarship expired calibration round;
+- the SI Scholarship for Global Professionals expired development round;
+- the SI single-pass citation failure;
+- the SI Agentic RAG verified fallback recovery.
+
+No new model calls or held-out-test evidence were used.

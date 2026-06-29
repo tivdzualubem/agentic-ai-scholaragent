@@ -1,0 +1,102 @@
+{
+  "artifact_type": "expired_opportunity_handling_evidence",
+  "cases": [
+    {
+      "benchmark_as_of": "2026-05-01",
+      "case_id": "not-eligible-kth-expired-round",
+      "deadline": "2026-01-15",
+      "deadline_failure": "Deadline 2026-01-15 has passed.",
+      "expected_status": "not_eligible",
+      "hard_failures": [
+        "Deadline 2026-01-15 has passed."
+      ],
+      "label": "KTH expired calibration round",
+      "manual_review_items": [
+        "No structured nationality rule is available; inspect the official eligibility text.",
+        "Confirm that the applicant is liable to pay tuition fees in Sweden.",
+        "Confirm that an eligible KTH master's programme was ranked as the applicant's first priority.",
+        "Confirm admission eligibility for the selected KTH master's programme.",
+        "Verify the academic-excellence and programme-specific selection factors.",
+        "Confirm that the scholarship application was complete before the official deadline."
+      ],
+      "missing_information": [],
+      "official_url": "https://www.kth.se/en/studies/master/admissions/scholarships/kth-scholarship-1.72827",
+      "predicted_status": "not_eligible",
+      "query": "KTH Scholarship Sweden master full tuition fee first priority fee paying student",
+      "rag_evidence": null,
+      "scholarship_id": "kth-scholarship-2026",
+      "scholarship_title": "KTH Scholarship",
+      "source_last_checked": "2026-06-28"
+    },
+    {
+      "benchmark_as_of": "2026-06-28",
+      "case_id": "si-global-professionals-expired-round",
+      "deadline": "2026-02-25",
+      "deadline_failure": "Deadline 2026-02-25 has passed.",
+      "expected_status": "not_eligible",
+      "hard_failures": [
+        "Deadline 2026-02-25 has passed."
+      ],
+      "label": "SI expired development round",
+      "manual_review_items": [
+        "Nationality is governed by a regional or economic-group rule that requires authoritative verification.",
+        "Verify that the applicant's citizenship appears on the current official list of 34 eligible countries.",
+        "Verify that the selected Swedish master's programme is eligible for the SI scholarship.",
+        "Confirm tuition-fee liability through University Admissions.",
+        "Verify the official work-experience and leadership-evidence requirements.",
+        "Check the next application cycle because the inspected 2026 scholarship round is closed."
+      ],
+      "missing_information": [],
+      "official_url": "https://si.se/en/apply/scholarships/swedish-institute-scholarships-for-global-professionals/",
+      "predicted_status": "not_eligible",
+      "query": "Swedish Institute global professionals scholarship for STEM master's applicants with leadership and work experience full tuition monthly allowance",
+      "rag_evidence": {
+        "agentic_rag": {
+          "citation_passed": true,
+          "fallback_used": true,
+          "positive_completed": true,
+          "status": "completed_fallback"
+        },
+        "single_pass_rag": {
+          "citation_passed": false,
+          "fallback_used": false,
+          "positive_completed": false,
+          "status": "citation_failed"
+        }
+      },
+      "scholarship_id": "si-global-professionals-2026",
+      "scholarship_title": "SI Scholarship for Global Professionals",
+      "source_last_checked": "2026-06-28"
+    }
+  ],
+  "created_at_utc": "2026-06-29T10:16:36.574847+00:00",
+  "description": "Deterministic evidence that expired scholarship rounds are retrieved for explanation but are not classified as eligible recommendations.",
+  "evaluation_constraints": {
+    "description": "This artifact summarizes existing development and calibration evidence.",
+    "held_out_test_used": false,
+    "new_model_calls_performed": false,
+    "parameter_selection_performed": false
+  },
+  "provenance": {
+    "calibration_benchmark": {
+      "path": "eval/datasets/calibration_benchmark.json",
+      "sha256": "875f9c04374bda0a8ccbc0a75ea9bc3088fa27a417e95f41166180d560dcc057"
+    },
+    "calibration_corpus": {
+      "path": "data/calibration/calibration_scholarships.json",
+      "sha256": "a5675412ab9d96f1c95bdd9457ab5b23382270d494fc636de39cf371da74a58f"
+    },
+    "official_corpus": {
+      "path": "data/official/official_scholarships.json",
+      "sha256": "a347db086647d70af20b91b790b7d21786f0784b3d032735fa2584eb91c26a91"
+    },
+    "official_development_benchmark": {
+      "path": "eval/datasets/official_development_benchmark.json",
+      "sha256": "c53dfa136f44f4e51c60689e96d0a2c3d265ccc6ce4a4ee0f50593e991e286be"
+    },
+    "official_rag_comparison": {
+      "path": "eval/results/official_rag_comparison_tinyllama_development.json",
+      "sha256": "d9eb882ef48185a8485d6ad5ac1abb8259468e6cb6021ad10827d44ca16475ae"
+    }
+  }
+}

@@ -47,3 +47,4 @@ dist/
 !eval/results/held_out_verification_ablation.json
 !eval/results/held_out_runtime_cost_summary.json
 !eval/results/held_out_execution_traces.json
+!eval/results/expired_opportunity_handling.json
