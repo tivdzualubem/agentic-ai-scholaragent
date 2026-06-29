@@ -26,6 +26,9 @@ dependencies = [
 dev = [
     "pytest>=8.0"
 ]
+demo = [
+    "streamlit>=1.54,<2.0"
+]
 
 [tool.setuptools.packages.find]
 where = ["src"]
