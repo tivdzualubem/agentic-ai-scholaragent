@@ -18,6 +18,12 @@ tags:
 
 # ScholarAgent
 
+## Live Demo
+
+- App: https://lubem-scholaragent.hf.space
+- Hugging Face Space: https://huggingface.co/spaces/lubem/scholaragent
+
+
 ScholarAgent is an evidence-grounded Agentic RAG system for scholarship discovery and eligibility verification.
 
 ## Team Members
