@@ -152,3 +152,34 @@ def test_report_interpretation_limits_are_documented() -> None:
     )
     assert "no successful citation repairs" in normalized_readme
     assert "were not monetized" in normalized_readme
+
+
+def test_demo_screenshots_exist_and_are_valid() -> None:
+    import struct
+
+    expected = {
+        "demo_input_page.png",
+        "demo_verified_result.png",
+        "demo_abstention.png",
+    }
+
+    directory = Path("reports/demo")
+
+    assert {
+        path.name
+        for path in directory.glob("*.png")
+    } == expected
+
+    for filename in expected:
+        path = directory / filename
+        content = path.read_bytes()
+
+        assert content[:8] == b"\x89PNG\r\n\x1a\n"
+        width, height = struct.unpack(
+            ">II",
+            content[16:24],
+        )
+
+        assert width == 1920
+        assert height >= 900
+        assert path.stat().st_size > 50_000
