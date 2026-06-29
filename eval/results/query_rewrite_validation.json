@@ -1,0 +1,51 @@
+{
+  "evaluation_type": "development_query_rewrite_validation",
+  "dataset": "data/demo/synthetic_scholarships.json",
+  "as_of": "2026-06-27",
+  "case_count": 3,
+  "passed_count": 3,
+  "all_passed": true,
+  "scope_note": "This validates bounded rewrite control flow on the development corpus. It is not a held-out effectiveness claim.",
+  "cases": [
+    {
+      "case_id": "specific_query",
+      "query": "fully funded artificial intelligence master's scholarship in Finland",
+      "expected_status": "completed",
+      "expected_rewrites": 0,
+      "observed_status": "completed",
+      "observed_rewrites": 0,
+      "final_query": "fully funded artificial intelligence master's scholarship in Finland",
+      "attempts": 1,
+      "candidate_ids": [
+        "nordic-ai-masters-2027"
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "generic_query_requires_rewrite",
+      "query": "scholarship",
+      "expected_status": "completed",
+      "expected_rewrites": 1,
+      "observed_status": "completed",
+      "observed_rewrites": 1,
+      "final_query": "scholarship master Artificial Intelligence Data Science Finland fully funded",
+      "attempts": 2,
+      "candidate_ids": [
+        "nordic-ai-masters-2027"
+      ],
+      "passed": true
+    },
+    {
+      "case_id": "out_of_domain_no_drift",
+      "query": "xylophone archaeology scholarship on Mars",
+      "expected_status": "abstained",
+      "expected_rewrites": 0,
+      "observed_status": "abstained",
+      "observed_rewrites": 0,
+      "final_query": "xylophone archaeology scholarship on Mars",
+      "attempts": 1,
+      "candidate_ids": [],
+      "passed": true
+    }
+  ]
+}
