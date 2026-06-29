@@ -113,26 +113,20 @@ class ExactTargetScholarshipIndex:
                 )
             ]
 
-        base_by_id = {
-            result.scholarship.scholarship_id: result
-            for result in base_results
-        }
-
         ordered: list[DemoSearchResult] = []
         used_ids: set[str] = set()
 
+        highest_base_score = max(
+            (float(result.score) for result in base_results),
+            default=0.0,
+        )
+        explicit_target_score = highest_base_score + 1.0
+
         for scholarship in explicit_targets:
-            existing = base_by_id.get(
-                scholarship.scholarship_id
-            )
             ordered.append(
                 DemoSearchResult(
                     scholarship=scholarship,
-                    score=(
-                        float(existing.score)
-                        if existing is not None
-                        else 0.0
-                    ),
+                    score=explicit_target_score,
                     rank=len(ordered) + 1,
                 )
             )
