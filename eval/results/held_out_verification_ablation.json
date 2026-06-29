@@ -1,0 +1,771 @@
+{
+  "artifact_type": "trace_derived_held_out_verification_ablation",
+  "partition": "held_out_test",
+  "evaluation_status": "post_hoc_trace_derived_counterfactual",
+  "created_at_utc": "2026-06-29T08:45:31.632296+00:00",
+  "execution_commit": "9c9fb63acd04b71d12a15296c20a16b47737a0fc",
+  "held_out_tuning_performed": false,
+  "parameter_selection_after_test": false,
+  "new_llm_calls_performed": false,
+  "independent_confirmatory_evidence": false,
+  "method": {
+    "with_verification": "Use the completed Agentic RAG trace: deterministic citation audit, one bounded repair attempt, and verified deterministic fallback when generation remains invalid.",
+    "without_verification": "Accept the stored first-pass TinyLlama answer immediately for every positive case. Apply the same citation auditor only after acceptance for measurement; it does not influence the counterfactual decision.",
+    "first_pass_source": "The stored conventional single-pass answer, validated to reproduce the first citation audit in the corresponding Agentic RAG trace.",
+    "no_result_policy": "Retrieval-based abstention is unchanged because unsupported cases produce no generated answer and therefore never reach citation verification."
+  },
+  "provenance": {
+    "benchmark": {
+      "path": "eval/datasets/held_out_benchmark.json",
+      "sha256": "60407eabc5415cc85c3c51b73dd6ecb1405530163a90194e1401de7fec3e6aaf"
+    },
+    "rag_comparison": {
+      "path": "eval/results/held_out_rag_comparison.json",
+      "sha256": "2b85ff126a10d54ea32fe7acf710b8bd5131faec0e041446c5a6ce87a39aada0"
+    },
+    "execution_checkpoint": {
+      "path": "eval/results/held_out_rag_checkpoint.json",
+      "sha256": "3893be0b4e4cfec380a7fb2323f499b6e18ae9d41859478ee1110a8acd9d0dd3"
+    }
+  },
+  "trace_validation": {
+    "positive_cases_checked": 20,
+    "matching_first_pass_audits": 20,
+    "all_first_pass_audits_reproduced": true
+  },
+  "without_verification": {
+    "system_name": "agentic_rag_without_verification_counterfactual",
+    "positive_cases": 20,
+    "no_result_cases": 4,
+    "positive_raw_acceptance_rate": 1.0,
+    "positive_posthoc_citation_pass_rate": 0.0,
+    "positive_relevant_grounding_rate": 0.95,
+    "positive_relevant_citation_rate": 0.05,
+    "unsafe_acceptance_rate": 1.0,
+    "no_result_accuracy": 1.0,
+    "mean_retrieval_calls": 1.0,
+    "mean_generation_calls": 0.8333333333333334,
+    "mean_repair_attempts": 0.0,
+    "positive_fallback_rate": 0.0,
+    "latency_seconds": null,
+    "latency_note": "Not estimated as an independent runtime. The counterfactual reuses stored first-pass outputs and performs no new LLM calls."
+  },
+  "with_verification": {
+    "system_name": "agentic_rag_with_verification",
+    "positive_cases": 20,
+    "no_result_cases": 4,
+    "positive_verified_completion_rate": 1.0,
+    "positive_citation_pass_rate": 1.0,
+    "positive_relevant_grounding_rate": 0.95,
+    "positive_relevant_citation_rate": 0.7,
+    "no_result_accuracy": 1.0,
+    "mean_retrieval_calls": 1.0,
+    "mean_generation_calls": 1.6666666666666667,
+    "mean_repair_attempts": 0.8333333333333334,
+    "positive_fallback_rate": 1.0,
+    "mean_latency_seconds": 293.06379520137534
+  },
+  "intervention_summary": {
+    "positive_first_pass_audit_failures": 20,
+    "verification_intervention_rate": 1.0,
+    "verified_safe_recoveries": 20,
+    "successful_llm_repairs": 0,
+    "deterministic_fallback_recoveries": 20
+  },
+  "metric_deltas_with_minus_without": {
+    "citation_pass_rate": 1.0,
+    "relevant_citation_rate": 0.6499999999999999,
+    "mean_generation_calls": 0.8333333333333334,
+    "positive_fallback_rate": 1.0
+  },
+  "cases": [
+    {
+      "case_id": "eligible-bristol-master-verified",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "bristol-think-big-scholarships-2026"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 4,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": true,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "eligible-glasgow-master-verified",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "glasgow-global-leadership-scholarship-2026"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 10,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "The generated answer must contain between 2 and 4 bullet points.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": true,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "eligible-aalto-bachelor-verified",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "aalto-university-excellence-scholarship"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": true,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [
+        "aalto-university-excellence-scholarship:source_identity",
+        "aalto-university-excellence-scholarship:host_countries",
+        "aalto-university-excellence-scholarship:degree_levels",
+        "aalto-university-excellence-scholarship:eligible_nationalieties",
+        "bristol-think-big-scholarships-2026:source_identity",
+        "bristol-think-big-scholarships-2026:host_countries",
+        "bristol-think-big-scholarships-2026:degree_levels",
+        "bristol-think-big-scholarships-2026:eligible_nationalieties"
+      ],
+      "without_verification_invalid_ids": [
+        "aalto-university-excellence-scholarship:eligible_nationalieties",
+        "bristol-think-big-scholarships-2026:eligible_nationalieties"
+      ],
+      "without_verification_uncited_bullet_count": 15,
+      "without_verification_audit_errors": [
+        "The generated answer contains unknown citation IDs: aalto-university-excellence-scholarship:eligible_nationalieties, bristol-think-big-scholarships-2026:eligible_nationalieties",
+        "The generated answer must contain between 2 and 4 bullet points.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": true,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "eligible-waikato-master-verified",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "waikato-vice-chancellors-international-excellence-scholarship"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 10,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "The generated answer must contain between 2 and 4 bullet points.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": false,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "eligible-manitoba-phd-verified",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "university-of-manitoba-graduate-fellowship"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 4,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": true,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "potential-bristol-bachelor-unverified",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "bristol-think-big-scholarships-2026"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 2,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": true,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "potential-glasgow-master-unverified",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "glasgow-global-leadership-scholarship-2026"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 5,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "The generated answer must contain between 2 and 4 bullet points.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": true,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "potential-aalto-master-unverified",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "aalto-university-excellence-scholarship"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 9,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "The generated answer must contain between 2 and 4 bullet points.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": true,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "potential-waikato-bachelor-unverified",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "waikato-vice-chancellors-international-excellence-scholarship"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 3,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": true,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "potential-manitoba-master-unverified",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "university-of-manitoba-graduate-fellowship"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 24,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "The generated answer must contain between 2 and 4 bullet points.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": true,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "not-eligible-bristol-phd-degree",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "bristol-think-big-scholarships-2026"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": false,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 6,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "The generated answer must contain between 2 and 4 bullet points.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": false,
+      "with_verification_relevant_citation": false,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "not-eligible-glasgow-bachelor-degree",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "glasgow-global-leadership-scholarship-2026"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 0,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "The generated answer is not formatted as 2 to 4 bullet points."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": true,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "not-eligible-aalto-phd-degree",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "aalto-university-excellence-scholarship"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 0,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "The generated answer is not formatted as 2 to 4 bullet points."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": true,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "not-eligible-manitoba-bachelor-degree",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "university-of-manitoba-graduate-fellowship"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 10,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "The generated answer must contain between 2 and 4 bullet points.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": true,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "not-eligible-maastricht-low-gpa",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "maastricht-university-nl-high-potential-scholarship-2026"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 4,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": true,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "insufficient-maastricht-ai-missing-gpa",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "maastricht-university-nl-high-potential-scholarship-2026"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 10,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "The generated answer must contain between 2 and 4 bullet points.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": false,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "insufficient-maastricht-data-missing-gpa",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "maastricht-university-nl-high-potential-scholarship-2026"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 10,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "The generated answer must contain between 2 and 4 bullet points.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": false,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "insufficient-maastricht-economics-missing-gpa",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "maastricht-university-nl-high-potential-scholarship-2026"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 2,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": false,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "insufficient-maastricht-health-missing-gpa",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "maastricht-university-nl-high-potential-scholarship-2026"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 4,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": true,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "insufficient-maastricht-engineering-missing-gpa",
+      "expect_no_results": false,
+      "relevant_ids": [
+        "maastricht-university-nl-high-potential-scholarship-2026"
+      ],
+      "first_pass_generation_exists": true,
+      "accepted_without_verification": true,
+      "without_verification_status": "accepted_unverified",
+      "without_verification_posthoc_audit_passed": false,
+      "without_verification_relevant_grounding": true,
+      "without_verification_relevant_citation": false,
+      "without_verification_generation_calls": 1,
+      "without_verification_cited_ids": [],
+      "without_verification_invalid_ids": [],
+      "without_verification_uncited_bullet_count": 2,
+      "without_verification_audit_errors": [
+        "The generated answer contains no citation markers.",
+        "Every bullet must end with at least one citation marker."
+      ],
+      "with_verification_status": "completed_fallback",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": true,
+      "with_verification_relevant_citation": false,
+      "with_verification_generation_calls": 2,
+      "with_verification_repair_attempts": 1,
+      "with_verification_fallback_used": true,
+      "no_result_correct": null
+    },
+    {
+      "case_id": "no-result-lunar-botany",
+      "expect_no_results": true,
+      "relevant_ids": [],
+      "first_pass_generation_exists": false,
+      "accepted_without_verification": false,
+      "without_verification_status": "abstained",
+      "without_verification_posthoc_audit_passed": true,
+      "without_verification_relevant_grounding": null,
+      "without_verification_relevant_citation": null,
+      "without_verification_generation_calls": 0,
+      "with_verification_status": "abstained",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": null,
+      "with_verification_relevant_citation": null,
+      "with_verification_generation_calls": 0,
+      "with_verification_repair_attempts": 0,
+      "with_verification_fallback_used": false,
+      "no_result_correct": true
+    },
+    {
+      "case_id": "no-result-neptune-opera",
+      "expect_no_results": true,
+      "relevant_ids": [],
+      "first_pass_generation_exists": false,
+      "accepted_without_verification": false,
+      "without_verification_status": "abstained",
+      "without_verification_posthoc_audit_passed": true,
+      "without_verification_relevant_grounding": null,
+      "without_verification_relevant_citation": null,
+      "without_verification_generation_calls": 0,
+      "with_verification_status": "abstained",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": null,
+      "with_verification_relevant_citation": null,
+      "with_verification_generation_calls": 0,
+      "with_verification_repair_attempts": 0,
+      "with_verification_fallback_used": false,
+      "no_result_correct": true
+    },
+    {
+      "case_id": "no-result-mars-clockmaking",
+      "expect_no_results": true,
+      "relevant_ids": [],
+      "first_pass_generation_exists": false,
+      "accepted_without_verification": false,
+      "without_verification_status": "abstained",
+      "without_verification_posthoc_audit_passed": true,
+      "without_verification_relevant_grounding": null,
+      "without_verification_relevant_citation": null,
+      "without_verification_generation_calls": 0,
+      "with_verification_status": "abstained",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": null,
+      "with_verification_relevant_citation": null,
+      "with_verification_generation_calls": 0,
+      "with_verification_repair_attempts": 0,
+      "with_verification_fallback_used": false,
+      "no_result_correct": true
+    },
+    {
+      "case_id": "no-result-pluto-puppetry",
+      "expect_no_results": true,
+      "relevant_ids": [],
+      "first_pass_generation_exists": false,
+      "accepted_without_verification": false,
+      "without_verification_status": "abstained",
+      "without_verification_posthoc_audit_passed": true,
+      "without_verification_relevant_grounding": null,
+      "without_verification_relevant_citation": null,
+      "without_verification_generation_calls": 0,
+      "with_verification_status": "abstained",
+      "with_verification_citation_passed": true,
+      "with_verification_relevant_grounding": null,
+      "with_verification_relevant_citation": null,
+      "with_verification_generation_calls": 0,
+      "with_verification_repair_attempts": 0,
+      "with_verification_fallback_used": false,
+      "no_result_correct": true
+    }
+  ],
+  "interpretation": {
+    "raw_acceptance": "Without verification, all 20 positive answers would have been accepted, but raw acceptance is not equivalent to evidence-grounded completion.",
+    "safety": "The post-hoc auditor measures how many accepted first-pass answers actually satisfied citation requirements.",
+    "agentic_value": "The verification stage detects unsafe first-pass outputs and routes them through bounded repair and deterministic fallback.",
+    "scope": "The counterfactual is specific to this held-out benchmark and TinyLlama configuration."
+  }
+}

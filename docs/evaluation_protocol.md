@@ -368,3 +368,29 @@ proposal's stated metric coverage. The supplemental result was not used
 for tuning, parameter selection, model selection or reinterpretation of
 the primary Recall@3 experiment. It is not independent confirmatory
 evidence.
+
+## Verification-stage counterfactual
+
+The proposal specified an ablation with and without verification. After
+the primary held-out RAG execution was completed, this comparison was
+derived from the immutable stored traces without issuing new LLM calls.
+
+For positive cases, the no-verification counterfactual accepts the stored
+first-pass TinyLlama response immediately. Citation auditing is performed
+afterward solely to measure whether the accepted response would have
+satisfied the evidence-grounding policy. It does not affect acceptance.
+
+The with-verification condition uses the completed workflow consisting of
+deterministic citation auditing, one bounded repair attempt, and verified
+deterministic fallback. Unsupported cases retain the same retrieval-based
+abstention policy because they generate no answer and do not enter the
+citation-verification stage.
+
+This counterfactual:
+
+- performs no new generation;
+- changes no frozen parameters;
+- performs no post-test tuning;
+- is not independent confirmatory evidence;
+- measures the safety consequence of accepting first-pass generation
+  without enforcing the citation policy.

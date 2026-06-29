@@ -44,3 +44,4 @@ dist/
 !eval/results/held_out_rag_comparison.json
 !eval/results/held_out_rag_ablation.json
 !eval/results/held_out_retrieval_recall5_supplement.json
+!eval/results/held_out_verification_ablation.json

@@ -181,3 +181,42 @@ experiment. It shows that increasing the reporting cutoff from three to
 five recovered one additional dense-retrieval hit, raising dense recall
 from `0.90` to `0.95`. BM25 and hybrid RRF already had complete recall at
 three and therefore remained at `1.00`.
+
+## Verification-stage ablation
+
+`held_out_verification_ablation.json` provides the proposal-promised
+comparison with and without the verification stage. It is a post-hoc,
+trace-derived counterfactual and made no new LLM calls.
+
+The without-verification condition accepts each stored first-pass
+TinyLlama answer immediately. The same deterministic citation auditor is
+then applied only for measurement; it does not alter the counterfactual
+decision. The with-verification condition uses the completed Agentic RAG
+workflow: citation auditing, one bounded repair attempt, and deterministic
+verified fallback.
+
+| Metric | Without verification | With verification |
+|---|---:|---:|
+| Raw/verified positive completion | 1.0000 raw acceptance | 1.0000 verified completion |
+| Citation-audit pass | 0.0000 | 1.0000 |
+| Relevant grounding | 0.9500 | 0.9500 |
+| Relevant citation | 0.0500 | 0.7000 |
+| Unsafe acceptance | 1.0000 | 0.0000 |
+| No-result accuracy | 1.0000 | 1.0000 |
+| Mean generation calls | 0.8333 | 1.6667 |
+| Positive fallback rate | 0.0000 | 1.0000 |
+
+All 20 positive first-pass answers failed citation verification. TinyLlama
+successfully repaired none of them. Deterministic fallback produced all 20
+verified completions. Therefore, the observed benefit comes from bounded
+verification and fallback recovery, not from successful self-repair by
+the language model.
+
+Citation-audit validity and benchmark relevance remain distinct. The
+verified workflow achieved a citation-audit pass rate of `1.00`, but its
+relevant-citation rate was `0.70`. The result must not be described as
+100% benchmark-relevant citation.
+
+This artifact is descriptive rather than independent confirmatory
+evidence because it reuses stored held-out traces after completion of the
+primary experiment.
