@@ -46,3 +46,4 @@ dist/
 !eval/results/held_out_retrieval_recall5_supplement.json
 !eval/results/held_out_verification_ablation.json
 !eval/results/held_out_runtime_cost_summary.json
+!eval/results/held_out_execution_traces.json

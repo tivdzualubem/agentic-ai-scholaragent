@@ -251,3 +251,19 @@ One Agentic RAG generation attempt reached the frozen 900-second timeout.
 The failure was converted into the predefined non-factual transport-error
 marker and processed as a failed bounded generation attempt before
 verified deterministic fallback.
+
+## Representative execution traces
+
+`held_out_execution_traces.json` and
+`docs/execution_traces.md` provide six trace-derived examples:
+
+- eligible result recovered by verified fallback;
+- potentially eligible result requiring manual review;
+- not eligible result caused by a hard constraint;
+- insufficient-information result;
+- unsupported-query abstention;
+- generation-timeout recovery.
+
+The traces were extracted from the completed held-out evaluation. They
+perform no new model calls, involve no post-test tuning, and are
+descriptive rather than independent confirmatory evidence.

@@ -1,0 +1,1231 @@
+{
+  "artifact_type": "held_out_representative_execution_traces",
+  "created_at_utc": "2026-06-29T10:06:09.208061+00:00",
+  "description": "Human-readable, trace-derived examples of ScholarAgent behavior. No new model calls were performed.",
+  "evaluation_constraints": {
+    "held_out_tuning_performed": false,
+    "independent_confirmatory_evidence": false,
+    "new_model_calls_performed": false,
+    "parameter_selection_after_test": false
+  },
+  "partition": "held_out_test",
+  "provenance": {
+    "benchmark": {
+      "path": "eval/datasets/held_out_benchmark.json",
+      "sha256": "60407eabc5415cc85c3c51b73dd6ecb1405530163a90194e1401de7fec3e6aaf"
+    },
+    "checkpoint": {
+      "path": "eval/results/held_out_rag_checkpoint.json",
+      "sha256": "3893be0b4e4cfec380a7fb2323f499b6e18ae9d41859478ee1110a8acd9d0dd3"
+    },
+    "comparison": {
+      "path": "eval/results/held_out_rag_comparison.json",
+      "sha256": "2b85ff126a10d54ea32fe7acf710b8bd5131faec0e041446c5a6ce87a39aada0"
+    }
+  },
+  "selected_trace_count": 6,
+  "traces": [
+    {
+      "case_id": "eligible-bristol-master-verified",
+      "evaluation": {
+        "latency_seconds": 455.55047473300147,
+        "no_result_correct": null,
+        "positive_completed": true,
+        "relevant_citation": true,
+        "relevant_grounded": true
+      },
+      "finalization_stage": {
+        "answer": "- Think Big Scholarships is offered by University of Bristol. [bristol-think-big-scholarships-2026:source_identity]\n- The opportunity is hosted in United Kingdom. [bristol-think-big-scholarships-2026:host_countries]\n- Its listed funding type is tuition only. [bristol-think-big-scholarships-2026:funding_type]\n- The official eligibility information states: The University of Bristol Think Big scheme provides funding towards tuition fees for international students studying eligible undergraduate or postgraduate courses. Applicants must have applied for an eligible course beginning in September 2026 and must be classed as overseas students for fee purposes. Applications close at 10:00 UK time on 10 April 2026. Confirm final eligibility on the official source before applying. [bristol-think-big-scholarships-2026:eligibility_text]",
+        "grounded_report_disclaimer": "Scholarship information can change. Confirm every requirement and deadline on the cited official source before applying.",
+        "status": "completed_fallback"
+      },
+      "generation_stage": {
+        "generation_calls": 2,
+        "generator_name": "tinyllama:latest",
+        "repair_attempts": 1,
+        "transport_failure": null
+      },
+      "input": {
+        "expect_no_results": false,
+        "expected_relevant_ids": [
+          "bristol-think-big-scholarships-2026"
+        ],
+        "expected_statuses": {
+          "bristol-think-big-scholarships-2026": "eligible"
+        },
+        "profile": {
+          "country_of_residence": "Finland",
+          "fields_of_study": [
+            "Artificial Intelligence"
+          ],
+          "gpa": 4.2,
+          "gpa_scale": 5.0,
+          "language_scores": {
+            "IELTS": 7.5
+          },
+          "nationality": "Nigerian",
+          "preferred_countries": [
+            "United Kingdom"
+          ],
+          "requires_full_funding": false,
+          "target_degree_level": "master",
+          "verified_manual_requirements": {
+            "bristol-think-big-scholarships-2026": [
+              "Confirm the applicant has applied for an eligible University of Bristol course starting in September 2026.",
+              "Confirm the applicant is classed as an overseas student for fee purposes.",
+              "Confirm the selected course appears in the official Think Big eligible-course list."
+            ]
+          },
+          "years_work_experience": 2.0
+        },
+        "query": "University of Bristol Think Big scholarship international postgraduate tuition funding September 2026"
+      },
+      "retrieval_stage": {
+        "candidate_count": 3,
+        "candidates": [
+          {
+            "assessment_note": "This eligibility status is a deterministic ScholarAgent screening result, not an official admission or funding decision.",
+            "candidate_role": "recommendation",
+            "citation_ids": [
+              "bristol-think-big-scholarships-2026:source_identity",
+              "bristol-think-big-scholarships-2026:host_countries",
+              "bristol-think-big-scholarships-2026:degree_levels",
+              "bristol-think-big-scholarships-2026:funding_type",
+              "bristol-think-big-scholarships-2026:eligible_nationalities",
+              "bristol-think-big-scholarships-2026:manual_review_requirements",
+              "bristol-think-big-scholarships-2026:deadline",
+              "bristol-think-big-scholarships-2026:eligibility_text"
+            ],
+            "eligibility_status": "eligible",
+            "evidence_count": 8,
+            "evidence_verified": true,
+            "official_url": "https://www.bristol.ac.uk/students/support/finances/scholarships/think-big-scholarships/",
+            "provider": "University of Bristol",
+            "scholarship_id": "bristol-think-big-scholarships-2026",
+            "title": "Think Big Scholarships"
+          },
+          {
+            "assessment_note": "This eligibility status is a deterministic ScholarAgent screening result, not an official admission or funding decision.",
+            "candidate_role": "recommendation",
+            "citation_ids": [
+              "glasgow-global-leadership-scholarship-2026:source_identity",
+              "glasgow-global-leadership-scholarship-2026:host_countries",
+              "glasgow-global-leadership-scholarship-2026:degree_levels",
+              "glasgow-global-leadership-scholarship-2026:funding_type",
+              "glasgow-global-leadership-scholarship-2026:manual_review_requirements",
+              "glasgow-global-leadership-scholarship-2026:deadline",
+              "glasgow-global-leadership-scholarship-2026:eligibility_text"
+            ],
+            "eligibility_status": "potentially_eligible",
+            "evidence_count": 7,
+            "evidence_verified": true,
+            "official_url": "https://www.gla.ac.uk/scholarships/globalleadershipscholarship/",
+            "provider": "University of Glasgow",
+            "scholarship_id": "glasgow-global-leadership-scholarship-2026",
+            "title": "Global Leadership Scholarship"
+          },
+          {
+            "assessment_note": "This eligibility status is a deterministic ScholarAgent screening result, not an official admission or funding decision.",
+            "candidate_role": "recommendation",
+            "citation_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026:source_identity",
+              "maastricht-university-nl-high-potential-scholarship-2026:host_countries",
+              "maastricht-university-nl-high-potential-scholarship-2026:degree_levels",
+              "maastricht-university-nl-high-potential-scholarship-2026:funding_type",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligible_nationalities",
+              "maastricht-university-nl-high-potential-scholarship-2026:manual_review_requirements",
+              "maastricht-university-nl-high-potential-scholarship-2026:deadline",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligibility_text"
+            ],
+            "eligibility_status": "potentially_eligible",
+            "evidence_count": 8,
+            "evidence_verified": true,
+            "official_url": "https://www.maastrichtuniversity.nl/studeren/toelating-inschrijving/financing-your-studies/scholarships/maastricht-university-nl-high",
+            "provider": "Maastricht University",
+            "scholarship_id": "maastricht-university-nl-high-potential-scholarship-2026",
+            "title": "Maastricht University NL-High Potential Scholarship"
+          }
+        ],
+        "final_query": "University of Bristol Think Big scholarship international postgraduate tuition funding September 2026",
+        "original_query": "University of Bristol Think Big scholarship international postgraduate tuition funding September 2026",
+        "query_rewrites": 0,
+        "retrieval_calls": 1
+      },
+      "title": "Eligible scholarship recovered through verified fallback",
+      "trace_type": "eligible_verified_fallback",
+      "verification_stage": {
+        "audit_steps": [
+          {
+            "available_ids": [
+              "bristol-think-big-scholarships-2026:deadline",
+              "bristol-think-big-scholarships-2026:degree_levels",
+              "bristol-think-big-scholarships-2026:eligibility_text",
+              "bristol-think-big-scholarships-2026:eligible_nationalities",
+              "bristol-think-big-scholarships-2026:funding_type",
+              "bristol-think-big-scholarships-2026:host_countries",
+              "bristol-think-big-scholarships-2026:manual_review_requirements",
+              "bristol-think-big-scholarships-2026:source_identity",
+              "glasgow-global-leadership-scholarship-2026:deadline",
+              "glasgow-global-leadership-scholarship-2026:degree_levels",
+              "glasgow-global-leadership-scholarship-2026:eligibility_text",
+              "glasgow-global-leadership-scholarship-2026:funding_type",
+              "glasgow-global-leadership-scholarship-2026:host_countries",
+              "glasgow-global-leadership-scholarship-2026:manual_review_requirements",
+              "glasgow-global-leadership-scholarship-2026:source_identity",
+              "maastricht-university-nl-high-potential-scholarship-2026:deadline",
+              "maastricht-university-nl-high-potential-scholarship-2026:degree_levels",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligibility_text",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligible_nationalities",
+              "maastricht-university-nl-high-potential-scholarship-2026:funding_type",
+              "maastricht-university-nl-high-potential-scholarship-2026:host_countries",
+              "maastricht-university-nl-high-potential-scholarship-2026:manual_review_requirements",
+              "maastricht-university-nl-high-potential-scholarship-2026:source_identity"
+            ],
+            "bullet_count": 4,
+            "citation_required": true,
+            "cited_ids": [],
+            "errors": [
+              "The generated answer contains no citation markers.",
+              "Every bullet must end with at least one citation marker."
+            ],
+            "invalid_ids": [],
+            "passed": false,
+            "step": 1,
+            "uncited_bullet_count": 4
+          },
+          {
+            "available_ids": [
+              "bristol-think-big-scholarships-2026:deadline",
+              "bristol-think-big-scholarships-2026:degree_levels",
+              "bristol-think-big-scholarships-2026:eligibility_text",
+              "bristol-think-big-scholarships-2026:eligible_nationalities",
+              "bristol-think-big-scholarships-2026:funding_type",
+              "bristol-think-big-scholarships-2026:host_countries",
+              "bristol-think-big-scholarships-2026:manual_review_requirements",
+              "bristol-think-big-scholarships-2026:source_identity",
+              "glasgow-global-leadership-scholarship-2026:deadline",
+              "glasgow-global-leadership-scholarship-2026:degree_levels",
+              "glasgow-global-leadership-scholarship-2026:eligibility_text",
+              "glasgow-global-leadership-scholarship-2026:funding_type",
+              "glasgow-global-leadership-scholarship-2026:host_countries",
+              "glasgow-global-leadership-scholarship-2026:manual_review_requirements",
+              "glasgow-global-leadership-scholarship-2026:source_identity",
+              "maastricht-university-nl-high-potential-scholarship-2026:deadline",
+              "maastricht-university-nl-high-potential-scholarship-2026:degree_levels",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligibility_text",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligible_nationalities",
+              "maastricht-university-nl-high-potential-scholarship-2026:funding_type",
+              "maastricht-university-nl-high-potential-scholarship-2026:host_countries",
+              "maastricht-university-nl-high-potential-scholarship-2026:manual_review_requirements",
+              "maastricht-university-nl-high-potential-scholarship-2026:source_identity"
+            ],
+            "bullet_count": 0,
+            "citation_required": true,
+            "cited_ids": [],
+            "errors": [
+              "The generated answer contains no citation markers.",
+              "The generated answer is not formatted as 2 to 4 bullet points."
+            ],
+            "invalid_ids": [],
+            "passed": false,
+            "step": 2,
+            "uncited_bullet_count": 0
+          },
+          {
+            "available_ids": [
+              "bristol-think-big-scholarships-2026:deadline",
+              "bristol-think-big-scholarships-2026:degree_levels",
+              "bristol-think-big-scholarships-2026:eligibility_text",
+              "bristol-think-big-scholarships-2026:eligible_nationalities",
+              "bristol-think-big-scholarships-2026:funding_type",
+              "bristol-think-big-scholarships-2026:host_countries",
+              "bristol-think-big-scholarships-2026:manual_review_requirements",
+              "bristol-think-big-scholarships-2026:source_identity",
+              "glasgow-global-leadership-scholarship-2026:deadline",
+              "glasgow-global-leadership-scholarship-2026:degree_levels",
+              "glasgow-global-leadership-scholarship-2026:eligibility_text",
+              "glasgow-global-leadership-scholarship-2026:funding_type",
+              "glasgow-global-leadership-scholarship-2026:host_countries",
+              "glasgow-global-leadership-scholarship-2026:manual_review_requirements",
+              "glasgow-global-leadership-scholarship-2026:source_identity",
+              "maastricht-university-nl-high-potential-scholarship-2026:deadline",
+              "maastricht-university-nl-high-potential-scholarship-2026:degree_levels",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligibility_text",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligible_nationalities",
+              "maastricht-university-nl-high-potential-scholarship-2026:funding_type",
+              "maastricht-university-nl-high-potential-scholarship-2026:host_countries",
+              "maastricht-university-nl-high-potential-scholarship-2026:manual_review_requirements",
+              "maastricht-university-nl-high-potential-scholarship-2026:source_identity"
+            ],
+            "bullet_count": 4,
+            "citation_required": true,
+            "cited_ids": [
+              "bristol-think-big-scholarships-2026:source_identity",
+              "bristol-think-big-scholarships-2026:host_countries",
+              "bristol-think-big-scholarships-2026:funding_type",
+              "bristol-think-big-scholarships-2026:eligibility_text"
+            ],
+            "errors": [],
+            "invalid_ids": [],
+            "passed": true,
+            "step": 3,
+            "uncited_bullet_count": 0
+          }
+        ],
+        "fallback_used": true,
+        "final_citation_passed": true
+      }
+    },
+    {
+      "case_id": "potential-bristol-bachelor-unverified",
+      "evaluation": {
+        "latency_seconds": 281.619411892003,
+        "no_result_correct": null,
+        "positive_completed": true,
+        "relevant_citation": true,
+        "relevant_grounded": true
+      },
+      "finalization_stage": {
+        "answer": "- Think Big Scholarships is offered by University of Bristol. [bristol-think-big-scholarships-2026:source_identity]\n- The opportunity is hosted in United Kingdom. [bristol-think-big-scholarships-2026:host_countries]\n- Its listed funding type is tuition only. [bristol-think-big-scholarships-2026:funding_type]\n- The official eligibility information states: The University of Bristol Think Big scheme provides funding towards tuition fees for international students studying eligible undergraduate or postgraduate courses. Applicants must have applied for an eligible course beginning in September 2026 and must be classed as overseas students for fee purposes. Applications close at 10:00 UK time on 10 April 2026. Confirm final eligibility on the official source before applying. [bristol-think-big-scholarships-2026:eligibility_text]",
+        "grounded_report_disclaimer": "Scholarship information can change. Confirm every requirement and deadline on the cited official source before applying.",
+        "status": "completed_fallback"
+      },
+      "generation_stage": {
+        "generation_calls": 2,
+        "generator_name": "tinyllama:latest",
+        "repair_attempts": 1,
+        "transport_failure": null
+      },
+      "input": {
+        "expect_no_results": false,
+        "expected_relevant_ids": [
+          "bristol-think-big-scholarships-2026"
+        ],
+        "expected_statuses": {
+          "bristol-think-big-scholarships-2026": "potentially_eligible"
+        },
+        "profile": {
+          "country_of_residence": "Finland",
+          "fields_of_study": [
+            "Economics"
+          ],
+          "gpa": 4.2,
+          "gpa_scale": 5.0,
+          "language_scores": {
+            "IELTS": 7.5
+          },
+          "nationality": "Nigerian",
+          "preferred_countries": [
+            "United Kingdom"
+          ],
+          "requires_full_funding": false,
+          "target_degree_level": "bachelor",
+          "verified_manual_requirements": {},
+          "years_work_experience": 2.0
+        },
+        "query": "Bristol Think Big international undergraduate scholarship tuition fees"
+      },
+      "retrieval_stage": {
+        "candidate_count": 3,
+        "candidates": [
+          {
+            "assessment_note": "This eligibility status is a deterministic ScholarAgent screening result, not an official admission or funding decision.",
+            "candidate_role": "recommendation",
+            "citation_ids": [
+              "bristol-think-big-scholarships-2026:source_identity",
+              "bristol-think-big-scholarships-2026:host_countries",
+              "bristol-think-big-scholarships-2026:degree_levels",
+              "bristol-think-big-scholarships-2026:funding_type",
+              "bristol-think-big-scholarships-2026:eligible_nationalities",
+              "bristol-think-big-scholarships-2026:manual_review_requirements",
+              "bristol-think-big-scholarships-2026:deadline",
+              "bristol-think-big-scholarships-2026:eligibility_text"
+            ],
+            "eligibility_status": "potentially_eligible",
+            "evidence_count": 8,
+            "evidence_verified": true,
+            "official_url": "https://www.bristol.ac.uk/students/support/finances/scholarships/think-big-scholarships/",
+            "provider": "University of Bristol",
+            "scholarship_id": "bristol-think-big-scholarships-2026",
+            "title": "Think Big Scholarships"
+          },
+          {
+            "assessment_note": "This eligibility status is a deterministic ScholarAgent screening result, not an official admission or funding decision.",
+            "candidate_role": "recommendation",
+            "citation_ids": [
+              "waikato-vice-chancellors-international-excellence-scholarship:source_identity",
+              "waikato-vice-chancellors-international-excellence-scholarship:host_countries",
+              "waikato-vice-chancellors-international-excellence-scholarship:degree_levels",
+              "waikato-vice-chancellors-international-excellence-scholarship:funding_type",
+              "waikato-vice-chancellors-international-excellence-scholarship:eligible_nationalities",
+              "waikato-vice-chancellors-international-excellence-scholarship:manual_review_requirements",
+              "waikato-vice-chancellors-international-excellence-scholarship:eligibility_text"
+            ],
+            "eligibility_status": "potentially_eligible",
+            "evidence_count": 7,
+            "evidence_verified": true,
+            "official_url": "https://www.waikato.ac.nz/study/scholarships/find-a-scholarship/vice-chancellors-international-excellence-scholarship/",
+            "provider": "University of Waikato",
+            "scholarship_id": "waikato-vice-chancellors-international-excellence-scholarship",
+            "title": "Vice-Chancellor's International Excellence Scholarship"
+          },
+          {
+            "assessment_note": "This eligibility status is a deterministic ScholarAgent screening result, not an official admission or funding decision.",
+            "candidate_role": "recommendation",
+            "citation_ids": [
+              "aalto-university-excellence-scholarship:source_identity",
+              "aalto-university-excellence-scholarship:host_countries",
+              "aalto-university-excellence-scholarship:degree_levels",
+              "aalto-university-excellence-scholarship:funding_type",
+              "aalto-university-excellence-scholarship:manual_review_requirements",
+              "aalto-university-excellence-scholarship:eligibility_text"
+            ],
+            "eligibility_status": "potentially_eligible",
+            "evidence_count": 6,
+            "evidence_verified": true,
+            "official_url": "https://www.aalto.fi/en/international-students/scholarships-study-right-started-on-or-after-1-august-2025",
+            "provider": "Aalto University",
+            "scholarship_id": "aalto-university-excellence-scholarship",
+            "title": "Aalto University Excellence Scholarship"
+          }
+        ],
+        "final_query": "Bristol Think Big international undergraduate scholarship tuition fees",
+        "original_query": "Bristol Think Big international undergraduate scholarship tuition fees",
+        "query_rewrites": 0,
+        "retrieval_calls": 1
+      },
+      "title": "Potentially eligible result requiring manual verification",
+      "trace_type": "potentially_eligible_manual_review",
+      "verification_stage": {
+        "audit_steps": [
+          {
+            "available_ids": [
+              "aalto-university-excellence-scholarship:degree_levels",
+              "aalto-university-excellence-scholarship:eligibility_text",
+              "aalto-university-excellence-scholarship:funding_type",
+              "aalto-university-excellence-scholarship:host_countries",
+              "aalto-university-excellence-scholarship:manual_review_requirements",
+              "aalto-university-excellence-scholarship:source_identity",
+              "bristol-think-big-scholarships-2026:deadline",
+              "bristol-think-big-scholarships-2026:degree_levels",
+              "bristol-think-big-scholarships-2026:eligibility_text",
+              "bristol-think-big-scholarships-2026:eligible_nationalities",
+              "bristol-think-big-scholarships-2026:funding_type",
+              "bristol-think-big-scholarships-2026:host_countries",
+              "bristol-think-big-scholarships-2026:manual_review_requirements",
+              "bristol-think-big-scholarships-2026:source_identity",
+              "waikato-vice-chancellors-international-excellence-scholarship:degree_levels",
+              "waikato-vice-chancellors-international-excellence-scholarship:eligibility_text",
+              "waikato-vice-chancellors-international-excellence-scholarship:eligible_nationalities",
+              "waikato-vice-chancellors-international-excellence-scholarship:funding_type",
+              "waikato-vice-chancellors-international-excellence-scholarship:host_countries",
+              "waikato-vice-chancellors-international-excellence-scholarship:manual_review_requirements",
+              "waikato-vice-chancellors-international-excellence-scholarship:source_identity"
+            ],
+            "bullet_count": 2,
+            "citation_required": true,
+            "cited_ids": [],
+            "errors": [
+              "The generated answer contains no citation markers.",
+              "Every bullet must end with at least one citation marker."
+            ],
+            "invalid_ids": [],
+            "passed": false,
+            "step": 1,
+            "uncited_bullet_count": 2
+          },
+          {
+            "available_ids": [
+              "aalto-university-excellence-scholarship:degree_levels",
+              "aalto-university-excellence-scholarship:eligibility_text",
+              "aalto-university-excellence-scholarship:funding_type",
+              "aalto-university-excellence-scholarship:host_countries",
+              "aalto-university-excellence-scholarship:manual_review_requirements",
+              "aalto-university-excellence-scholarship:source_identity",
+              "bristol-think-big-scholarships-2026:deadline",
+              "bristol-think-big-scholarships-2026:degree_levels",
+              "bristol-think-big-scholarships-2026:eligibility_text",
+              "bristol-think-big-scholarships-2026:eligible_nationalities",
+              "bristol-think-big-scholarships-2026:funding_type",
+              "bristol-think-big-scholarships-2026:host_countries",
+              "bristol-think-big-scholarships-2026:manual_review_requirements",
+              "bristol-think-big-scholarships-2026:source_identity",
+              "waikato-vice-chancellors-international-excellence-scholarship:degree_levels",
+              "waikato-vice-chancellors-international-excellence-scholarship:eligibility_text",
+              "waikato-vice-chancellors-international-excellence-scholarship:eligible_nationalities",
+              "waikato-vice-chancellors-international-excellence-scholarship:funding_type",
+              "waikato-vice-chancellors-international-excellence-scholarship:host_countries",
+              "waikato-vice-chancellors-international-excellence-scholarship:manual_review_requirements",
+              "waikato-vice-chancellors-international-excellence-scholarship:source_identity"
+            ],
+            "bullet_count": 6,
+            "citation_required": true,
+            "cited_ids": [],
+            "errors": [
+              "The generated answer contains no citation markers.",
+              "The generated answer must contain between 2 and 4 bullet points.",
+              "Every bullet must end with at least one citation marker."
+            ],
+            "invalid_ids": [],
+            "passed": false,
+            "step": 2,
+            "uncited_bullet_count": 6
+          },
+          {
+            "available_ids": [
+              "aalto-university-excellence-scholarship:degree_levels",
+              "aalto-university-excellence-scholarship:eligibility_text",
+              "aalto-university-excellence-scholarship:funding_type",
+              "aalto-university-excellence-scholarship:host_countries",
+              "aalto-university-excellence-scholarship:manual_review_requirements",
+              "aalto-university-excellence-scholarship:source_identity",
+              "bristol-think-big-scholarships-2026:deadline",
+              "bristol-think-big-scholarships-2026:degree_levels",
+              "bristol-think-big-scholarships-2026:eligibility_text",
+              "bristol-think-big-scholarships-2026:eligible_nationalities",
+              "bristol-think-big-scholarships-2026:funding_type",
+              "bristol-think-big-scholarships-2026:host_countries",
+              "bristol-think-big-scholarships-2026:manual_review_requirements",
+              "bristol-think-big-scholarships-2026:source_identity",
+              "waikato-vice-chancellors-international-excellence-scholarship:degree_levels",
+              "waikato-vice-chancellors-international-excellence-scholarship:eligibility_text",
+              "waikato-vice-chancellors-international-excellence-scholarship:eligible_nationalities",
+              "waikato-vice-chancellors-international-excellence-scholarship:funding_type",
+              "waikato-vice-chancellors-international-excellence-scholarship:host_countries",
+              "waikato-vice-chancellors-international-excellence-scholarship:manual_review_requirements",
+              "waikato-vice-chancellors-international-excellence-scholarship:source_identity"
+            ],
+            "bullet_count": 4,
+            "citation_required": true,
+            "cited_ids": [
+              "bristol-think-big-scholarships-2026:source_identity",
+              "bristol-think-big-scholarships-2026:host_countries",
+              "bristol-think-big-scholarships-2026:funding_type",
+              "bristol-think-big-scholarships-2026:eligibility_text"
+            ],
+            "errors": [],
+            "invalid_ids": [],
+            "passed": true,
+            "step": 3,
+            "uncited_bullet_count": 0
+          }
+        ],
+        "fallback_used": true,
+        "final_citation_passed": true
+      }
+    },
+    {
+      "case_id": "not-eligible-maastricht-low-gpa",
+      "evaluation": {
+        "latency_seconds": 321.7636420050003,
+        "no_result_correct": null,
+        "positive_completed": true,
+        "relevant_citation": true,
+        "relevant_grounded": true
+      },
+      "finalization_stage": {
+        "answer": "- Explanatory result only\u2014not a recommendation. Maastricht University NL-High Potential Scholarship is offered by Maastricht University. [maastricht-university-nl-high-potential-scholarship-2026:source_identity]\n- The opportunity is hosted in Netherlands. [maastricht-university-nl-high-potential-scholarship-2026:host_countries]\n- Its listed funding type is fully funded. [maastricht-university-nl-high-potential-scholarship-2026:funding_type]\n- The official eligibility information states: The Maastricht University NL-High Potential programme offers full scholarships including a tuition-fee waiver and monthly stipend for high-achieving applicants from outside the European Union who are admitted to a participating master's programme. Applicants must present a GPA of at least 7.5 on a 10.0 scale and must not be older than 35 on 1 September 2026. The scholarship deadline is 1 February 2026. Confirm final eligibility on the official source before applying. [maastricht-university-nl-high-potential-scholarship-2026:eligibility_text]",
+        "grounded_report_disclaimer": "Scholarship information can change. Confirm every requirement and deadline on the cited official source before applying.",
+        "status": "completed_fallback"
+      },
+      "generation_stage": {
+        "generation_calls": 2,
+        "generator_name": "tinyllama:latest",
+        "repair_attempts": 1,
+        "transport_failure": null
+      },
+      "input": {
+        "expect_no_results": false,
+        "expected_relevant_ids": [
+          "maastricht-university-nl-high-potential-scholarship-2026"
+        ],
+        "expected_statuses": {
+          "maastricht-university-nl-high-potential-scholarship-2026": "not_eligible"
+        },
+        "profile": {
+          "country_of_residence": "Finland",
+          "fields_of_study": [
+            "Data Science"
+          ],
+          "gpa": 7.0,
+          "gpa_scale": 10.0,
+          "language_scores": {
+            "IELTS": 7.5
+          },
+          "nationality": "Nigerian",
+          "preferred_countries": [
+            "Netherlands"
+          ],
+          "requires_full_funding": true,
+          "target_degree_level": "master",
+          "verified_manual_requirements": {},
+          "years_work_experience": 2.0
+        },
+        "query": "Maastricht NL High Potential full scholarship master tuition stipend GPA 7.5"
+      },
+      "retrieval_stage": {
+        "candidate_count": 3,
+        "candidates": [
+          {
+            "assessment_note": "This eligibility status is a deterministic ScholarAgent screening result, not an official admission or funding decision.",
+            "candidate_role": "explanatory_ineligible",
+            "citation_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026:source_identity",
+              "maastricht-university-nl-high-potential-scholarship-2026:host_countries",
+              "maastricht-university-nl-high-potential-scholarship-2026:degree_levels",
+              "maastricht-university-nl-high-potential-scholarship-2026:funding_type",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligible_nationalities",
+              "maastricht-university-nl-high-potential-scholarship-2026:manual_review_requirements",
+              "maastricht-university-nl-high-potential-scholarship-2026:deadline",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligibility_text"
+            ],
+            "eligibility_status": "not_eligible",
+            "evidence_count": 8,
+            "evidence_verified": true,
+            "official_url": "https://www.maastrichtuniversity.nl/studeren/toelating-inschrijving/financing-your-studies/scholarships/maastricht-university-nl-high",
+            "provider": "Maastricht University",
+            "scholarship_id": "maastricht-university-nl-high-potential-scholarship-2026",
+            "title": "Maastricht University NL-High Potential Scholarship"
+          },
+          {
+            "assessment_note": "This eligibility status is a deterministic ScholarAgent screening result, not an official admission or funding decision.",
+            "candidate_role": "recommendation",
+            "citation_ids": [
+              "aalto-university-excellence-scholarship:source_identity",
+              "aalto-university-excellence-scholarship:host_countries",
+              "aalto-university-excellence-scholarship:degree_levels",
+              "aalto-university-excellence-scholarship:funding_type",
+              "aalto-university-excellence-scholarship:manual_review_requirements",
+              "aalto-university-excellence-scholarship:eligibility_text"
+            ],
+            "eligibility_status": "potentially_eligible",
+            "evidence_count": 6,
+            "evidence_verified": true,
+            "official_url": "https://www.aalto.fi/en/international-students/scholarships-study-right-started-on-or-after-1-august-2025",
+            "provider": "Aalto University",
+            "scholarship_id": "aalto-university-excellence-scholarship",
+            "title": "Aalto University Excellence Scholarship"
+          },
+          {
+            "assessment_note": "This eligibility status is a deterministic ScholarAgent screening result, not an official admission or funding decision.",
+            "candidate_role": "recommendation",
+            "citation_ids": [
+              "glasgow-global-leadership-scholarship-2026:source_identity",
+              "glasgow-global-leadership-scholarship-2026:host_countries",
+              "glasgow-global-leadership-scholarship-2026:degree_levels",
+              "glasgow-global-leadership-scholarship-2026:funding_type",
+              "glasgow-global-leadership-scholarship-2026:manual_review_requirements",
+              "glasgow-global-leadership-scholarship-2026:deadline",
+              "glasgow-global-leadership-scholarship-2026:eligibility_text"
+            ],
+            "eligibility_status": "potentially_eligible",
+            "evidence_count": 7,
+            "evidence_verified": true,
+            "official_url": "https://www.gla.ac.uk/scholarships/globalleadershipscholarship/",
+            "provider": "University of Glasgow",
+            "scholarship_id": "glasgow-global-leadership-scholarship-2026",
+            "title": "Global Leadership Scholarship"
+          }
+        ],
+        "final_query": "Maastricht NL High Potential full scholarship master tuition stipend GPA 7.5",
+        "original_query": "Maastricht NL High Potential full scholarship master tuition stipend GPA 7.5",
+        "query_rewrites": 0,
+        "retrieval_calls": 1
+      },
+      "title": "Not eligible because of a hard GPA constraint",
+      "trace_type": "not_eligible_hard_constraint",
+      "verification_stage": {
+        "audit_steps": [
+          {
+            "available_ids": [
+              "aalto-university-excellence-scholarship:degree_levels",
+              "aalto-university-excellence-scholarship:eligibility_text",
+              "aalto-university-excellence-scholarship:funding_type",
+              "aalto-university-excellence-scholarship:host_countries",
+              "aalto-university-excellence-scholarship:manual_review_requirements",
+              "aalto-university-excellence-scholarship:source_identity",
+              "glasgow-global-leadership-scholarship-2026:deadline",
+              "glasgow-global-leadership-scholarship-2026:degree_levels",
+              "glasgow-global-leadership-scholarship-2026:eligibility_text",
+              "glasgow-global-leadership-scholarship-2026:funding_type",
+              "glasgow-global-leadership-scholarship-2026:host_countries",
+              "glasgow-global-leadership-scholarship-2026:manual_review_requirements",
+              "glasgow-global-leadership-scholarship-2026:source_identity",
+              "maastricht-university-nl-high-potential-scholarship-2026:deadline",
+              "maastricht-university-nl-high-potential-scholarship-2026:degree_levels",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligibility_text",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligible_nationalities",
+              "maastricht-university-nl-high-potential-scholarship-2026:funding_type",
+              "maastricht-university-nl-high-potential-scholarship-2026:host_countries",
+              "maastricht-university-nl-high-potential-scholarship-2026:manual_review_requirements",
+              "maastricht-university-nl-high-potential-scholarship-2026:source_identity"
+            ],
+            "bullet_count": 4,
+            "citation_required": true,
+            "cited_ids": [],
+            "errors": [
+              "The generated answer contains no citation markers.",
+              "Every bullet must end with at least one citation marker."
+            ],
+            "invalid_ids": [],
+            "passed": false,
+            "step": 1,
+            "uncited_bullet_count": 4
+          },
+          {
+            "available_ids": [
+              "aalto-university-excellence-scholarship:degree_levels",
+              "aalto-university-excellence-scholarship:eligibility_text",
+              "aalto-university-excellence-scholarship:funding_type",
+              "aalto-university-excellence-scholarship:host_countries",
+              "aalto-university-excellence-scholarship:manual_review_requirements",
+              "aalto-university-excellence-scholarship:source_identity",
+              "glasgow-global-leadership-scholarship-2026:deadline",
+              "glasgow-global-leadership-scholarship-2026:degree_levels",
+              "glasgow-global-leadership-scholarship-2026:eligibility_text",
+              "glasgow-global-leadership-scholarship-2026:funding_type",
+              "glasgow-global-leadership-scholarship-2026:host_countries",
+              "glasgow-global-leadership-scholarship-2026:manual_review_requirements",
+              "glasgow-global-leadership-scholarship-2026:source_identity",
+              "maastricht-university-nl-high-potential-scholarship-2026:deadline",
+              "maastricht-university-nl-high-potential-scholarship-2026:degree_levels",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligibility_text",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligible_nationalities",
+              "maastricht-university-nl-high-potential-scholarship-2026:funding_type",
+              "maastricht-university-nl-high-potential-scholarship-2026:host_countries",
+              "maastricht-university-nl-high-potential-scholarship-2026:manual_review_requirements",
+              "maastricht-university-nl-high-potential-scholarship-2026:source_identity"
+            ],
+            "bullet_count": 8,
+            "citation_required": true,
+            "cited_ids": [],
+            "errors": [
+              "The generated answer contains no citation markers.",
+              "The generated answer must contain between 2 and 4 bullet points.",
+              "Every bullet must end with at least one citation marker."
+            ],
+            "invalid_ids": [],
+            "passed": false,
+            "step": 2,
+            "uncited_bullet_count": 8
+          },
+          {
+            "available_ids": [
+              "aalto-university-excellence-scholarship:degree_levels",
+              "aalto-university-excellence-scholarship:eligibility_text",
+              "aalto-university-excellence-scholarship:funding_type",
+              "aalto-university-excellence-scholarship:host_countries",
+              "aalto-university-excellence-scholarship:manual_review_requirements",
+              "aalto-university-excellence-scholarship:source_identity",
+              "glasgow-global-leadership-scholarship-2026:deadline",
+              "glasgow-global-leadership-scholarship-2026:degree_levels",
+              "glasgow-global-leadership-scholarship-2026:eligibility_text",
+              "glasgow-global-leadership-scholarship-2026:funding_type",
+              "glasgow-global-leadership-scholarship-2026:host_countries",
+              "glasgow-global-leadership-scholarship-2026:manual_review_requirements",
+              "glasgow-global-leadership-scholarship-2026:source_identity",
+              "maastricht-university-nl-high-potential-scholarship-2026:deadline",
+              "maastricht-university-nl-high-potential-scholarship-2026:degree_levels",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligibility_text",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligible_nationalities",
+              "maastricht-university-nl-high-potential-scholarship-2026:funding_type",
+              "maastricht-university-nl-high-potential-scholarship-2026:host_countries",
+              "maastricht-university-nl-high-potential-scholarship-2026:manual_review_requirements",
+              "maastricht-university-nl-high-potential-scholarship-2026:source_identity"
+            ],
+            "bullet_count": 4,
+            "citation_required": true,
+            "cited_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026:source_identity",
+              "maastricht-university-nl-high-potential-scholarship-2026:host_countries",
+              "maastricht-university-nl-high-potential-scholarship-2026:funding_type",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligibility_text"
+            ],
+            "errors": [],
+            "invalid_ids": [],
+            "passed": true,
+            "step": 3,
+            "uncited_bullet_count": 0
+          }
+        ],
+        "fallback_used": true,
+        "final_citation_passed": true
+      }
+    },
+    {
+      "case_id": "insufficient-maastricht-health-missing-gpa",
+      "evaluation": {
+        "latency_seconds": 357.43782732800173,
+        "no_result_correct": null,
+        "positive_completed": true,
+        "relevant_citation": true,
+        "relevant_grounded": true
+      },
+      "finalization_stage": {
+        "answer": "- Maastricht University NL-High Potential Scholarship is offered by Maastricht University. [maastricht-university-nl-high-potential-scholarship-2026:source_identity]\n- The opportunity is hosted in Netherlands. [maastricht-university-nl-high-potential-scholarship-2026:host_countries]\n- Its listed funding type is fully funded. [maastricht-university-nl-high-potential-scholarship-2026:funding_type]\n- The official eligibility information states: The Maastricht University NL-High Potential programme offers full scholarships including a tuition-fee waiver and monthly stipend for high-achieving applicants from outside the European Union who are admitted to a participating master's programme. Applicants must present a GPA of at least 7.5 on a 10.0 scale and must not be older than 35 on 1 September 2026. The scholarship deadline is 1 February 2026. Confirm final eligibility on the official source before applying. [maastricht-university-nl-high-potential-scholarship-2026:eligibility_text]",
+        "grounded_report_disclaimer": "Scholarship information can change. Confirm every requirement and deadline on the cited official source before applying.",
+        "status": "completed_fallback"
+      },
+      "generation_stage": {
+        "generation_calls": 2,
+        "generator_name": "tinyllama:latest",
+        "repair_attempts": 1,
+        "transport_failure": null
+      },
+      "input": {
+        "expect_no_results": false,
+        "expected_relevant_ids": [
+          "maastricht-university-nl-high-potential-scholarship-2026"
+        ],
+        "expected_statuses": {
+          "maastricht-university-nl-high-potential-scholarship-2026": "insufficient_information"
+        },
+        "profile": {
+          "country_of_residence": "Kenya",
+          "fields_of_study": [
+            "Public Health"
+          ],
+          "gpa": null,
+          "gpa_scale": null,
+          "language_scores": {
+            "IELTS": 7.5
+          },
+          "nationality": "Nigerian",
+          "preferred_countries": [
+            "Netherlands"
+          ],
+          "requires_full_funding": true,
+          "target_degree_level": "master",
+          "verified_manual_requirements": {},
+          "years_work_experience": 2.0
+        },
+        "query": "NL High Potential Maastricht public health master monthly stipend"
+      },
+      "retrieval_stage": {
+        "candidate_count": 3,
+        "candidates": [
+          {
+            "assessment_note": "This eligibility status is a deterministic ScholarAgent screening result, not an official admission or funding decision.",
+            "candidate_role": "recommendation",
+            "citation_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026:source_identity",
+              "maastricht-university-nl-high-potential-scholarship-2026:host_countries",
+              "maastricht-university-nl-high-potential-scholarship-2026:degree_levels",
+              "maastricht-university-nl-high-potential-scholarship-2026:funding_type",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligible_nationalities",
+              "maastricht-university-nl-high-potential-scholarship-2026:manual_review_requirements",
+              "maastricht-university-nl-high-potential-scholarship-2026:deadline",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligibility_text"
+            ],
+            "eligibility_status": "insufficient_information",
+            "evidence_count": 8,
+            "evidence_verified": true,
+            "official_url": "https://www.maastrichtuniversity.nl/studeren/toelating-inschrijving/financing-your-studies/scholarships/maastricht-university-nl-high",
+            "provider": "Maastricht University",
+            "scholarship_id": "maastricht-university-nl-high-potential-scholarship-2026",
+            "title": "Maastricht University NL-High Potential Scholarship"
+          },
+          {
+            "assessment_note": "This eligibility status is a deterministic ScholarAgent screening result, not an official admission or funding decision.",
+            "candidate_role": "recommendation",
+            "citation_ids": [
+              "waikato-vice-chancellors-international-excellence-scholarship:source_identity",
+              "waikato-vice-chancellors-international-excellence-scholarship:host_countries",
+              "waikato-vice-chancellors-international-excellence-scholarship:degree_levels",
+              "waikato-vice-chancellors-international-excellence-scholarship:funding_type",
+              "waikato-vice-chancellors-international-excellence-scholarship:eligible_nationalities",
+              "waikato-vice-chancellors-international-excellence-scholarship:manual_review_requirements",
+              "waikato-vice-chancellors-international-excellence-scholarship:eligibility_text"
+            ],
+            "eligibility_status": "potentially_eligible",
+            "evidence_count": 7,
+            "evidence_verified": true,
+            "official_url": "https://www.waikato.ac.nz/study/scholarships/find-a-scholarship/vice-chancellors-international-excellence-scholarship/",
+            "provider": "University of Waikato",
+            "scholarship_id": "waikato-vice-chancellors-international-excellence-scholarship",
+            "title": "Vice-Chancellor's International Excellence Scholarship"
+          },
+          {
+            "assessment_note": "This eligibility status is a deterministic ScholarAgent screening result, not an official admission or funding decision.",
+            "candidate_role": "recommendation",
+            "citation_ids": [
+              "university-of-manitoba-graduate-fellowship:source_identity",
+              "university-of-manitoba-graduate-fellowship:host_countries",
+              "university-of-manitoba-graduate-fellowship:degree_levels",
+              "university-of-manitoba-graduate-fellowship:funding_type",
+              "university-of-manitoba-graduate-fellowship:eligible_nationalities",
+              "university-of-manitoba-graduate-fellowship:manual_review_requirements",
+              "university-of-manitoba-graduate-fellowship:eligibility_text"
+            ],
+            "eligibility_status": "potentially_eligible",
+            "evidence_count": 7,
+            "evidence_verified": true,
+            "official_url": "https://umanitoba.ca/graduate-studies/funding-awards/university-manitoba-graduate-fellowship-umgf",
+            "provider": "University of Manitoba",
+            "scholarship_id": "university-of-manitoba-graduate-fellowship",
+            "title": "University of Manitoba Graduate Fellowship"
+          }
+        ],
+        "final_query": "NL High Potential Maastricht public health master monthly stipend",
+        "original_query": "NL High Potential Maastricht public health master monthly stipend",
+        "query_rewrites": 0,
+        "retrieval_calls": 1
+      },
+      "title": "Insufficient information because GPA evidence is missing",
+      "trace_type": "insufficient_information",
+      "verification_stage": {
+        "audit_steps": [
+          {
+            "available_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026:deadline",
+              "maastricht-university-nl-high-potential-scholarship-2026:degree_levels",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligibility_text",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligible_nationalities",
+              "maastricht-university-nl-high-potential-scholarship-2026:funding_type",
+              "maastricht-university-nl-high-potential-scholarship-2026:host_countries",
+              "maastricht-university-nl-high-potential-scholarship-2026:manual_review_requirements",
+              "maastricht-university-nl-high-potential-scholarship-2026:source_identity",
+              "university-of-manitoba-graduate-fellowship:degree_levels",
+              "university-of-manitoba-graduate-fellowship:eligibility_text",
+              "university-of-manitoba-graduate-fellowship:eligible_nationalities",
+              "university-of-manitoba-graduate-fellowship:funding_type",
+              "university-of-manitoba-graduate-fellowship:host_countries",
+              "university-of-manitoba-graduate-fellowship:manual_review_requirements",
+              "university-of-manitoba-graduate-fellowship:source_identity",
+              "waikato-vice-chancellors-international-excellence-scholarship:degree_levels",
+              "waikato-vice-chancellors-international-excellence-scholarship:eligibility_text",
+              "waikato-vice-chancellors-international-excellence-scholarship:eligible_nationalities",
+              "waikato-vice-chancellors-international-excellence-scholarship:funding_type",
+              "waikato-vice-chancellors-international-excellence-scholarship:host_countries",
+              "waikato-vice-chancellors-international-excellence-scholarship:manual_review_requirements",
+              "waikato-vice-chancellors-international-excellence-scholarship:source_identity"
+            ],
+            "bullet_count": 4,
+            "citation_required": true,
+            "cited_ids": [],
+            "errors": [
+              "The generated answer contains no citation markers.",
+              "Every bullet must end with at least one citation marker."
+            ],
+            "invalid_ids": [],
+            "passed": false,
+            "step": 1,
+            "uncited_bullet_count": 4
+          },
+          {
+            "available_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026:deadline",
+              "maastricht-university-nl-high-potential-scholarship-2026:degree_levels",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligibility_text",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligible_nationalities",
+              "maastricht-university-nl-high-potential-scholarship-2026:funding_type",
+              "maastricht-university-nl-high-potential-scholarship-2026:host_countries",
+              "maastricht-university-nl-high-potential-scholarship-2026:manual_review_requirements",
+              "maastricht-university-nl-high-potential-scholarship-2026:source_identity",
+              "university-of-manitoba-graduate-fellowship:degree_levels",
+              "university-of-manitoba-graduate-fellowship:eligibility_text",
+              "university-of-manitoba-graduate-fellowship:eligible_nationalities",
+              "university-of-manitoba-graduate-fellowship:funding_type",
+              "university-of-manitoba-graduate-fellowship:host_countries",
+              "university-of-manitoba-graduate-fellowship:manual_review_requirements",
+              "university-of-manitoba-graduate-fellowship:source_identity",
+              "waikato-vice-chancellors-international-excellence-scholarship:degree_levels",
+              "waikato-vice-chancellors-international-excellence-scholarship:eligibility_text",
+              "waikato-vice-chancellors-international-excellence-scholarship:eligible_nationalities",
+              "waikato-vice-chancellors-international-excellence-scholarship:funding_type",
+              "waikato-vice-chancellors-international-excellence-scholarship:host_countries",
+              "waikato-vice-chancellors-international-excellence-scholarship:manual_review_requirements",
+              "waikato-vice-chancellors-international-excellence-scholarship:source_identity"
+            ],
+            "bullet_count": 0,
+            "citation_required": true,
+            "cited_ids": [],
+            "errors": [
+              "The generated answer contains no citation markers.",
+              "The generated answer is not formatted as 2 to 4 bullet points."
+            ],
+            "invalid_ids": [],
+            "passed": false,
+            "step": 2,
+            "uncited_bullet_count": 0
+          },
+          {
+            "available_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026:deadline",
+              "maastricht-university-nl-high-potential-scholarship-2026:degree_levels",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligibility_text",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligible_nationalities",
+              "maastricht-university-nl-high-potential-scholarship-2026:funding_type",
+              "maastricht-university-nl-high-potential-scholarship-2026:host_countries",
+              "maastricht-university-nl-high-potential-scholarship-2026:manual_review_requirements",
+              "maastricht-university-nl-high-potential-scholarship-2026:source_identity",
+              "university-of-manitoba-graduate-fellowship:degree_levels",
+              "university-of-manitoba-graduate-fellowship:eligibility_text",
+              "university-of-manitoba-graduate-fellowship:eligible_nationalities",
+              "university-of-manitoba-graduate-fellowship:funding_type",
+              "university-of-manitoba-graduate-fellowship:host_countries",
+              "university-of-manitoba-graduate-fellowship:manual_review_requirements",
+              "university-of-manitoba-graduate-fellowship:source_identity",
+              "waikato-vice-chancellors-international-excellence-scholarship:degree_levels",
+              "waikato-vice-chancellors-international-excellence-scholarship:eligibility_text",
+              "waikato-vice-chancellors-international-excellence-scholarship:eligible_nationalities",
+              "waikato-vice-chancellors-international-excellence-scholarship:funding_type",
+              "waikato-vice-chancellors-international-excellence-scholarship:host_countries",
+              "waikato-vice-chancellors-international-excellence-scholarship:manual_review_requirements",
+              "waikato-vice-chancellors-international-excellence-scholarship:source_identity"
+            ],
+            "bullet_count": 4,
+            "citation_required": true,
+            "cited_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026:source_identity",
+              "maastricht-university-nl-high-potential-scholarship-2026:host_countries",
+              "maastricht-university-nl-high-potential-scholarship-2026:funding_type",
+              "maastricht-university-nl-high-potential-scholarship-2026:eligibility_text"
+            ],
+            "errors": [],
+            "invalid_ids": [],
+            "passed": true,
+            "step": 3,
+            "uncited_bullet_count": 0
+          }
+        ],
+        "fallback_used": true,
+        "final_citation_passed": true
+      }
+    },
+    {
+      "case_id": "no-result-lunar-botany",
+      "evaluation": {
+        "latency_seconds": 0.12154508500316297,
+        "no_result_correct": true,
+        "positive_completed": null,
+        "relevant_citation": null,
+        "relevant_grounded": null
+      },
+      "finalization_stage": {
+        "answer": "ScholarAgent abstained because it could not retrieve sufficient verified evidence.",
+        "grounded_report_disclaimer": "Scholarship information can change. Confirm every requirement and deadline on the cited official source before applying.",
+        "status": "abstained"
+      },
+      "generation_stage": {
+        "generation_calls": 0,
+        "generator_name": "tinyllama:latest",
+        "repair_attempts": 0,
+        "transport_failure": null
+      },
+      "input": {
+        "expect_no_results": true,
+        "expected_relevant_ids": [],
+        "expected_statuses": {},
+        "profile": {
+          "country_of_residence": "Finland",
+          "fields_of_study": [
+            "Interplanetary Archaeology"
+          ],
+          "gpa": null,
+          "gpa_scale": null,
+          "language_scores": {
+            "IELTS": 7.5
+          },
+          "nationality": "Nigerian",
+          "preferred_countries": [],
+          "requires_full_funding": true,
+          "target_degree_level": "master",
+          "verified_manual_requirements": {},
+          "years_work_experience": 2.0
+        },
+        "query": "selenian moon botany crystal greenhouse grant"
+      },
+      "retrieval_stage": {
+        "candidate_count": 0,
+        "candidates": [],
+        "final_query": "selenian moon botany crystal greenhouse grant",
+        "original_query": "selenian moon botany crystal greenhouse grant",
+        "query_rewrites": 0,
+        "retrieval_calls": 1
+      },
+      "title": "Unsupported query handled through safe abstention",
+      "trace_type": "safe_abstention",
+      "verification_stage": {
+        "audit_steps": [],
+        "fallback_used": false,
+        "final_citation_passed": true
+      }
+    },
+    {
+      "case_id": "eligible-manitoba-phd-verified",
+      "evaluation": {
+        "latency_seconds": 1023.4280346190026,
+        "no_result_correct": null,
+        "positive_completed": true,
+        "relevant_citation": true,
+        "relevant_grounded": true
+      },
+      "finalization_stage": {
+        "answer": "- University of Manitoba Graduate Fellowship is offered by University of Manitoba. [university-of-manitoba-graduate-fellowship:source_identity]\n- The opportunity is hosted in Canada. [university-of-manitoba-graduate-fellowship:host_countries]\n- Its listed funding type is partially funded. [university-of-manitoba-graduate-fellowship:funding_type]\n- The official eligibility information states: The University of Manitoba Graduate Fellowship supports eligible master's and PhD students in graduate fields that qualify for Tri-Agency funding. Master's awards are valued at CAD 20,000 per year and doctoral awards at CAD 25,000 per year. All citizenships may apply. The page states a minimum admission GPA of 3.0 but does not identify its scale, so the numeric threshold remains a manual-review condition. Application timing and nomination are managed by departments or units. Confirm final eligibility on the official source before applying. [university-of-manitoba-graduate-fellowship:eligibility_text]",
+        "grounded_report_disclaimer": "Scholarship information can change. Confirm every requirement and deadline on the cited official source before applying.",
+        "status": "completed_fallback"
+      },
+      "generation_stage": {
+        "generation_calls": 2,
+        "generator_name": "tinyllama:latest",
+        "repair_attempts": 1,
+        "transport_failure": {
+          "case_id": "eligible-manitoba-phd-verified",
+          "elapsed_seconds": 900.0794622969988,
+          "error_message": "Ollama request timed out after 900.0 seconds.",
+          "error_type": "OllamaClientError",
+          "failure_marker": "GENERATION_FAILED_DUE_TO_OLLAMA_TRANSPORT_ERROR",
+          "generation_call": 2,
+          "prompt_characters": 6910,
+          "recorded_at_utc": "2026-06-28T20:00:06.566466+00:00",
+          "system_name": "agentic_rag",
+          "timeout_seconds": 900.0
+        }
+      },
+      "input": {
+        "expect_no_results": false,
+        "expected_relevant_ids": [
+          "university-of-manitoba-graduate-fellowship"
+        ],
+        "expected_statuses": {
+          "university-of-manitoba-graduate-fellowship": "eligible"
+        },
+        "profile": {
+          "country_of_residence": "Finland",
+          "fields_of_study": [
+            "Machine Learning"
+          ],
+          "gpa": 4.2,
+          "gpa_scale": 5.0,
+          "language_scores": {
+            "IELTS": 7.5
+          },
+          "nationality": "Nigerian",
+          "preferred_countries": [
+            "Canada"
+          ],
+          "requires_full_funding": false,
+          "target_degree_level": "phd",
+          "verified_manual_requirements": {
+            "university-of-manitoba-graduate-fellowship": [
+              "Confirm the applicant has achieved the official minimum admission GPA of 3.0 and any higher departmental threshold; the source page does not state the GPA scale.",
+              "Confirm the applicant is admitted to an eligible University of Manitoba master's or PhD programme and is not a pre-master's or occasional student.",
+              "Confirm the graduate programme is eligible for Tri-Agency funding.",
+              "Confirm the applicant's department or unit recommends the applicant for the fellowship.",
+              "Confirm the applicant will be registered full-time and progressing satisfactorily in the recommending unit.",
+              "Confirm the applicant satisfies the award-history, account-hold, grade, and concurrent-funding restrictions."
+            ]
+          },
+          "years_work_experience": 2.0
+        },
+        "query": "University of Manitoba Graduate Fellowship doctoral PhD 25000 per year Canada all citizenships"
+      },
+      "retrieval_stage": {
+        "candidate_count": 1,
+        "candidates": [
+          {
+            "assessment_note": "This eligibility status is a deterministic ScholarAgent screening result, not an official admission or funding decision.",
+            "candidate_role": "recommendation",
+            "citation_ids": [
+              "university-of-manitoba-graduate-fellowship:source_identity",
+              "university-of-manitoba-graduate-fellowship:host_countries",
+              "university-of-manitoba-graduate-fellowship:degree_levels",
+              "university-of-manitoba-graduate-fellowship:funding_type",
+              "university-of-manitoba-graduate-fellowship:eligible_nationalities",
+              "university-of-manitoba-graduate-fellowship:manual_review_requirements",
+              "university-of-manitoba-graduate-fellowship:eligibility_text"
+            ],
+            "eligibility_status": "eligible",
+            "evidence_count": 7,
+            "evidence_verified": true,
+            "official_url": "https://umanitoba.ca/graduate-studies/funding-awards/university-manitoba-graduate-fellowship-umgf",
+            "provider": "University of Manitoba",
+            "scholarship_id": "university-of-manitoba-graduate-fellowship",
+            "title": "University of Manitoba Graduate Fellowship"
+          }
+        ],
+        "final_query": "University of Manitoba Graduate Fellowship doctoral PhD 25000 per year Canada all citizenships",
+        "original_query": "University of Manitoba Graduate Fellowship doctoral PhD 25000 per year Canada all citizenships",
+        "query_rewrites": 0,
+        "retrieval_calls": 1
+      },
+      "title": "Generation timeout recovered through bounded fallback",
+      "trace_type": "transport_timeout_recovery",
+      "verification_stage": {
+        "audit_steps": [
+          {
+            "available_ids": [
+              "university-of-manitoba-graduate-fellowship:degree_levels",
+              "university-of-manitoba-graduate-fellowship:eligibility_text",
+              "university-of-manitoba-graduate-fellowship:eligible_nationalities",
+              "university-of-manitoba-graduate-fellowship:funding_type",
+              "university-of-manitoba-graduate-fellowship:host_countries",
+              "university-of-manitoba-graduate-fellowship:manual_review_requirements",
+              "university-of-manitoba-graduate-fellowship:source_identity"
+            ],
+            "bullet_count": 4,
+            "citation_required": true,
+            "cited_ids": [],
+            "errors": [
+              "The generated answer contains no citation markers.",
+              "Every bullet must end with at least one citation marker."
+            ],
+            "invalid_ids": [],
+            "passed": false,
+            "step": 1,
+            "uncited_bullet_count": 4
+          },
+          {
+            "available_ids": [
+              "university-of-manitoba-graduate-fellowship:degree_levels",
+              "university-of-manitoba-graduate-fellowship:eligibility_text",
+              "university-of-manitoba-graduate-fellowship:eligible_nationalities",
+              "university-of-manitoba-graduate-fellowship:funding_type",
+              "university-of-manitoba-graduate-fellowship:host_countries",
+              "university-of-manitoba-graduate-fellowship:manual_review_requirements",
+              "university-of-manitoba-graduate-fellowship:source_identity"
+            ],
+            "bullet_count": 0,
+            "citation_required": true,
+            "cited_ids": [],
+            "errors": [
+              "The generated answer contains no citation markers.",
+              "The generated answer is not formatted as 2 to 4 bullet points."
+            ],
+            "invalid_ids": [],
+            "passed": false,
+            "step": 2,
+            "uncited_bullet_count": 0
+          },
+          {
+            "available_ids": [
+              "university-of-manitoba-graduate-fellowship:degree_levels",
+              "university-of-manitoba-graduate-fellowship:eligibility_text",
+              "university-of-manitoba-graduate-fellowship:eligible_nationalities",
+              "university-of-manitoba-graduate-fellowship:funding_type",
+              "university-of-manitoba-graduate-fellowship:host_countries",
+              "university-of-manitoba-graduate-fellowship:manual_review_requirements",
+              "university-of-manitoba-graduate-fellowship:source_identity"
+            ],
+            "bullet_count": 4,
+            "citation_required": true,
+            "cited_ids": [
+              "university-of-manitoba-graduate-fellowship:source_identity",
+              "university-of-manitoba-graduate-fellowship:host_countries",
+              "university-of-manitoba-graduate-fellowship:funding_type",
+              "university-of-manitoba-graduate-fellowship:eligibility_text"
+            ],
+            "errors": [],
+            "invalid_ids": [],
+            "passed": true,
+            "step": 3,
+            "uncited_bullet_count": 0
+          }
+        ],
+        "fallback_used": true,
+        "final_citation_passed": true
+      }
+    }
+  ]
+}
