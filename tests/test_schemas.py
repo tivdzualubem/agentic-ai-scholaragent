@@ -121,3 +121,70 @@ def test_models_reject_unknown_fields() -> None:
             fields_of_study=["Artificial Intelligence"],
             private_note="must not be silently accepted",
         )
+
+
+def test_manual_review_requirements_are_normalized() -> None:
+    """Manual-review requirements should be cleaned and deduplicated."""
+    scholarship = ScholarshipRecord(
+        scholarship_id="manual-review-example",
+        title="Manual Review Scholarship",
+        provider="Example University",
+        official_url="https://example.edu/manual-review",
+        host_countries=["Finland"],
+        degree_levels=["master"],
+        manual_review_requirements=[
+            " Verify prior admission ",
+            "verify prior admission",
+            "",
+            "Confirm programme eligibility",
+        ],
+        source_last_checked="2026-06-28",
+        eligibility_text="Additional conditions require verification.",
+    )
+
+    assert scholarship.manual_review_requirements == [
+        "Verify prior admission",
+        "Confirm programme eligibility",
+    ]
+
+
+def test_verified_manual_requirements_are_normalized() -> None:
+    """Verified evidence should be scoped, cleaned and deduplicated."""
+    profile = StudentProfile(
+        nationality="Nigerian",
+        target_degree_level="phd",
+        fields_of_study=["Artificial Intelligence"],
+        verified_manual_requirements={
+            " anu-phd-scholarship ": [
+                " Confirm doctoral admission ",
+                "confirm doctoral admission",
+                "",
+                "Verify scholarship selection",
+            ],
+        },
+    )
+
+    assert profile.verified_manual_requirements == {
+        "anu-phd-scholarship": [
+            "Confirm doctoral admission",
+            "Verify scholarship selection",
+        ],
+    }
+
+
+def test_verified_manual_requirements_reject_invalid_id() -> None:
+    """Verified evidence must use a stable scholarship identifier."""
+    with pytest.raises(
+        ValidationError,
+        match="valid scholarship identifiers",
+    ):
+        StudentProfile(
+            nationality="Nigerian",
+            target_degree_level="phd",
+            fields_of_study=["Artificial Intelligence"],
+            verified_manual_requirements={
+                "Invalid Scholarship ID": [
+                    "Confirm doctoral admission",
+                ],
+            },
+        )

@@ -1,0 +1,966 @@
+{
+  "artifact_type": "final_held_out_retrieval_comparison",
+  "partition": "held_out_test",
+  "created_at_utc": "2026-06-28T16:51:38.309452+00:00",
+  "git_commit": "23b345aaaca531497bd75b3a78413f9092d716d3",
+  "parameter_selection_after_test": false,
+  "held_out_tuning_performed": false,
+  "benchmark": {
+    "path": "eval/datasets/held_out_benchmark.json",
+    "sha256": "60407eabc5415cc85c3c51b73dd6ecb1405530163a90194e1401de7fec3e6aaf",
+    "case_count": 24
+  },
+  "corpus": {
+    "path": "data/held_out/held_out_scholarships.json",
+    "sha256": "69a0858024d1853660b754bb4c223cb151ce554882be96483fffe9358955e4a2",
+    "record_count": 6
+  },
+  "frozen_settings": {
+    "path": "eval/config/frozen_retrieval_settings.json",
+    "sha256": "79ac757cda48eb310edb5fd004e12cc2106361d8f414c5cb0879e58f5081c700",
+    "embedding_model": "nomic-embed-text:latest",
+    "embedding_dimension": 768,
+    "dense_threshold": 0.6,
+    "top_k": 3,
+    "candidate_k": 9,
+    "rrf_constant": 60
+  },
+  "environment": {
+    "python": "3.12.3",
+    "ollama": "ollama version is 0.24.0"
+  },
+  "embedding_execution": {
+    "ollama_calls": 25,
+    "unique_texts_embedded": 30
+  },
+  "results": {
+    "benchmark_name": "ScholarAgent official held-out test benchmark",
+    "k": 3,
+    "embedding_model": "nomic-embed-text:latest",
+    "dense_threshold": 0.6,
+    "calibration_scope": "Final held-out test using parameters frozen before the held-out identities and labels were evaluated. No held-out tuning was performed.",
+    "retrievers": [
+      {
+        "retriever_name": "bm25",
+        "k": 3,
+        "positive_cases": 20,
+        "no_result_cases": 4,
+        "precision_at_k": 0.3333333333333333,
+        "recall_at_k": 1.0,
+        "mrr": 1.0,
+        "top1_hit_rate": 1.0,
+        "no_result_accuracy": 1.0,
+        "cases": [
+          {
+            "case_id": "eligible-bristol-master-verified",
+            "retrieved_ids": [
+              "bristol-think-big-scholarships-2026",
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-glasgow-master-verified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-aalto-bachelor-verified",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "glasgow-global-leadership-scholarship-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-waikato-master-verified",
+            "retrieved_ids": [
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "glasgow-global-leadership-scholarship-2026",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-manitoba-phd-verified",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-bristol-bachelor-unverified",
+            "retrieved_ids": [
+              "bristol-think-big-scholarships-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-glasgow-master-unverified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-aalto-master-unverified",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-waikato-bachelor-unverified",
+            "retrieved_ids": [
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-manitoba-master-unverified",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-bristol-phd-degree",
+            "retrieved_ids": [
+              "bristol-think-big-scholarships-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-glasgow-bachelor-degree",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-aalto-phd-degree",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-manitoba-bachelor-degree",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "bristol-think-big-scholarships-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-maastricht-low-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "university-of-manitoba-graduate-fellowship",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-ai-missing-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "glasgow-global-leadership-scholarship-2026",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-data-missing-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "aalto-university-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-economics-missing-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-health-missing-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "university-of-manitoba-graduate-fellowship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-engineering-missing-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "university-of-manitoba-graduate-fellowship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "no-result-lunar-botany",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-neptune-opera",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-mars-clockmaking",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-pluto-puppetry",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          }
+        ]
+      },
+      {
+        "retriever_name": "dense",
+        "k": 3,
+        "positive_cases": 20,
+        "no_result_cases": 4,
+        "precision_at_k": 0.3,
+        "recall_at_k": 0.9,
+        "mrr": 0.5916666666666667,
+        "top1_hit_rate": 0.4,
+        "no_result_accuracy": 1.0,
+        "cases": [
+          {
+            "case_id": "eligible-bristol-master-verified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "bristol-think-big-scholarships-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-glasgow-master-verified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-aalto-bachelor-verified",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "bristol-think-big-scholarships-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-waikato-master-verified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "bristol-think-big-scholarships-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-manitoba-phd-verified",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-bristol-bachelor-unverified",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-glasgow-master-unverified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-aalto-master-unverified",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-waikato-bachelor-unverified",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-manitoba-master-unverified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "university-of-manitoba-graduate-fellowship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-bristol-phd-degree",
+            "retrieved_ids": [
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "aalto-university-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-glasgow-bachelor-degree",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-aalto-phd-degree",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "bristol-think-big-scholarships-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-manitoba-bachelor-degree",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "glasgow-global-leadership-scholarship-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-maastricht-low-gpa",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-ai-missing-gpa",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "glasgow-global-leadership-scholarship-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-data-missing-gpa",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "bristol-think-big-scholarships-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-economics-missing-gpa",
+            "retrieved_ids": [
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "glasgow-global-leadership-scholarship-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-health-missing-gpa",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-engineering-missing-gpa",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "glasgow-global-leadership-scholarship-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "no-result-lunar-botany",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-neptune-opera",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-mars-clockmaking",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-pluto-puppetry",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          }
+        ]
+      },
+      {
+        "retriever_name": "hybrid_rrf",
+        "k": 3,
+        "positive_cases": 20,
+        "no_result_cases": 4,
+        "precision_at_k": 0.3333333333333333,
+        "recall_at_k": 1.0,
+        "mrr": 0.875,
+        "top1_hit_rate": 0.75,
+        "no_result_accuracy": 1.0,
+        "cases": [
+          {
+            "case_id": "eligible-bristol-master-verified",
+            "retrieved_ids": [
+              "bristol-think-big-scholarships-2026",
+              "glasgow-global-leadership-scholarship-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-glasgow-master-verified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-aalto-bachelor-verified",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-waikato-master-verified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-manitoba-phd-verified",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-bristol-bachelor-unverified",
+            "retrieved_ids": [
+              "bristol-think-big-scholarships-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-glasgow-master-unverified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-aalto-master-unverified",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-waikato-bachelor-unverified",
+            "retrieved_ids": [
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "aalto-university-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-manitoba-master-unverified",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-bristol-phd-degree",
+            "retrieved_ids": [
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-glasgow-bachelor-degree",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-aalto-phd-degree",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-manitoba-bachelor-degree",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-maastricht-low-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "aalto-university-excellence-scholarship",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-ai-missing-gpa",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-data-missing-gpa",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-economics-missing-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-health-missing-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "university-of-manitoba-graduate-fellowship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-engineering-missing-gpa",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "no-result-lunar-botany",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-neptune-opera",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-mars-clockmaking",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-pluto-puppetry",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "status": "frozen_after_calibration",
+  "created_at_utc": "2026-06-28T16:13:26.074007+00:00",
+  "held_out_test_used": false,
+  "embedding_model": "nomic-embed-text:latest",
+  "embedding_dimension": 768,
+  "dense_threshold": 0.6,
+  "top_k": 3,
+  "candidate_k": 9,
+  "rrf_constant": 60,
+  "selection_rule": "Maximize the equal-weight mean of dense top-1 hit rate, dense no-result accuracy, hybrid top-1 hit rate, and hybrid no-result accuracy. Break ties by dense MRR, hybrid MRR, dense Recall@3, then the highest threshold for more conservative abstention.",
+  "calibration_benchmark": {
+    "path": "eval/datasets/calibration_benchmark.json",
+    "sha256": "875f9c04374bda0a8ccbc0a75ea9bc3088fa27a417e95f41166180d560dcc057"
+  },
+  "calibration_corpus": {
+    "path": "data/calibration/calibration_scholarships.json",
+    "sha256": "a5675412ab9d96f1c95bdd9457ab5b23382270d494fc636de39cf371da74a58f"
+  },
+  "sweep_artifact": "eval/results/calibration_retrieval_threshold_sweep.json",
+  "limitations": [
+    "Settings were selected only on the calibration partition.",
+    "The held-out test partition has not been constructed or evaluated.",
+    "Calibration results are development evidence, not publication-level final performance."
+  ]
+}

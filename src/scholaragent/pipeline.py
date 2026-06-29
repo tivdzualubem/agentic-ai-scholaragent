@@ -11,7 +11,7 @@ from scholaragent.eligibility import (
     EligibilityStatus,
     assess_eligibility,
 )
-from scholaragent.retrieval import BM25ScholarshipIndex
+from scholaragent.retrieval import ScholarshipSearchIndex
 from scholaragent.schemas import ScholarshipRecord, StudentProfile
 
 
@@ -49,7 +49,7 @@ def search_and_screen(
     *,
     query: str,
     profile: StudentProfile,
-    index: BM25ScholarshipIndex,
+    index: ScholarshipSearchIndex,
     k: int = 5,
     as_of: date | None = None,
 ) -> ScholarshipSearchReport:

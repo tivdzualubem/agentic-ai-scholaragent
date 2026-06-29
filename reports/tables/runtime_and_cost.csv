@@ -1,0 +1,3 @@
+system,total_cases,total_latency_minutes,mean_latency_seconds,total_retrieval_calls,total_generation_calls,direct_hosted_api_fee_usd
+single_pass_rag,24,56.100574,140.251435,24,20,0.0
+agentic_rag,24,117.225518,293.063795,24,40,0.0

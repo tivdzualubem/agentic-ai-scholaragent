@@ -1,0 +1,116 @@
+{
+  "name": "ScholarAgent official-source development benchmark",
+  "description": "A small manually labelled development benchmark based on the committed official Erasmus Mundus, Swedish Institute, and University of Twente source snapshots. It validates software behavior and is not the final publication benchmark.",
+  "as_of": "2026-06-28",
+  "cases": [
+    {
+      "case_id": "erasmus-mundus-worldwide-masters",
+      "query": "Erasmus Mundus joint master's full scholarship for international students including travel visa and living allowance",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Artificial Intelligence",
+          "Data Science"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 1.0,
+        "preferred_countries": [],
+        "requires_full_funding": true
+      },
+      "relevant_ids": [
+        "erasmus-mundus-joint-masters"
+      ],
+      "expected_statuses": {
+        "erasmus-mundus-joint-masters": "potentially_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "si-global-professionals-expired-round",
+      "query": "Swedish Institute global professionals scholarship for STEM master's applicants with leadership and work experience full tuition monthly allowance",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Artificial Intelligence",
+          "Data Science"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 3.0,
+        "preferred_countries": [
+          "Sweden"
+        ],
+        "requires_full_funding": true
+      },
+      "relevant_ids": [
+        "si-global-professionals-2026"
+      ],
+      "expected_statuses": {
+        "si-global-professionals-2026": "not_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "twente-non-eu-masters",
+      "query": "University of Twente scholarship for non-EU MSc students in the Netherlands IELTS 6.5 award up to 22000 euros",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Artificial Intelligence",
+          "Data Science"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 1.0,
+        "preferred_countries": [
+          "Netherlands"
+        ],
+        "requires_full_funding": false
+      },
+      "relevant_ids": [
+        "university-twente-scholarship-2027"
+      ],
+      "expected_statuses": {
+        "university-twente-scholarship-2027": "potentially_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "official-corpus-no-match",
+      "query": "xylophone archaeology scholarship on Mars",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Archaeology"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {},
+        "years_work_experience": 0.0,
+        "preferred_countries": [],
+        "requires_full_funding": true
+      },
+      "relevant_ids": [],
+      "expected_statuses": {},
+      "expect_no_results": true
+    }
+  ]
+}

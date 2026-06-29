@@ -1,3 +1,25 @@
+from scholaragent.retrieval.base import (
+    ScholarshipSearchIndex,
+    ScholarshipSearchResult,
+)
+
+from scholaragent.retrieval.hybrid import (
+    HybridScholarshipIndex,
+    HybridSearchResult,
+)
+
+from scholaragent.retrieval.dense import (
+    DenseScholarshipIndex,
+    DenseSearchResult,
+    cosine_similarity,
+    scholarship_embedding_text,
+)
+from scholaragent.retrieval.embeddings import (
+    EmbeddingClientError,
+    EmbeddingProvider,
+    OllamaEmbeddingClient,
+)
+
 """Scholarship retrieval components."""
 
 from scholaragent.retrieval.bm25 import (
@@ -12,6 +34,17 @@ from scholaragent.retrieval.loader import (
 )
 
 __all__ = [
+    "ScholarshipSearchResult",
+    "ScholarshipSearchIndex",
+    "HybridSearchResult",
+    "HybridScholarshipIndex",
+    "DenseScholarshipIndex",
+    "DenseSearchResult",
+    "EmbeddingClientError",
+    "EmbeddingProvider",
+    "OllamaEmbeddingClient",
+    "cosine_similarity",
+    "scholarship_embedding_text",
     "BM25ScholarshipIndex",
     "ScholarshipDataError",
     "SearchResult",

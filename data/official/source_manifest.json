@@ -1,0 +1,37 @@
+{
+  "dataset": "data/official/official_scholarships.json",
+  "created_on": "2026-06-28",
+  "purpose": "Small official-source development corpus. It is not the final experimental benchmark.",
+  "records": [
+    {
+      "scholarship_id": "erasmus-mundus-joint-masters",
+      "snapshot_path": "data/sources/official/erasmus-mundus-joint-masters.json",
+      "source_url": "https://erasmus-plus.ec.europa.eu/opportunities/individuals/students/erasmus-mundus-joint-masters",
+      "source_type": "html",
+      "snapshot_title": "Erasmus Mundus Joint Masters (students) - Erasmus+",
+      "source_last_checked": "2026-06-28",
+      "content_sha256": "c06f3bd205a4a74c5fa3e0f4a50a034061b0f519dac7e0c5e662098baaa5b58c",
+      "byte_size": 195715
+    },
+    {
+      "scholarship_id": "si-global-professionals-2026",
+      "snapshot_path": "data/sources/official/si-global-professionals.json",
+      "source_url": "https://si.se/en/apply/scholarships/swedish-institute-scholarships-for-global-professionals/",
+      "source_type": "html",
+      "snapshot_title": "Scholarship for Global Professionals | Svenska institutet",
+      "source_last_checked": "2026-06-28",
+      "content_sha256": "d499e8fd92a385ccf2ad8bf8fbc5dbb1a3aba96c1ca11e6e257ef35c9a4768b3",
+      "byte_size": 173755
+    },
+    {
+      "scholarship_id": "university-twente-scholarship-2027",
+      "snapshot_path": "data/sources/official/university-twente-scholarship.json",
+      "source_url": "https://www.utwente.nl/en/education/scholarship-finder/university-of-twente-scholarship/",
+      "source_type": "html",
+      "snapshot_title": "University of Twente Scholarship (UTS) | Scholarship finder | University of Twente",
+      "source_last_checked": "2026-06-28",
+      "content_sha256": "1599fa4132bbd8230412dddc52a49d2b9f2a65522dbadbd492dc86930074aaa4",
+      "byte_size": 55284
+    }
+  ]
+}

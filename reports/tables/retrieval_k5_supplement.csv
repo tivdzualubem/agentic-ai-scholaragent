@@ -1,0 +1,4 @@
+retriever,k,precision_at_k,recall_at_k,mrr,top1_hit_rate,no_result_accuracy
+bm25,5,0.2,1.0,1.0,1.0,1.0
+dense,5,0.19,0.95,0.6041666666666667,0.4,1.0
+hybrid_rrf,5,0.2,1.0,0.875,0.75,1.0

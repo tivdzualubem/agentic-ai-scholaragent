@@ -1,0 +1,734 @@
+{
+  "name": "ScholarAgent official held-out test benchmark",
+  "description": "A frozen 24-case held-out benchmark over six official scholarship identities introduced only after retrieval parameters were selected. It contains 20 positive cases with five labels for each eligibility status and four unsupported no-result cases. The retrospective evaluation date is 2026-01-15 so all three scholarships with universal 2026 deadlines remain active. Eligible cases contain scholarship-scoped adjudicated manual evidence. The five insufficient-information cases use Maastricht's explicit 7.5/10 GPA rule. This benchmark must not be used for parameter, prompt, query, or threshold selection.",
+  "as_of": "2026-01-15",
+  "cases": [
+    {
+      "case_id": "eligible-bristol-master-verified",
+      "query": "University of Bristol Think Big scholarship international postgraduate tuition funding September 2026",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Artificial Intelligence"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "United Kingdom"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {
+          "bristol-think-big-scholarships-2026": [
+            "Confirm the applicant has applied for an eligible University of Bristol course starting in September 2026.",
+            "Confirm the applicant is classed as an overseas student for fee purposes.",
+            "Confirm the selected course appears in the official Think Big eligible-course list."
+          ]
+        }
+      },
+      "relevant_ids": [
+        "bristol-think-big-scholarships-2026"
+      ],
+      "expected_statuses": {
+        "bristol-think-big-scholarships-2026": "eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "eligible-glasgow-master-verified",
+      "query": "University of Glasgow Global Leadership Scholarship international taught masters tuition fee discount",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Data Science"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "United Kingdom"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {
+          "glasgow-global-leadership-scholarship-2026": [
+            "No structured nationality rule is available; inspect the official eligibility text.",
+            "Confirm the applicant has International or EU fee status.",
+            "Confirm the applicant holds an offer for an eligible full-time, one-year, in-person postgraduate taught master's programme starting in September 2026.",
+            "Confirm the applicant demonstrates academic excellence equivalent to UK first-class honours.",
+            "Confirm the proposed qualification and programme are not excluded by the official scholarship rules."
+          ]
+        }
+      },
+      "relevant_ids": [
+        "glasgow-global-leadership-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "glasgow-global-leadership-scholarship-2026": "eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "eligible-aalto-bachelor-verified",
+      "query": "Aalto University Excellence Scholarship Finland bachelor full tuition fee waiver competitive merit",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "bachelor",
+        "fields_of_study": [
+          "Computer Science"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Finland"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {
+          "aalto-university-excellence-scholarship": [
+            "No structured nationality rule is available; inspect the official eligibility text.",
+            "Confirm the applicant is liable to pay tuition fees and applied for the scholarship during the admission process.",
+            "Confirm the applicant satisfies the selected programme's admission and scholarship evaluation criteria.",
+            "Confirm the applicant is selected among the highest-achieving candidates through the competitive programme assessment.",
+            "Confirm the applicant accepts all scholarship terms by the programme-specific deadline.",
+            "Confirm the applicant can maintain the required full-time study progress for continuation in later academic years."
+          ]
+        }
+      },
+      "relevant_ids": [
+        "aalto-university-excellence-scholarship"
+      ],
+      "expected_statuses": {
+        "aalto-university-excellence-scholarship": "eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "eligible-waikato-master-verified",
+      "query": "University of Waikato Vice Chancellor International Excellence Scholarship postgraduate tuition 15000 New Zealand",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Civil Engineering"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "New Zealand"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {
+          "waikato-vice-chancellors-international-excellence-scholarship": [
+            "Confirm the applicant is enrolling at the University of Waikato for the first time.",
+            "Confirm the applicant has applied for or received an offer for an eligible undergraduate or taught postgraduate programme.",
+            "Confirm the application is submitted before the deadline for the applicant's intended trimester.",
+            "Confirm the applicant demonstrates excellent academic achievement under the official selection process."
+          ]
+        }
+      },
+      "relevant_ids": [
+        "waikato-vice-chancellors-international-excellence-scholarship"
+      ],
+      "expected_statuses": {
+        "waikato-vice-chancellors-international-excellence-scholarship": "eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "eligible-manitoba-phd-verified",
+      "query": "University of Manitoba Graduate Fellowship doctoral PhD 25000 per year Canada all citizenships",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "phd",
+        "fields_of_study": [
+          "Machine Learning"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Canada"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {
+          "university-of-manitoba-graduate-fellowship": [
+            "Confirm the applicant has achieved the official minimum admission GPA of 3.0 and any higher departmental threshold; the source page does not state the GPA scale.",
+            "Confirm the applicant is admitted to an eligible University of Manitoba master's or PhD programme and is not a pre-master's or occasional student.",
+            "Confirm the graduate programme is eligible for Tri-Agency funding.",
+            "Confirm the applicant's department or unit recommends the applicant for the fellowship.",
+            "Confirm the applicant will be registered full-time and progressing satisfactorily in the recommending unit.",
+            "Confirm the applicant satisfies the award-history, account-hold, grade, and concurrent-funding restrictions."
+          ]
+        }
+      },
+      "relevant_ids": [
+        "university-of-manitoba-graduate-fellowship"
+      ],
+      "expected_statuses": {
+        "university-of-manitoba-graduate-fellowship": "eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "potential-bristol-bachelor-unverified",
+      "query": "Bristol Think Big international undergraduate scholarship tuition fees",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "bachelor",
+        "fields_of_study": [
+          "Economics"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "United Kingdom"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "bristol-think-big-scholarships-2026"
+      ],
+      "expected_statuses": {
+        "bristol-think-big-scholarships-2026": "potentially_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "potential-glasgow-master-unverified",
+      "query": "Glasgow Global Leadership award postgraduate taught masters any discipline international fee student",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "International Development"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "United Kingdom"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "glasgow-global-leadership-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "glasgow-global-leadership-scholarship-2026": "potentially_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "potential-aalto-master-unverified",
+      "query": "Aalto Excellence Scholarship master Finland full tuition waiver highest achieving applicants",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Artificial Intelligence"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Finland"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "aalto-university-excellence-scholarship"
+      ],
+      "expected_statuses": {
+        "aalto-university-excellence-scholarship": "potentially_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "potential-waikato-bachelor-unverified",
+      "query": "Waikato Vice Chancellor international undergraduate excellence scholarship New Zealand tuition",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "bachelor",
+        "fields_of_study": [
+          "Engineering"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "New Zealand"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "waikato-vice-chancellors-international-excellence-scholarship"
+      ],
+      "expected_statuses": {
+        "waikato-vice-chancellors-international-excellence-scholarship": "potentially_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "potential-manitoba-master-unverified",
+      "query": "Manitoba Graduate Fellowship masters Canada 20000 annually all citizenships",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Data Science"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Canada"
+        ],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "university-of-manitoba-graduate-fellowship"
+      ],
+      "expected_statuses": {
+        "university-of-manitoba-graduate-fellowship": "potentially_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "not-eligible-bristol-phd-degree",
+      "query": "Bristol Think Big international tuition scholarship undergraduate postgraduate",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "phd",
+        "fields_of_study": [
+          "Artificial Intelligence"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "bristol-think-big-scholarships-2026"
+      ],
+      "expected_statuses": {
+        "bristol-think-big-scholarships-2026": "not_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "not-eligible-glasgow-bachelor-degree",
+      "query": "Glasgow Global Leadership Scholarship taught masters tuition discount",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "bachelor",
+        "fields_of_study": [
+          "Computer Science"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "glasgow-global-leadership-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "glasgow-global-leadership-scholarship-2026": "not_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "not-eligible-aalto-phd-degree",
+      "query": "Aalto University Excellence Scholarship full tuition waiver Finland",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "phd",
+        "fields_of_study": [
+          "Machine Learning"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "aalto-university-excellence-scholarship"
+      ],
+      "expected_statuses": {
+        "aalto-university-excellence-scholarship": "not_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "not-eligible-manitoba-bachelor-degree",
+      "query": "University Manitoba Graduate Fellowship masters doctoral annual award",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "bachelor",
+        "fields_of_study": [
+          "Engineering"
+        ],
+        "gpa": 4.2,
+        "gpa_scale": 5.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [],
+        "requires_full_funding": false,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "university-of-manitoba-graduate-fellowship"
+      ],
+      "expected_statuses": {
+        "university-of-manitoba-graduate-fellowship": "not_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "not-eligible-maastricht-low-gpa",
+      "query": "Maastricht NL High Potential full scholarship master tuition stipend GPA 7.5",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Data Science"
+        ],
+        "gpa": 7.0,
+        "gpa_scale": 10.0,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Netherlands"
+        ],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "maastricht-university-nl-high-potential-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "maastricht-university-nl-high-potential-scholarship-2026": "not_eligible"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "insufficient-maastricht-ai-missing-gpa",
+      "query": "Maastricht University NL High Potential master artificial intelligence full scholarship",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Artificial Intelligence"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Netherlands"
+        ],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "maastricht-university-nl-high-potential-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "maastricht-university-nl-high-potential-scholarship-2026": "insufficient_information"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "insufficient-maastricht-data-missing-gpa",
+      "query": "Maastricht High Potential scholarship data science tuition waiver stipend",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Nigeria",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Data Science"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Netherlands"
+        ],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "maastricht-university-nl-high-potential-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "maastricht-university-nl-high-potential-scholarship-2026": "insufficient_information"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "insufficient-maastricht-economics-missing-gpa",
+      "query": "Maastricht Netherlands full scholarship international economics masters",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Ghana",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Economics"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Netherlands"
+        ],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "maastricht-university-nl-high-potential-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "maastricht-university-nl-high-potential-scholarship-2026": "insufficient_information"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "insufficient-maastricht-health-missing-gpa",
+      "query": "NL High Potential Maastricht public health master monthly stipend",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Kenya",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Public Health"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Netherlands"
+        ],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "maastricht-university-nl-high-potential-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "maastricht-university-nl-high-potential-scholarship-2026": "insufficient_information"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "insufficient-maastricht-engineering-missing-gpa",
+      "query": "Maastricht University High Potential engineering master full funding",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Cameroon",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Engineering"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [
+          "Netherlands"
+        ],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [
+        "maastricht-university-nl-high-potential-scholarship-2026"
+      ],
+      "expected_statuses": {
+        "maastricht-university-nl-high-potential-scholarship-2026": "insufficient_information"
+      },
+      "expect_no_results": false
+    },
+    {
+      "case_id": "no-result-lunar-botany",
+      "query": "selenian moon botany crystal greenhouse grant",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Interplanetary Archaeology"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [],
+      "expected_statuses": {},
+      "expect_no_results": true
+    },
+    {
+      "case_id": "no-result-neptune-opera",
+      "query": "neptunian underwater opera vocal academy bursary",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Interplanetary Archaeology"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [],
+      "expected_statuses": {},
+      "expect_no_results": true
+    },
+    {
+      "case_id": "no-result-mars-clockmaking",
+      "query": "martian chronometer clockmaking fellowship red planet",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Interplanetary Archaeology"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [],
+      "expected_statuses": {},
+      "expect_no_results": true
+    },
+    {
+      "case_id": "no-result-pluto-puppetry",
+      "query": "plutonian shadow puppetry marionette endowment",
+      "profile": {
+        "nationality": "Nigerian",
+        "country_of_residence": "Finland",
+        "target_degree_level": "master",
+        "fields_of_study": [
+          "Interplanetary Archaeology"
+        ],
+        "gpa": null,
+        "gpa_scale": null,
+        "language_scores": {
+          "IELTS": 7.5
+        },
+        "years_work_experience": 2.0,
+        "preferred_countries": [],
+        "requires_full_funding": true,
+        "verified_manual_requirements": {}
+      },
+      "relevant_ids": [],
+      "expected_statuses": {},
+      "expect_no_results": true
+    }
+  ]
+}

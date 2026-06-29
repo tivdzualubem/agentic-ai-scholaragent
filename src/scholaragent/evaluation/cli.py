@@ -58,6 +58,10 @@ def main() -> None:
     print(f"Cases: {summary.total_cases}")
     print(f"Positive cases: {summary.positive_cases}")
     print(f"No-result cases: {summary.no_result_cases}")
+    print(
+        "Actionable screening cases: "
+        f"{summary.screened_actionable_cases}"
+    )
     print()
     print(
         f"BM25 Precision@{summary.k}: "
@@ -72,14 +76,88 @@ def main() -> None:
         "BM25 top-1 hit rate: "
         f"{summary.bm25_top1_hit_rate:.4f}"
     )
-    print(
-        "Screened top-1 hit rate: "
+    screened_rate = (
         f"{summary.screened_top1_hit_rate:.4f}"
+        if summary.screened_top1_hit_rate is not None
+        else "n/a"
+    )
+
+    print(
+        "Actionable screened top-1 hit rate: "
+        f"{screened_rate}"
+    )
+    eligibility_accuracy = (
+        f"{summary.eligibility_status_accuracy:.4f}"
+        if summary.eligibility_status_accuracy
+        is not None
+        else "n/a"
+    )
+
+    macro_precision = (
+        f"{summary.eligibility_macro_precision:.4f}"
+        if summary.eligibility_macro_precision
+        is not None
+        else "n/a"
+    )
+
+    macro_recall = (
+        f"{summary.eligibility_macro_recall:.4f}"
+        if summary.eligibility_macro_recall
+        is not None
+        else "n/a"
+    )
+
+    macro_f1 = (
+        f"{summary.eligibility_macro_f1:.4f}"
+        if summary.eligibility_macro_f1
+        is not None
+        else "n/a"
+    )
+
+    weighted_f1 = (
+        f"{summary.eligibility_weighted_f1:.4f}"
+        if summary.eligibility_weighted_f1
+        is not None
+        else "n/a"
+    )
+
+    print(
+        "Eligibility evaluated labels: "
+        f"{summary.eligibility_evaluated_labels}"
     )
     print(
         "Eligibility status accuracy: "
-        f"{summary.eligibility_status_accuracy:.4f}"
+        f"{eligibility_accuracy}"
     )
+    print(
+        "Eligibility macro precision: "
+        f"{macro_precision}"
+    )
+    print(
+        "Eligibility macro recall: "
+        f"{macro_recall}"
+    )
+    print(
+        "Eligibility macro F1: "
+        f"{macro_f1}"
+    )
+    print(
+        "Eligibility weighted F1: "
+        f"{weighted_f1}"
+    )
+
+    print("Eligibility metrics by status:")
+
+    for status, metrics in (
+        summary.eligibility_per_status.items()
+    ):
+        print(
+            f"  {status}: "
+            f"support={metrics.support}, "
+            f"precision={metrics.precision:.4f}, "
+            f"recall={metrics.recall:.4f}, "
+            f"f1={metrics.f1:.4f}"
+        )
 
     if summary.no_result_accuracy is not None:
         print(

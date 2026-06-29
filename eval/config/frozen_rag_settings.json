@@ -1,0 +1,185 @@
+{
+  "status": "held_out_rag_evaluation_completed",
+  "partition": "held_out_test",
+  "source_commit": "26ed0ee0730ba6ea1c3f0712cb974da9ab1bc71b",
+  "held_out_rag_test_used": true,
+  "parameter_selection_after_test": false,
+  "held_out_tuning_permitted": false,
+  "inputs": {
+    "benchmark": {
+      "path": "eval/datasets/held_out_benchmark.json",
+      "sha256": "60407eabc5415cc85c3c51b73dd6ecb1405530163a90194e1401de7fec3e6aaf"
+    },
+    "corpus": {
+      "path": "data/held_out/held_out_scholarships.json",
+      "sha256": "69a0858024d1853660b754bb4c223cb151ce554882be96483fffe9358955e4a2"
+    },
+    "retrieval_settings": {
+      "path": "eval/config/frozen_retrieval_settings.json",
+      "sha256": "79ac757cda48eb310edb5fd004e12cc2106361d8f414c5cb0879e58f5081c700"
+    },
+    "retrieval_results": {
+      "path": "eval/results/held_out_retrieval_comparison.json",
+      "sha256": "5c75b1ff8318d556d6efe732ce89b7f4d5ebd7232b6430a22eb6905c97d7e02b"
+    }
+  },
+  "generator": {
+    "model": "tinyllama:latest",
+    "temperature": 0.0,
+    "timeout_seconds": 900.0
+  },
+  "retrieval": {
+    "embedding_model": "nomic-embed-text:latest",
+    "embedding_dimension": 768,
+    "dense_threshold": 0.6,
+    "top_k": 3,
+    "candidate_k": 9,
+    "candidate_k_resolution": "HybridScholarshipIndex.search receives candidate_k=None and deterministically computes max(top_k * 3, top_k), which equals 9 when top_k is 3.",
+    "rrf_constant": 60,
+    "rrf_resolution": "HybridScholarshipIndex constructor default is 60 and was verified before held-out RAG execution."
+  },
+  "agent_budgets": {
+    "max_retrieval_attempts": 2,
+    "max_generation_attempts": 2
+  },
+  "systems": [
+    {
+      "name": "single_pass_rag",
+      "description": "One retrieval call and at most one generation call, with deterministic citation auditing and no repair."
+    },
+    {
+      "name": "agentic_rag",
+      "description": "Bounded retrieval rewriting, one citation repair opportunity, deterministic citation verification, and verified fallback after the generation budget is exhausted."
+    }
+  ],
+  "metrics": [
+    "positive_completion_rate",
+    "positive_citation_pass_rate",
+    "positive_relevant_grounding_rate",
+    "positive_relevant_citation_rate",
+    "no_result_accuracy",
+    "mean_latency_seconds",
+    "mean_retrieval_calls",
+    "mean_generation_calls",
+    "mean_query_rewrites",
+    "mean_repair_attempts",
+    "positive_fallback_rate"
+  ],
+  "ablation_plan": {
+    "retrieval": {
+      "method": "Use the already frozen held-out BM25, dense, and hybrid RRF comparison artifact.",
+      "artifact": "eval/results/held_out_retrieval_comparison.json",
+      "no_rerun": true
+    },
+    "query_rewriting": {
+      "method": "Measure observed query-rewrite frequency in the full Agentic RAG trace. If no case is rewritten, report zero observed contribution on this benchmark and do not manufacture an effect. If one or more cases are rewritten, rerun only those predetermined affected cases with max_retrieval_attempts=1 and all other settings unchanged.",
+      "selection_rule_frozen_before_test": true
+    },
+    "citation_repair": {
+      "method": "Derive the no-repair counterfactual from each full-run audit history. The initial audit is the state before repair. Cases whose initial audit fails are treated as proceeding directly to the same deterministic fallback; no additional LLM sampling is required.",
+      "trace_derived": true
+    },
+    "deterministic_fallback": {
+      "method": "Derive the no-fallback counterfactual from the full run. Any completed_fallback case is classified as citation_failed, while direct or repaired completions and abstentions are left unchanged.",
+      "trace_derived": true
+    }
+  },
+  "interpretation_constraints": [
+    "Fallback-completed answers must be reported separately from direct LLM completions.",
+    "A perfect citation rate caused by deterministic fallback must not be described as successful TinyLlama citation generation.",
+    "No prompt, model, threshold, retrieval setting, budget, or ablation rule may be changed after held-out RAG results are observed.",
+    "BM25's held-out retrieval advantage is specific to this small lexically distinctive corpus and must not be presented as universal superiority."
+  ],
+  "planned_outputs": {
+    "comparison": "eval/results/held_out_rag_comparison.json",
+    "ablation": "eval/results/held_out_rag_ablation.json"
+  },
+  "held_out_rag_test_completed": true,
+  "operational_parameter_amendment_after_partial_start": true,
+  "preregistration_commit": "07b9b44f12d09e60736d0bc2609a653e89060867",
+  "operational_amendment": {
+    "amendment_type": "transport_timeout_only",
+    "original_timeout_seconds": 240.0,
+    "amended_timeout_seconds": 900.0,
+    "reason": "CPU inference completed the first 8,132-character TinyLlama request in 234.67 seconds, leaving only 5.33 seconds before the original transport timeout. The following agentic request exceeded 240 seconds and was terminated by the HTTP client.",
+    "execution_state_before_amendment": {
+      "completed_baseline_cases": 1,
+      "completed_agentic_cases": 0,
+      "final_comparison_generated": false,
+      "final_ablation_generated": false,
+      "aggregate_rag_metrics_observed": false,
+      "partial_case_output_observed": true
+    },
+    "selection_basis": "The amendment is based only on wall-clock transport failure on CPU, not on answer quality, citation performance, retrieval performance, or benchmark labels.",
+    "unchanged_settings": [
+      "generator model",
+      "generation temperature",
+      "prompts",
+      "benchmark",
+      "scholarship corpus",
+      "embedding model",
+      "dense threshold",
+      "top-k",
+      "candidate-k",
+      "RRF constant",
+      "maximum retrieval attempts",
+      "maximum generation attempts",
+      "ablation rules"
+    ],
+    "checkpoint_policy": "The successfully completed first baseline case is preserved. The failed agentic request produced no saved result and will be rerun with the longer transport timeout."
+  },
+  "generation_failure_policy_amendment_after_partial_start": true,
+  "generation_failure_policy": {
+    "policy": "Treat an Ollama transport timeout or client transport error as a failed LLM generation attempt.",
+    "baseline_behavior": "Return a fixed non-factual failure marker. Citation auditing will classify the baseline answer as citation_failed.",
+    "agentic_behavior": "Return the same fixed non-factual failure marker. The citation audit will fail, the bounded generation budget will continue or terminate, and the existing verified deterministic fallback will be used after the budget is exhausted.",
+    "failure_marker": "GENERATION_FAILED_DUE_TO_OLLAMA_TRANSPORT_ERROR",
+    "timeout_seconds": 900.0,
+    "retry_beyond_existing_generation_budget": false,
+    "reason": "The Manitoba agentic citation-repair request exceeded the amended 900-second timeout on two separate executions. Other TinyLlama requests completed successfully, indicating an intermittent or prompt-specific Ollama generation stall rather than general CPU infeasibility.",
+    "execution_state_before_amendment": {
+      "completed_baseline_cases": 5,
+      "completed_agentic_cases": 4,
+      "completed_raw_agentic_results": 4,
+      "failed_case": "eligible-manitoba-phd-verified",
+      "failed_stage": "second agentic citation-repair generation",
+      "observed_timeout_count_for_failed_stage": 2,
+      "final_comparison_generated": false,
+      "final_ablation_generated": false
+    },
+    "selection_basis": "This policy addresses repeated transport failure only. It was not selected using answer correctness, citation scores, eligibility labels, retrieval metrics, or aggregate held-out RAG results.",
+    "unchanged_settings": [
+      "generator model",
+      "generation temperature",
+      "900-second request timeout",
+      "prompts",
+      "benchmark",
+      "scholarship corpus",
+      "embedding model",
+      "dense threshold",
+      "top-k",
+      "candidate-k",
+      "RRF constant",
+      "maximum retrieval attempts",
+      "maximum generation attempts",
+      "citation verification rules",
+      "deterministic fallback construction",
+      "ablation rules"
+    ],
+    "reporting_requirement": "Final artifacts must report transport failures separately and must not describe timeout-recovered fallback answers as successful LLM generations.",
+    "amendment_commit_parent": "307200829eb8e57d709591d27bd92cb26ed7c3f4"
+  },
+  "completion_metadata": {
+    "completed_at_utc": "2026-06-29T07:34:05.297223+00:00",
+    "baseline_cases": 24,
+    "agentic_cases": 24,
+    "positive_cases": 20,
+    "no_result_cases": 4,
+    "recorded_transport_failures": 1,
+    "post_test_tuning_performed": false,
+    "final_outputs": [
+      "eval/results/held_out_rag_comparison.json",
+      "eval/results/held_out_rag_ablation.json"
+    ]
+  }
+}
