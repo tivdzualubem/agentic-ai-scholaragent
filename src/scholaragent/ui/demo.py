@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from difflib import SequenceMatcher
 from datetime import date
 from enum import StrEnum
 from pathlib import Path
@@ -48,11 +49,48 @@ def _normalized_phrase(value: str) -> str:
     )
 
 
+def _fuzzy_phrase_match(
+    query: str,
+    phrase: str,
+    *,
+    threshold: float = 0.86,
+) -> bool:
+    """Match a named entity despite small spelling mistakes."""
+    query_tokens = query.split()
+    phrase_tokens = phrase.split()
+
+    if len(phrase_tokens) < 2:
+        return False
+
+    window_sizes = {
+        max(2, len(phrase_tokens) - 1),
+        len(phrase_tokens),
+        len(phrase_tokens) + 1,
+    }
+
+    for size in window_sizes:
+        for start in range(len(query_tokens) - size + 1):
+            window = " ".join(
+                query_tokens[start:start + size]
+            )
+
+            ratio = SequenceMatcher(
+                None,
+                window,
+                phrase,
+            ).ratio()
+
+            if ratio >= threshold:
+                return True
+
+    return False
+
+
 def _is_explicit_target(
     query: str,
     scholarship: ScholarshipRecord,
 ) -> bool:
-    """Detect an explicitly named provider or scholarship title."""
+    """Detect exact or slightly misspelled named targets."""
     normalized_query = _normalized_phrase(query)
 
     phrases = (
@@ -65,7 +103,13 @@ def _is_explicit_target(
 
     return any(
         len(phrase.split()) >= 2
-        and phrase in normalized_query
+        and (
+            phrase in normalized_query
+            or _fuzzy_phrase_match(
+                normalized_query,
+                phrase,
+            )
+        )
         for phrase in phrases
     )
 
