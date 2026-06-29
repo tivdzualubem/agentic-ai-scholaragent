@@ -220,3 +220,34 @@ relevant-citation rate was `0.70`. The result must not be described as
 This artifact is descriptive rather than independent confirmatory
 evidence because it reuses stored held-out traces after completion of the
 primary experiment.
+
+## Held-out runtime and cost summary
+
+`held_out_runtime_cost_summary.json` is a deterministic descriptive
+summary derived from the completed held-out RAG evaluation. It performs
+no new model calls and is not independent confirmatory evidence.
+
+| Metric | Single-pass RAG | Agentic RAG |
+|---|---:|---:|
+| Evaluated cases | 24 | 24 |
+| Total runtime, minutes | 56.1006 | 117.2255 |
+| Mean latency, seconds | 140.2514 | 293.0638 |
+| Retrieval calls | 24 | 24 |
+| Generation calls | 20 | 40 |
+| Positive completion | 0.00 | 1.00 |
+| Citation-audit pass | 0.00 | 1.00 |
+| Relevant citation | 0.05 | 0.70 |
+| Positive fallback rate | 0.00 | 1.00 |
+
+Agentic RAG required approximately `2.09` times the total wall-clock
+runtime and twice the generation calls of single-pass RAG.
+
+The direct hosted-model API fee was `$0.00` because generation and
+embedding inference ran locally through Ollama. This does not imply zero
+total computation cost. Electricity, hardware depreciation, operator
+time, CPU opportunity cost and internet access were not monetized.
+
+One Agentic RAG generation attempt reached the frozen 900-second timeout.
+The failure was converted into the predefined non-factual transport-error
+marker and processed as a failed bounded generation attempt before
+verified deterministic fallback.

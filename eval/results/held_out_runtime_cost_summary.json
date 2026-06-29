@@ -1,0 +1,121 @@
+{
+  "artifact_type": "held_out_runtime_and_cost_summary",
+  "comparison": {
+    "agentic_minus_single_pass": {
+      "mean_latency_seconds": 152.81236,
+      "positive_citation_pass_rate": 1.0,
+      "positive_completion_rate": 1.0,
+      "positive_relevant_citation_rate": 0.65,
+      "total_generation_calls": 20,
+      "total_latency_minutes": 61.124944,
+      "total_latency_seconds": 3667.496638
+    },
+    "agentic_to_single_pass_ratios": {
+      "generation_calls": 2.0,
+      "mean_latency": 2.08956,
+      "total_latency": 2.08956
+    }
+  },
+  "cost_accounting": {
+    "direct_hosted_model_api_fee_usd": 0.0,
+    "interpretation": "The zero-dollar figure represents direct hosted API fees only. It must not be interpreted as zero total computation cost.",
+    "not_monetized": [
+      "electricity consumption",
+      "hardware purchase or depreciation",
+      "CPU opportunity cost",
+      "operator time",
+      "internet access"
+    ],
+    "reason": "Generation and embedding inference were executed locally through Ollama rather than a metered hosted model API.",
+    "resource_proxies_reported": [
+      "wall-clock latency",
+      "retrieval calls",
+      "generation calls",
+      "repair attempts",
+      "transport timeouts"
+    ]
+  },
+  "created_at_utc": "2026-06-29T09:48:41.695460+00:00",
+  "evaluation_constraints": {
+    "description": "This artifact is a deterministic descriptive summary of the completed held-out execution.",
+    "held_out_tuning_performed": false,
+    "independent_confirmatory_evidence": false,
+    "new_model_calls_for_this_artifact": false,
+    "parameter_selection_after_test": false
+  },
+  "measurement_scope": {
+    "cases": 24,
+    "embedding_model": "nomic-embed-text:latest",
+    "execution_device": "CPU",
+    "generation_timeout_seconds": 900.0,
+    "generator_model": "tinyllama:latest",
+    "ollama": "ollama version is 0.24.0",
+    "python": "3.12.3",
+    "temperature": 0.0
+  },
+  "partition": "held_out_test",
+  "source": {
+    "path": "eval/results/held_out_rag_comparison.json",
+    "sha256": "2b85ff126a10d54ea32fe7acf710b8bd5131faec0e041446c5a6ce87a39aada0"
+  },
+  "systems": [
+    {
+      "direct_hosted_api_fee_usd": 0.0,
+      "mean_generation_calls": 0.8333333333333334,
+      "mean_latency_seconds": 140.251435,
+      "mean_repair_attempts": 0.0,
+      "mean_retrieval_calls": 1.0,
+      "no_result_cases": 4,
+      "positive_cases": 20,
+      "positive_citation_pass_rate": 0.0,
+      "positive_completion_rate": 0.0,
+      "positive_fallback_rate": 0.0,
+      "positive_relevant_citation_rate": 0.05,
+      "system_name": "single_pass_rag",
+      "total_cases": 24,
+      "total_generation_calls": 20,
+      "total_latency_hours": 0.93501,
+      "total_latency_minutes": 56.100574,
+      "total_latency_seconds": 3366.034447,
+      "total_retrieval_calls": 24
+    },
+    {
+      "direct_hosted_api_fee_usd": 0.0,
+      "mean_generation_calls": 1.6666666666666667,
+      "mean_latency_seconds": 293.063795,
+      "mean_repair_attempts": 0.8333333333333334,
+      "mean_retrieval_calls": 1.0,
+      "no_result_cases": 4,
+      "positive_cases": 20,
+      "positive_citation_pass_rate": 1.0,
+      "positive_completion_rate": 1.0,
+      "positive_fallback_rate": 1.0,
+      "positive_relevant_citation_rate": 0.7,
+      "system_name": "agentic_rag",
+      "total_cases": 24,
+      "total_generation_calls": 40,
+      "total_latency_hours": 1.953759,
+      "total_latency_minutes": 117.225518,
+      "total_latency_seconds": 7033.531085,
+      "total_retrieval_calls": 24
+    }
+  ],
+  "transport_failure_summary": {
+    "count": 1,
+    "events": [
+      {
+        "case_id": "eligible-manitoba-phd-verified",
+        "elapsed_seconds": 900.0794622969988,
+        "error_message": "Ollama request timed out after 900.0 seconds.",
+        "error_type": "OllamaClientError",
+        "failure_marker": "GENERATION_FAILED_DUE_TO_OLLAMA_TRANSPORT_ERROR",
+        "generation_call": 2,
+        "prompt_characters": 6910,
+        "recorded_at_utc": "2026-06-28T20:00:06.566466+00:00",
+        "system_name": "agentic_rag",
+        "timeout_seconds": 900.0
+      }
+    ],
+    "handling": "Each transport failure was converted into the preregistered non-factual failure marker and processed as a failed bounded generation attempt."
+  }
+}

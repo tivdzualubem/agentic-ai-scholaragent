@@ -394,3 +394,25 @@ This counterfactual:
 - is not independent confirmatory evidence;
 - measures the safety consequence of accepting first-pass generation
   without enforcing the citation policy.
+
+## Runtime and cost accounting
+
+Runtime and resource-use reporting is derived from the completed
+held-out execution traces.
+
+The reported resource proxies are:
+
+- total and mean wall-clock latency;
+- retrieval-call count;
+- generation-call count;
+- repair-attempt count;
+- fallback rate;
+- transport-timeout count.
+
+The direct hosted-model API fee is recorded as zero because all model
+inference was performed locally with Ollama. Electricity, hardware,
+operator time, CPU opportunity cost and internet access are explicitly
+excluded from the monetary estimate.
+
+Therefore, the zero-dollar value means zero direct hosted API fees only;
+it must not be interpreted as zero total computational cost.
