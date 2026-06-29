@@ -1,3 +1,21 @@
+---
+title: ScholarAgent
+emoji: 🎓
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+app_port: 7860
+suggested_hardware: cpu-basic
+startup_duration_timeout: 1h
+short_description: Evidence-grounded scholarship discovery and eligibility verification
+tags:
+  - agentic-ai
+  - rag
+  - scholarships
+  - streamlit
+  - ollama
+---
+
 # ScholarAgent
 
 ScholarAgent is an evidence-grounded Agentic RAG system for scholarship discovery and eligibility verification.
@@ -58,3 +76,19 @@ CPU-only hardware.
 
 See docs/demo.md for the complete demonstration protocol and
 interpretation limits.
+
+## Free Full-Stack Deployment
+
+The Docker image includes Streamlit, BM25 retrieval, dense embeddings,
+hybrid RRF retrieval, TinyLlama generation, eligibility screening,
+citation verification, deterministic fallback, and safe abstention.
+
+Build and run locally:
+
+    docker build -t scholaragent:full-stack .
+    docker run --rm -p 7860:7860 scholaragent:full-stack
+
+Open `http://localhost:7860`.
+
+The full Agentic RAG mode uses TinyLlama and hybrid retrieval. The fast
+verified mode remains available for reliable CPU-only demonstrations.
