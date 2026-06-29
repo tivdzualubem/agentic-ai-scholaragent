@@ -11,6 +11,12 @@ ScholarAgent is an evidence-grounded Agentic RAG system for scholarship discover
 
 The system will retrieve scholarship information from trusted sources, evaluate eligibility against a structured student profile, verify supporting evidence, and return cited and explainable recommendations.
 
+## Final Technical Report
+
+The completed project report is available here:
+
+- [ScholarAgent Final Report](reports/ScholarAgent_Final_Report.pdf)
+
 ## Working demonstration UI
 
 ScholarAgent includes a Streamlit application for:
