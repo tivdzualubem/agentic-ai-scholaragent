@@ -2,9 +2,11 @@
 
 from __future__ import annotations
 
+from dataclasses import dataclass
 from datetime import date
 from enum import StrEnum
 from pathlib import Path
+import re
 
 from pydantic import BaseModel, ConfigDict, Field
 
@@ -20,7 +22,7 @@ from scholaragent.retrieval import (
     ScholarshipSearchIndex,
     load_scholarships,
 )
-from scholaragent.schemas import StudentProfile
+from scholaragent.schemas import ScholarshipRecord, StudentProfile
 
 
 DEFAULT_GENERATOR_MODEL = "tinyllama:latest"
@@ -29,6 +31,131 @@ DEFAULT_DENSE_THRESHOLD = 0.60
 DEFAULT_RRF_CONSTANT = 60
 DEFAULT_TOP_K = 3
 DEFAULT_TIMEOUT_SECONDS = 900.0
+
+
+@dataclass(frozen=True, slots=True)
+class DemoSearchResult:
+    """Normalized result returned by the demo intent-locking layer."""
+
+    scholarship: ScholarshipRecord
+    score: float
+    rank: int
+
+
+def _normalized_phrase(value: str) -> str:
+    return " ".join(
+        re.findall(r"[a-z0-9]+", value.casefold())
+    )
+
+
+def _is_explicit_target(
+    query: str,
+    scholarship: ScholarshipRecord,
+) -> bool:
+    """Detect an explicitly named provider or scholarship title."""
+    normalized_query = _normalized_phrase(query)
+
+    phrases = (
+        _normalized_phrase(scholarship.provider),
+        _normalized_phrase(scholarship.title),
+        _normalized_phrase(
+            scholarship.scholarship_id.replace("-", " ")
+        ),
+    )
+
+    return any(
+        len(phrase.split()) >= 2
+        and phrase in normalized_query
+        for phrase in phrases
+    )
+
+
+class ExactTargetScholarshipIndex:
+    """Promote explicitly named scholarships before recommendations."""
+
+    def __init__(
+        self,
+        base_index: ScholarshipSearchIndex,
+        scholarships: list[ScholarshipRecord],
+    ) -> None:
+        self._base_index = base_index
+        self._scholarships = list(scholarships)
+
+    def search(
+        self,
+        query: str,
+        *,
+        k: int = 5,
+    ) -> list[DemoSearchResult]:
+        base_results = list(
+            self._base_index.search(
+                query,
+                k=max(k, len(self._scholarships)),
+            )
+        )
+
+        explicit_targets = [
+            scholarship
+            for scholarship in self._scholarships
+            if _is_explicit_target(query, scholarship)
+        ]
+
+        if not explicit_targets:
+            return [
+                DemoSearchResult(
+                    scholarship=result.scholarship,
+                    score=float(result.score),
+                    rank=rank,
+                )
+                for rank, result in enumerate(
+                    base_results[:k],
+                    start=1,
+                )
+            ]
+
+        base_by_id = {
+            result.scholarship.scholarship_id: result
+            for result in base_results
+        }
+
+        ordered: list[DemoSearchResult] = []
+        used_ids: set[str] = set()
+
+        for scholarship in explicit_targets:
+            existing = base_by_id.get(
+                scholarship.scholarship_id
+            )
+            ordered.append(
+                DemoSearchResult(
+                    scholarship=scholarship,
+                    score=(
+                        float(existing.score)
+                        if existing is not None
+                        else 0.0
+                    ),
+                    rank=len(ordered) + 1,
+                )
+            )
+            used_ids.add(scholarship.scholarship_id)
+
+        for result in base_results:
+            identifier = result.scholarship.scholarship_id
+
+            if identifier in used_ids:
+                continue
+
+            ordered.append(
+                DemoSearchResult(
+                    scholarship=result.scholarship,
+                    score=float(result.score),
+                    rank=len(ordered) + 1,
+                )
+            )
+
+            if len(ordered) == k:
+                break
+
+        return ordered[:k]
 
 
 class DemoExecutionMode(StrEnum):
@@ -159,6 +286,11 @@ def build_demo_index(
             rrf_constant=rrf_constant,
             minimum_dense_score=dense_threshold,
         )
+
+    index = ExactTargetScholarshipIndex(
+        index,
+        records,
+    )
 
     return index, len(records)
 
