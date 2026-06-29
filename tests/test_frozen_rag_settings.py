@@ -32,12 +32,11 @@ def test_rag_configuration_records_partial_start() -> None:
     settings = _settings()
 
     assert settings["status"] == (
-        "operationally_amended_for_"
-"generation_failure_handling"
+        "held_out_rag_evaluation_completed"
     )
     assert settings["partition"] == "held_out_test"
     assert settings["held_out_rag_test_used"] is True
-    assert settings["held_out_rag_test_completed"] is False
+    assert settings["held_out_rag_test_completed"] is True
 
     assert (
         settings[
@@ -207,3 +206,23 @@ def test_generation_failure_policy_is_disclosed() -> None:
     assert state["observed_timeout_count_for_failed_stage"] == 2
     assert state["final_comparison_generated"] is False
     assert state["final_ablation_generated"] is False
+
+def test_held_out_rag_completion_metadata() -> None:
+    """The final evaluation should be marked complete."""
+    settings = _settings()
+    completion = settings["completion_metadata"]
+
+    assert settings["status"] == (
+        "held_out_rag_evaluation_completed"
+    )
+    assert settings["held_out_rag_test_used"] is True
+    assert settings["held_out_rag_test_completed"] is True
+    assert settings["held_out_tuning_permitted"] is False
+    assert settings["parameter_selection_after_test"] is False
+
+    assert completion["baseline_cases"] == 24
+    assert completion["agentic_cases"] == 24
+    assert completion["positive_cases"] == 20
+    assert completion["no_result_cases"] == 4
+    assert completion["recorded_transport_failures"] == 1
+    assert completion["post_test_tuning_performed"] is False

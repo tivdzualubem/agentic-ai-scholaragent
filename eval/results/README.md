@@ -111,3 +111,49 @@ macro F1, and weighted F1 were all `1.0000`.
 
 No held-out threshold, prompt, query, retrieval, or RRF tuning was performed
 after these results were observed.
+
+## Final held-out RAG comparison
+
+`held_out_rag_comparison.json` records the final comparison between
+conventional single-pass RAG and bounded Agentic RAG on 24 held-out cases:
+20 positive scholarship cases and four unsupported queries.
+
+The execution used:
+
+- `tinyllama:latest`;
+- temperature `0.0`;
+- hybrid RRF retrieval with top-k `3`;
+- candidate-k `9`;
+- dense threshold `0.60`;
+- RRF constant `60`;
+- two retrieval attempts and two generation attempts;
+- a documented 900-second CPU transport timeout.
+
+Every positive single-pass response failed deterministic citation auditing.
+Every positive Agentic RAG case ultimately completed through the verified
+deterministic fallback. The four unsupported queries were correctly
+abstained from without an LLM generation.
+
+TinyLlama did not successfully repair any positive response. Therefore,
+the result demonstrates bounded recovery, deterministic citation safety,
+and correct abstention—not successful citation generation by TinyLlama.
+
+The final Agentic RAG citation-audit pass rate was `1.00`, while the benchmark-relevant citation rate was `0.70`. These are different measurements: the citation verifier confirmed that fallback citations were supported by retrieved evidence, but only 70% of positive cases cited a scholarship identity marked as relevant by the benchmark. The result must therefore not be described as 100% relevant scholarship citation.
+
+One citation-repair request exceeded the 900-second transport timeout. It
+was recorded as a failed bounded generation attempt and proceeded through
+the same verified fallback policy.
+
+`held_out_rag_ablation.json` records the component analysis:
+
+- no held-out case invoked query rewriting;
+- citation repair produced zero successful LLM repairs;
+- bypassing repair and proceeding directly to verified fallback preserved
+  safety metrics while requiring fewer LLM generations;
+- removing deterministic fallback reduced positive completion and citation
+  success because all positive completions depended on fallback;
+- BM25 remained the strongest retriever on this small, lexically distinctive
+  held-out corpus.
+
+These findings are configuration- and dataset-specific and must not be
+presented as universal conclusions about sparse retrieval or agentic RAG.

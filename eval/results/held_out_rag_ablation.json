@@ -1,0 +1,3720 @@
+{
+  "artifact_type": "final_held_out_rag_ablation",
+  "partition": "held_out_test",
+  "created_at_utc": "2026-06-29T07:34:09.616834+00:00",
+  "execution_commit": "085bbb0bdd8565a82f2245be33be2abd66ca886a",
+  "held_out_rag_test_used": true,
+  "held_out_rag_test_completed": true,
+  "held_out_tuning_performed": false,
+  "parameter_selection_after_test": false,
+  "configuration": {
+    "path": "eval/config/frozen_rag_settings.json",
+    "sha256": "d2e1988283664bfcb5f72d238064c93a76e0fb0a731d78bb269941d594d8aefc",
+    "checkpoint_execution_sha256": "8775d876348a052940912154170d793c1972e8b051a2c467e12e167fb6b3cea4",
+    "note": "The tracked configuration hash includes completion metadata added after primary execution. The checkpoint hash records the generation-failure execution configuration."
+  },
+  "benchmark": {
+    "path": "eval/datasets/held_out_benchmark.json",
+    "sha256": "60407eabc5415cc85c3c51b73dd6ecb1405530163a90194e1401de7fec3e6aaf",
+    "case_count": 24
+  },
+  "corpus": {
+    "path": "data/held_out/held_out_scholarships.json",
+    "sha256": "69a0858024d1853660b754bb4c223cb151ce554882be96483fffe9358955e4a2",
+    "record_count": 6
+  },
+  "checkpoint": {
+    "path": "eval/results/held_out_rag_checkpoint.json",
+    "sha256": "3893be0b4e4cfec380a7fb2323f499b6e18ae9d41859478ee1110a8acd9d0dd3",
+    "primary_execution_completed": true
+  },
+  "environment": {
+    "python": "3.12.3",
+    "ollama": "ollama version is 0.24.0",
+    "execution_device": "CPU"
+  },
+  "effective_settings": {
+    "generator_model": "tinyllama:latest",
+    "temperature": 0.0,
+    "timeout_seconds": 900.0,
+    "embedding_model": "nomic-embed-text:latest",
+    "embedding_dimension": 768,
+    "dense_threshold": 0.6,
+    "top_k": 3,
+    "candidate_k": 9,
+    "rrf_constant": 60,
+    "max_retrieval_attempts": 2,
+    "max_generation_attempts": 2
+  },
+  "transport_failure_summary": {
+    "count": 1,
+    "events": [
+      {
+        "recorded_at_utc": "2026-06-28T20:00:06.566466+00:00",
+        "case_id": "eligible-manitoba-phd-verified",
+        "system_name": "agentic_rag",
+        "generation_call": 2,
+        "prompt_characters": 6910,
+        "elapsed_seconds": 900.0794622969988,
+        "timeout_seconds": 900.0,
+        "error_type": "OllamaClientError",
+        "error_message": "Ollama request timed out after 900.0 seconds.",
+        "failure_marker": "GENERATION_FAILED_DUE_TO_OLLAMA_TRANSPORT_ERROR"
+      }
+    ],
+    "handling": "Each transport failure was converted into the preregistered non-factual failure marker and processed as a failed bounded generation attempt."
+  },
+  "retrieval_ablation": {
+    "method": "Reused the independently frozen held-out BM25, dense, and hybrid RRF evaluation.",
+    "source_artifact": "eval/results/held_out_retrieval_comparison.json",
+    "source_sha256": "5c75b1ff8318d556d6efe732ce89b7f4d5ebd7232b6430a22eb6905c97d7e02b",
+    "retrievers": [
+      {
+        "retriever_name": "bm25",
+        "k": 3,
+        "positive_cases": 20,
+        "no_result_cases": 4,
+        "precision_at_k": 0.3333333333333333,
+        "recall_at_k": 1.0,
+        "mrr": 1.0,
+        "top1_hit_rate": 1.0,
+        "no_result_accuracy": 1.0,
+        "cases": [
+          {
+            "case_id": "eligible-bristol-master-verified",
+            "retrieved_ids": [
+              "bristol-think-big-scholarships-2026",
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-glasgow-master-verified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-aalto-bachelor-verified",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "glasgow-global-leadership-scholarship-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-waikato-master-verified",
+            "retrieved_ids": [
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "glasgow-global-leadership-scholarship-2026",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-manitoba-phd-verified",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-bristol-bachelor-unverified",
+            "retrieved_ids": [
+              "bristol-think-big-scholarships-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-glasgow-master-unverified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-aalto-master-unverified",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-waikato-bachelor-unverified",
+            "retrieved_ids": [
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-manitoba-master-unverified",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-bristol-phd-degree",
+            "retrieved_ids": [
+              "bristol-think-big-scholarships-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-glasgow-bachelor-degree",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-aalto-phd-degree",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-manitoba-bachelor-degree",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "bristol-think-big-scholarships-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-maastricht-low-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "university-of-manitoba-graduate-fellowship",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-ai-missing-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "glasgow-global-leadership-scholarship-2026",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-data-missing-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "aalto-university-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-economics-missing-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-health-missing-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "university-of-manitoba-graduate-fellowship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-engineering-missing-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "university-of-manitoba-graduate-fellowship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "no-result-lunar-botany",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-neptune-opera",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-mars-clockmaking",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-pluto-puppetry",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          }
+        ]
+      },
+      {
+        "retriever_name": "dense",
+        "k": 3,
+        "positive_cases": 20,
+        "no_result_cases": 4,
+        "precision_at_k": 0.3,
+        "recall_at_k": 0.9,
+        "mrr": 0.5916666666666667,
+        "top1_hit_rate": 0.4,
+        "no_result_accuracy": 1.0,
+        "cases": [
+          {
+            "case_id": "eligible-bristol-master-verified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "bristol-think-big-scholarships-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-glasgow-master-verified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-aalto-bachelor-verified",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "bristol-think-big-scholarships-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-waikato-master-verified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "bristol-think-big-scholarships-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-manitoba-phd-verified",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-bristol-bachelor-unverified",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-glasgow-master-unverified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-aalto-master-unverified",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-waikato-bachelor-unverified",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-manitoba-master-unverified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "university-of-manitoba-graduate-fellowship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-bristol-phd-degree",
+            "retrieved_ids": [
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "aalto-university-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-glasgow-bachelor-degree",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-aalto-phd-degree",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "bristol-think-big-scholarships-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-manitoba-bachelor-degree",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "glasgow-global-leadership-scholarship-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-maastricht-low-gpa",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-ai-missing-gpa",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "glasgow-global-leadership-scholarship-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-data-missing-gpa",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "bristol-think-big-scholarships-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-economics-missing-gpa",
+            "retrieved_ids": [
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "glasgow-global-leadership-scholarship-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-health-missing-gpa",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-engineering-missing-gpa",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "glasgow-global-leadership-scholarship-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.3333333333333333,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "no-result-lunar-botany",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-neptune-opera",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-mars-clockmaking",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-pluto-puppetry",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          }
+        ]
+      },
+      {
+        "retriever_name": "hybrid_rrf",
+        "k": 3,
+        "positive_cases": 20,
+        "no_result_cases": 4,
+        "precision_at_k": 0.3333333333333333,
+        "recall_at_k": 1.0,
+        "mrr": 0.875,
+        "top1_hit_rate": 0.75,
+        "no_result_accuracy": 1.0,
+        "cases": [
+          {
+            "case_id": "eligible-bristol-master-verified",
+            "retrieved_ids": [
+              "bristol-think-big-scholarships-2026",
+              "glasgow-global-leadership-scholarship-2026",
+              "maastricht-university-nl-high-potential-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-glasgow-master-verified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-aalto-bachelor-verified",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-waikato-master-verified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "eligible-manitoba-phd-verified",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-bristol-bachelor-unverified",
+            "retrieved_ids": [
+              "bristol-think-big-scholarships-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-glasgow-master-unverified",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-aalto-master-unverified",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-waikato-bachelor-unverified",
+            "retrieved_ids": [
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "aalto-university-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "potential-manitoba-master-unverified",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-bristol-phd-degree",
+            "retrieved_ids": [
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-glasgow-bachelor-degree",
+            "retrieved_ids": [
+              "glasgow-global-leadership-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "aalto-university-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-aalto-phd-degree",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-manitoba-bachelor-degree",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "not-eligible-maastricht-low-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "aalto-university-excellence-scholarship",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-ai-missing-gpa",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-data-missing-gpa",
+            "retrieved_ids": [
+              "aalto-university-excellence-scholarship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "bristol-think-big-scholarships-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-economics-missing-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-health-missing-gpa",
+            "retrieved_ids": [
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "waikato-vice-chancellors-international-excellence-scholarship",
+              "university-of-manitoba-graduate-fellowship"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 1.0,
+            "top1_hit": true,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "insufficient-maastricht-engineering-missing-gpa",
+            "retrieved_ids": [
+              "university-of-manitoba-graduate-fellowship",
+              "maastricht-university-nl-high-potential-scholarship-2026",
+              "glasgow-global-leadership-scholarship-2026"
+            ],
+            "precision_at_k": 0.3333333333333333,
+            "recall_at_k": 1.0,
+            "reciprocal_rank": 0.5,
+            "top1_hit": false,
+            "no_result_correct": null
+          },
+          {
+            "case_id": "no-result-lunar-botany",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-neptune-opera",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-mars-clockmaking",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          },
+          {
+            "case_id": "no-result-pluto-puppetry",
+            "retrieved_ids": [],
+            "precision_at_k": 0.0,
+            "recall_at_k": 0.0,
+            "reciprocal_rank": 0.0,
+            "top1_hit": false,
+            "no_result_correct": true
+          }
+        ]
+      }
+    ]
+  },
+  "query_rewriting_ablation": {
+    "method": "Applied the preregistered trace-inspection rule.",
+    "observed_rewrite_case_count": 0,
+    "observed_rewrite_cases": [],
+    "counterfactual_rerun_performed": false,
+    "interpretation": "No held-out case invoked query rewriting, so its observed contribution on this benchmark was zero."
+  },
+  "citation_repair_ablation": {
+    "method": "Trace-derived counterfactual in which an initial citation failure proceeds directly to the same verified deterministic fallback without a second LLM generation.",
+    "initial_audit_failures": 20,
+    "successful_llm_repairs": 0,
+    "fallback_completions_after_repairs": 20,
+    "full_agentic_metrics": {
+      "system_name": "agentic_rag",
+      "generator_name": "tinyllama:latest",
+      "total_cases": 24,
+      "positive_cases": 20,
+      "no_result_cases": 4,
+      "positive_completion_rate": 1.0,
+      "positive_citation_pass_rate": 1.0,
+      "positive_relevant_grounding_rate": 0.95,
+      "positive_relevant_citation_rate": 0.7,
+      "no_result_accuracy": 1.0,
+      "mean_latency_seconds": 293.06379520137534,
+      "mean_retrieval_calls": 1.0,
+      "mean_generation_calls": 1.6666666666666667,
+      "mean_query_rewrites": 0.0,
+      "mean_repair_attempts": 0.8333333333333334,
+      "positive_fallback_rate": 1.0,
+      "cases": [
+        {
+          "system_name": "agentic_rag",
+          "case_id": "eligible-bristol-master-verified",
+          "expected_relevant_ids": [
+            "bristol-think-big-scholarships-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Think Big Scholarships is offered by University of Bristol. [bristol-think-big-scholarships-2026:source_identity]\n- The opportunity is hosted in United Kingdom. [bristol-think-big-scholarships-2026:host_countries]\n- Its listed funding type is tuition only. [bristol-think-big-scholarships-2026:funding_type]\n- The official eligibility information states: The University of Bristol Think Big scheme provides funding towards tuition fees for international students studying eligible undergraduate or postgraduate courses. Applicants must have applied for an eligible course beginning in September 2026 and must be classed as overseas students for fee purposes. Applications close at 10:00 UK time on 10 April 2026. Confirm final eligibility on the official source before applying. [bristol-think-big-scholarships-2026:eligibility_text]",
+          "final_query": "University of Bristol Think Big scholarship international postgraduate tuition funding September 2026",
+          "latency_seconds": 455.55047473300147,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "bristol-think-big-scholarships-2026",
+            "glasgow-global-leadership-scholarship-2026",
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "candidate_roles": {
+            "bristol-think-big-scholarships-2026": "recommendation",
+            "glasgow-global-leadership-scholarship-2026": "recommendation",
+            "maastricht-university-nl-high-potential-scholarship-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "bristol-think-big-scholarships-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "eligible-glasgow-master-verified",
+          "expected_relevant_ids": [
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Global Leadership Scholarship is offered by University of Glasgow. [glasgow-global-leadership-scholarship-2026:source_identity]\n- The opportunity is hosted in United Kingdom. [glasgow-global-leadership-scholarship-2026:host_countries]\n- Its listed funding type is tuition only. [glasgow-global-leadership-scholarship-2026:funding_type]\n- The official eligibility information states: The University of Glasgow Global Leadership Scholarship is a one-year tuition-fee discount for International fee students beginning an eligible postgraduate taught master's programme in any discipline in academic session 2026/2027. Applicants must demonstrate academic excellence equivalent to UK first-class honours and hold an eligible full-time programme offer. The stated deadline is 17 July 2026. Confirm final eligibility on the official source before applying. [glasgow-global-leadership-scholarship-2026:eligibility_text]",
+          "final_query": "University of Glasgow Global Leadership Scholarship international taught masters tuition fee discount",
+          "latency_seconds": 327.75091498599795,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "glasgow-global-leadership-scholarship-2026",
+            "waikato-vice-chancellors-international-excellence-scholarship",
+            "bristol-think-big-scholarships-2026"
+          ],
+          "candidate_roles": {
+            "glasgow-global-leadership-scholarship-2026": "recommendation",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation",
+            "bristol-think-big-scholarships-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "eligible-aalto-bachelor-verified",
+          "expected_relevant_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Aalto University Excellence Scholarship is offered by Aalto University. [aalto-university-excellence-scholarship:source_identity]\n- The opportunity is hosted in Finland. [aalto-university-excellence-scholarship:host_countries]\n- Its listed funding type is tuition only. [aalto-university-excellence-scholarship:funding_type]\n- The official eligibility information states: Aalto University Excellence Scholarships are competitive merit-based tuition-fee waivers covering the full tuition fee. Tuition-fee students apply during admission to an eligible bachelor's or master's programme. The award does not cover living or other study-related costs. Programme-specific selection criteria and deadlines require manual verification. Confirm final eligibility on the official source before applying. [aalto-university-excellence-scholarship:eligibility_text]",
+          "final_query": "Aalto University Excellence Scholarship Finland bachelor full tuition fee waiver competitive merit",
+          "latency_seconds": 519.3818975409995,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "aalto-university-excellence-scholarship",
+            "bristol-think-big-scholarships-2026"
+          ],
+          "candidate_roles": {
+            "aalto-university-excellence-scholarship": "recommendation",
+            "bristol-think-big-scholarships-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "eligible-waikato-master-verified",
+          "expected_relevant_ids": [
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Global Leadership Scholarship is offered by University of Glasgow. [glasgow-global-leadership-scholarship-2026:source_identity]\n- The opportunity is hosted in United Kingdom. [glasgow-global-leadership-scholarship-2026:host_countries]\n- Its listed funding type is tuition only. [glasgow-global-leadership-scholarship-2026:funding_type]\n- The official eligibility information states: The University of Glasgow Global Leadership Scholarship is a one-year tuition-fee discount for International fee students beginning an eligible postgraduate taught master's programme in any discipline in academic session 2026/2027. Applicants must demonstrate academic excellence equivalent to UK first-class honours and hold an eligible full-time programme offer. The stated deadline is 17 July 2026. Confirm final eligibility on the official source before applying. [glasgow-global-leadership-scholarship-2026:eligibility_text]",
+          "final_query": "University of Waikato Vice Chancellor International Excellence Scholarship postgraduate tuition 15000 New Zealand",
+          "latency_seconds": 390.28711083500093,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "glasgow-global-leadership-scholarship-2026",
+            "waikato-vice-chancellors-international-excellence-scholarship",
+            "bristol-think-big-scholarships-2026"
+          ],
+          "candidate_roles": {
+            "glasgow-global-leadership-scholarship-2026": "recommendation",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation",
+            "bristol-think-big-scholarships-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": false,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "eligible-manitoba-phd-verified",
+          "expected_relevant_ids": [
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- University of Manitoba Graduate Fellowship is offered by University of Manitoba. [university-of-manitoba-graduate-fellowship:source_identity]\n- The opportunity is hosted in Canada. [university-of-manitoba-graduate-fellowship:host_countries]\n- Its listed funding type is partially funded. [university-of-manitoba-graduate-fellowship:funding_type]\n- The official eligibility information states: The University of Manitoba Graduate Fellowship supports eligible master's and PhD students in graduate fields that qualify for Tri-Agency funding. Master's awards are valued at CAD 20,000 per year and doctoral awards at CAD 25,000 per year. All citizenships may apply. The page states a minimum admission GPA of 3.0 but does not identify its scale, so the numeric threshold remains a manual-review condition. Application timing and nomination are managed by departments or units. Confirm final eligibility on the official source before applying. [university-of-manitoba-graduate-fellowship:eligibility_text]",
+          "final_query": "University of Manitoba Graduate Fellowship doctoral PhD 25000 per year Canada all citizenships",
+          "latency_seconds": 1023.4280346190026,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "candidate_roles": {
+            "university-of-manitoba-graduate-fellowship": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "potential-bristol-bachelor-unverified",
+          "expected_relevant_ids": [
+            "bristol-think-big-scholarships-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Think Big Scholarships is offered by University of Bristol. [bristol-think-big-scholarships-2026:source_identity]\n- The opportunity is hosted in United Kingdom. [bristol-think-big-scholarships-2026:host_countries]\n- Its listed funding type is tuition only. [bristol-think-big-scholarships-2026:funding_type]\n- The official eligibility information states: The University of Bristol Think Big scheme provides funding towards tuition fees for international students studying eligible undergraduate or postgraduate courses. Applicants must have applied for an eligible course beginning in September 2026 and must be classed as overseas students for fee purposes. Applications close at 10:00 UK time on 10 April 2026. Confirm final eligibility on the official source before applying. [bristol-think-big-scholarships-2026:eligibility_text]",
+          "final_query": "Bristol Think Big international undergraduate scholarship tuition fees",
+          "latency_seconds": 281.619411892003,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "bristol-think-big-scholarships-2026",
+            "waikato-vice-chancellors-international-excellence-scholarship",
+            "aalto-university-excellence-scholarship"
+          ],
+          "candidate_roles": {
+            "bristol-think-big-scholarships-2026": "recommendation",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation",
+            "aalto-university-excellence-scholarship": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "bristol-think-big-scholarships-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "potential-glasgow-master-unverified",
+          "expected_relevant_ids": [
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Global Leadership Scholarship is offered by University of Glasgow. [glasgow-global-leadership-scholarship-2026:source_identity]\n- The opportunity is hosted in United Kingdom. [glasgow-global-leadership-scholarship-2026:host_countries]\n- Its listed funding type is tuition only. [glasgow-global-leadership-scholarship-2026:funding_type]\n- The official eligibility information states: The University of Glasgow Global Leadership Scholarship is a one-year tuition-fee discount for International fee students beginning an eligible postgraduate taught master's programme in any discipline in academic session 2026/2027. Applicants must demonstrate academic excellence equivalent to UK first-class honours and hold an eligible full-time programme offer. The stated deadline is 17 July 2026. Confirm final eligibility on the official source before applying. [glasgow-global-leadership-scholarship-2026:eligibility_text]",
+          "final_query": "Glasgow Global Leadership award postgraduate taught masters any discipline international fee student",
+          "latency_seconds": 275.90387570299936,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "glasgow-global-leadership-scholarship-2026",
+            "waikato-vice-chancellors-international-excellence-scholarship",
+            "aalto-university-excellence-scholarship"
+          ],
+          "candidate_roles": {
+            "glasgow-global-leadership-scholarship-2026": "recommendation",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation",
+            "aalto-university-excellence-scholarship": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "potential-aalto-master-unverified",
+          "expected_relevant_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Aalto University Excellence Scholarship is offered by Aalto University. [aalto-university-excellence-scholarship:source_identity]\n- The opportunity is hosted in Finland. [aalto-university-excellence-scholarship:host_countries]\n- Its listed funding type is tuition only. [aalto-university-excellence-scholarship:funding_type]\n- The official eligibility information states: Aalto University Excellence Scholarships are competitive merit-based tuition-fee waivers covering the full tuition fee. Tuition-fee students apply during admission to an eligible bachelor's or master's programme. The award does not cover living or other study-related costs. Programme-specific selection criteria and deadlines require manual verification. Confirm final eligibility on the official source before applying. [aalto-university-excellence-scholarship:eligibility_text]",
+          "final_query": "Aalto Excellence Scholarship master Finland full tuition waiver highest achieving applicants",
+          "latency_seconds": 325.1076487909995,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "aalto-university-excellence-scholarship",
+            "maastricht-university-nl-high-potential-scholarship-2026",
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "candidate_roles": {
+            "aalto-university-excellence-scholarship": "recommendation",
+            "maastricht-university-nl-high-potential-scholarship-2026": "recommendation",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "potential-waikato-bachelor-unverified",
+          "expected_relevant_ids": [
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Vice-Chancellor's International Excellence Scholarship is offered by University of Waikato. [waikato-vice-chancellors-international-excellence-scholarship:source_identity]\n- The opportunity is hosted in New Zealand. [waikato-vice-chancellors-international-excellence-scholarship:host_countries]\n- Its listed funding type is tuition only. [waikato-vice-chancellors-international-excellence-scholarship:funding_type]\n- The official eligibility information states: The University of Waikato Vice-Chancellor's International Excellence Scholarship provides up to NZD 15,000 towards tuition fees for talented international students enrolling for the first time in an undergraduate or taught postgraduate programme. It is available across all study areas. Applications are reviewed monthly and use different deadlines for different trimesters, so no single deadline is recorded. Confirm final eligibility on the official source before applying. [waikato-vice-chancellors-international-excellence-scholarship:eligibility_text]",
+          "final_query": "Waikato Vice Chancellor international undergraduate excellence scholarship New Zealand tuition",
+          "latency_seconds": 278.2437791299999,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "waikato-vice-chancellors-international-excellence-scholarship",
+            "aalto-university-excellence-scholarship",
+            "bristol-think-big-scholarships-2026"
+          ],
+          "candidate_roles": {
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation",
+            "aalto-university-excellence-scholarship": "recommendation",
+            "bristol-think-big-scholarships-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "potential-manitoba-master-unverified",
+          "expected_relevant_ids": [
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- University of Manitoba Graduate Fellowship is offered by University of Manitoba. [university-of-manitoba-graduate-fellowship:source_identity]\n- The opportunity is hosted in Canada. [university-of-manitoba-graduate-fellowship:host_countries]\n- Its listed funding type is partially funded. [university-of-manitoba-graduate-fellowship:funding_type]\n- The official eligibility information states: The University of Manitoba Graduate Fellowship supports eligible master's and PhD students in graduate fields that qualify for Tri-Agency funding. Master's awards are valued at CAD 20,000 per year and doctoral awards at CAD 25,000 per year. All citizenships may apply. The page states a minimum admission GPA of 3.0 but does not identify its scale, so the numeric threshold remains a manual-review condition. Application timing and nomination are managed by departments or units. Confirm final eligibility on the official source before applying. [university-of-manitoba-graduate-fellowship:eligibility_text]",
+          "final_query": "Manitoba Graduate Fellowship masters Canada 20000 annually all citizenships",
+          "latency_seconds": 333.56147998699817,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "university-of-manitoba-graduate-fellowship",
+            "maastricht-university-nl-high-potential-scholarship-2026",
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "candidate_roles": {
+            "university-of-manitoba-graduate-fellowship": "recommendation",
+            "maastricht-university-nl-high-potential-scholarship-2026": "recommendation",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "not-eligible-bristol-phd-degree",
+          "expected_relevant_ids": [
+            "bristol-think-big-scholarships-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Explanatory result only—not a recommendation. Vice-Chancellor's International Excellence Scholarship is offered by University of Waikato. [waikato-vice-chancellors-international-excellence-scholarship:source_identity]\n- The opportunity is hosted in New Zealand. [waikato-vice-chancellors-international-excellence-scholarship:host_countries]\n- Its listed funding type is tuition only. [waikato-vice-chancellors-international-excellence-scholarship:funding_type]\n- The official eligibility information states: The University of Waikato Vice-Chancellor's International Excellence Scholarship provides up to NZD 15,000 towards tuition fees for talented international students enrolling for the first time in an undergraduate or taught postgraduate programme. It is available across all study areas. Applications are reviewed monthly and use different deadlines for different trimesters, so no single deadline is recorded. Confirm final eligibility on the official source before applying. [waikato-vice-chancellors-international-excellence-scholarship:eligibility_text]",
+          "final_query": "Bristol Think Big international tuition scholarship undergraduate postgraduate",
+          "latency_seconds": 111.30479849900075,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "candidate_roles": {
+            "waikato-vice-chancellors-international-excellence-scholarship": "explanatory_ineligible"
+          },
+          "cited_scholarship_ids": [
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "relevant_grounded": false,
+          "relevant_citation": false,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "not-eligible-glasgow-bachelor-degree",
+          "expected_relevant_ids": [
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Explanatory result only—not a recommendation. Global Leadership Scholarship is offered by University of Glasgow. [glasgow-global-leadership-scholarship-2026:source_identity]\n- The opportunity is hosted in United Kingdom. [glasgow-global-leadership-scholarship-2026:host_countries]\n- Its listed funding type is tuition only. [glasgow-global-leadership-scholarship-2026:funding_type]\n- The official eligibility information states: The University of Glasgow Global Leadership Scholarship is a one-year tuition-fee discount for International fee students beginning an eligible postgraduate taught master's programme in any discipline in academic session 2026/2027. Applicants must demonstrate academic excellence equivalent to UK first-class honours and hold an eligible full-time programme offer. The stated deadline is 17 July 2026. Confirm final eligibility on the official source before applying. [glasgow-global-leadership-scholarship-2026:eligibility_text]",
+          "final_query": "Glasgow Global Leadership Scholarship taught masters tuition discount",
+          "latency_seconds": 304.4455654850026,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "glasgow-global-leadership-scholarship-2026",
+            "waikato-vice-chancellors-international-excellence-scholarship",
+            "aalto-university-excellence-scholarship"
+          ],
+          "candidate_roles": {
+            "glasgow-global-leadership-scholarship-2026": "explanatory_ineligible",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation",
+            "aalto-university-excellence-scholarship": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "not-eligible-aalto-phd-degree",
+          "expected_relevant_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Explanatory result only—not a recommendation. Aalto University Excellence Scholarship is offered by Aalto University. [aalto-university-excellence-scholarship:source_identity]\n- The opportunity is hosted in Finland. [aalto-university-excellence-scholarship:host_countries]\n- Its listed funding type is tuition only. [aalto-university-excellence-scholarship:funding_type]\n- The official eligibility information states: Aalto University Excellence Scholarships are competitive merit-based tuition-fee waivers covering the full tuition fee. Tuition-fee students apply during admission to an eligible bachelor's or master's programme. The award does not cover living or other study-related costs. Programme-specific selection criteria and deadlines require manual verification. Confirm final eligibility on the official source before applying. [aalto-university-excellence-scholarship:eligibility_text]",
+          "final_query": "Aalto University Excellence Scholarship full tuition waiver Finland",
+          "latency_seconds": 50.183532745002594,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "candidate_roles": {
+            "aalto-university-excellence-scholarship": "explanatory_ineligible"
+          },
+          "cited_scholarship_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "not-eligible-manitoba-bachelor-degree",
+          "expected_relevant_ids": [
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Explanatory result only—not a recommendation. University of Manitoba Graduate Fellowship is offered by University of Manitoba. [university-of-manitoba-graduate-fellowship:source_identity]\n- The opportunity is hosted in Canada. [university-of-manitoba-graduate-fellowship:host_countries]\n- Its listed funding type is partially funded. [university-of-manitoba-graduate-fellowship:funding_type]\n- The official eligibility information states: The University of Manitoba Graduate Fellowship supports eligible master's and PhD students in graduate fields that qualify for Tri-Agency funding. Master's awards are valued at CAD 20,000 per year and doctoral awards at CAD 25,000 per year. All citizenships may apply. The page states a minimum admission GPA of 3.0 but does not identify its scale, so the numeric threshold remains a manual-review condition. Application timing and nomination are managed by departments or units. Confirm final eligibility on the official source before applying. [university-of-manitoba-graduate-fellowship:eligibility_text]",
+          "final_query": "University Manitoba Graduate Fellowship masters doctoral annual award",
+          "latency_seconds": 311.4843590470009,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "university-of-manitoba-graduate-fellowship",
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "candidate_roles": {
+            "university-of-manitoba-graduate-fellowship": "explanatory_ineligible",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "not-eligible-maastricht-low-gpa",
+          "expected_relevant_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Explanatory result only—not a recommendation. Maastricht University NL-High Potential Scholarship is offered by Maastricht University. [maastricht-university-nl-high-potential-scholarship-2026:source_identity]\n- The opportunity is hosted in Netherlands. [maastricht-university-nl-high-potential-scholarship-2026:host_countries]\n- Its listed funding type is fully funded. [maastricht-university-nl-high-potential-scholarship-2026:funding_type]\n- The official eligibility information states: The Maastricht University NL-High Potential programme offers full scholarships including a tuition-fee waiver and monthly stipend for high-achieving applicants from outside the European Union who are admitted to a participating master's programme. Applicants must present a GPA of at least 7.5 on a 10.0 scale and must not be older than 35 on 1 September 2026. The scholarship deadline is 1 February 2026. Confirm final eligibility on the official source before applying. [maastricht-university-nl-high-potential-scholarship-2026:eligibility_text]",
+          "final_query": "Maastricht NL High Potential full scholarship master tuition stipend GPA 7.5",
+          "latency_seconds": 321.7636420050003,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026",
+            "aalto-university-excellence-scholarship",
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "candidate_roles": {
+            "maastricht-university-nl-high-potential-scholarship-2026": "explanatory_ineligible",
+            "aalto-university-excellence-scholarship": "recommendation",
+            "glasgow-global-leadership-scholarship-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "insufficient-maastricht-ai-missing-gpa",
+          "expected_relevant_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Aalto University Excellence Scholarship is offered by Aalto University. [aalto-university-excellence-scholarship:source_identity]\n- The opportunity is hosted in Finland. [aalto-university-excellence-scholarship:host_countries]\n- Its listed funding type is tuition only. [aalto-university-excellence-scholarship:funding_type]\n- The official eligibility information states: Aalto University Excellence Scholarships are competitive merit-based tuition-fee waivers covering the full tuition fee. Tuition-fee students apply during admission to an eligible bachelor's or master's programme. The award does not cover living or other study-related costs. Programme-specific selection criteria and deadlines require manual verification. Confirm final eligibility on the official source before applying. [aalto-university-excellence-scholarship:eligibility_text]",
+          "final_query": "Maastricht University NL High Potential master artificial intelligence full scholarship",
+          "latency_seconds": 367.23956730699865,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "aalto-university-excellence-scholarship",
+            "maastricht-university-nl-high-potential-scholarship-2026",
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "candidate_roles": {
+            "aalto-university-excellence-scholarship": "recommendation",
+            "maastricht-university-nl-high-potential-scholarship-2026": "recommendation",
+            "glasgow-global-leadership-scholarship-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": false,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "insufficient-maastricht-data-missing-gpa",
+          "expected_relevant_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Aalto University Excellence Scholarship is offered by Aalto University. [aalto-university-excellence-scholarship:source_identity]\n- The opportunity is hosted in Finland. [aalto-university-excellence-scholarship:host_countries]\n- Its listed funding type is tuition only. [aalto-university-excellence-scholarship:funding_type]\n- The official eligibility information states: Aalto University Excellence Scholarships are competitive merit-based tuition-fee waivers covering the full tuition fee. Tuition-fee students apply during admission to an eligible bachelor's or master's programme. The award does not cover living or other study-related costs. Programme-specific selection criteria and deadlines require manual verification. Confirm final eligibility on the official source before applying. [aalto-university-excellence-scholarship:eligibility_text]",
+          "final_query": "Maastricht High Potential scholarship data science tuition waiver stipend",
+          "latency_seconds": 341.6434972549978,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "aalto-university-excellence-scholarship",
+            "maastricht-university-nl-high-potential-scholarship-2026",
+            "bristol-think-big-scholarships-2026"
+          ],
+          "candidate_roles": {
+            "aalto-university-excellence-scholarship": "recommendation",
+            "maastricht-university-nl-high-potential-scholarship-2026": "recommendation",
+            "bristol-think-big-scholarships-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": false,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "insufficient-maastricht-economics-missing-gpa",
+          "expected_relevant_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Vice-Chancellor's International Excellence Scholarship is offered by University of Waikato. [waikato-vice-chancellors-international-excellence-scholarship:source_identity]\n- The opportunity is hosted in New Zealand. [waikato-vice-chancellors-international-excellence-scholarship:host_countries]\n- Its listed funding type is tuition only. [waikato-vice-chancellors-international-excellence-scholarship:funding_type]\n- The official eligibility information states: The University of Waikato Vice-Chancellor's International Excellence Scholarship provides up to NZD 15,000 towards tuition fees for talented international students enrolling for the first time in an undergraduate or taught postgraduate programme. It is available across all study areas. Applications are reviewed monthly and use different deadlines for different trimesters, so no single deadline is recorded. Confirm final eligibility on the official source before applying. [waikato-vice-chancellors-international-excellence-scholarship:eligibility_text]",
+          "final_query": "Maastricht Netherlands full scholarship international economics masters",
+          "latency_seconds": 317.47151663600016,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "waikato-vice-chancellors-international-excellence-scholarship",
+            "maastricht-university-nl-high-potential-scholarship-2026",
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "candidate_roles": {
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation",
+            "maastricht-university-nl-high-potential-scholarship-2026": "recommendation",
+            "glasgow-global-leadership-scholarship-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": false,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "insufficient-maastricht-health-missing-gpa",
+          "expected_relevant_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Maastricht University NL-High Potential Scholarship is offered by Maastricht University. [maastricht-university-nl-high-potential-scholarship-2026:source_identity]\n- The opportunity is hosted in Netherlands. [maastricht-university-nl-high-potential-scholarship-2026:host_countries]\n- Its listed funding type is fully funded. [maastricht-university-nl-high-potential-scholarship-2026:funding_type]\n- The official eligibility information states: The Maastricht University NL-High Potential programme offers full scholarships including a tuition-fee waiver and monthly stipend for high-achieving applicants from outside the European Union who are admitted to a participating master's programme. Applicants must present a GPA of at least 7.5 on a 10.0 scale and must not be older than 35 on 1 September 2026. The scholarship deadline is 1 February 2026. Confirm final eligibility on the official source before applying. [maastricht-university-nl-high-potential-scholarship-2026:eligibility_text]",
+          "final_query": "NL High Potential Maastricht public health master monthly stipend",
+          "latency_seconds": 357.43782732800173,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026",
+            "waikato-vice-chancellors-international-excellence-scholarship",
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "candidate_roles": {
+            "maastricht-university-nl-high-potential-scholarship-2026": "recommendation",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation",
+            "university-of-manitoba-graduate-fellowship": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "insufficient-maastricht-engineering-missing-gpa",
+          "expected_relevant_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- University of Manitoba Graduate Fellowship is offered by University of Manitoba. [university-of-manitoba-graduate-fellowship:source_identity]\n- The opportunity is hosted in Canada. [university-of-manitoba-graduate-fellowship:host_countries]\n- Its listed funding type is partially funded. [university-of-manitoba-graduate-fellowship:funding_type]\n- The official eligibility information states: The University of Manitoba Graduate Fellowship supports eligible master's and PhD students in graduate fields that qualify for Tri-Agency funding. Master's awards are valued at CAD 20,000 per year and doctoral awards at CAD 25,000 per year. All citizenships may apply. The page states a minimum admission GPA of 3.0 but does not identify its scale, so the numeric threshold remains a manual-review condition. Application timing and nomination are managed by departments or units. Confirm final eligibility on the official source before applying. [university-of-manitoba-graduate-fellowship:eligibility_text]",
+          "final_query": "Maastricht University High Potential engineering master full funding",
+          "latency_seconds": 339.242329531,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "university-of-manitoba-graduate-fellowship",
+            "maastricht-university-nl-high-potential-scholarship-2026",
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "candidate_roles": {
+            "university-of-manitoba-graduate-fellowship": "recommendation",
+            "maastricht-university-nl-high-potential-scholarship-2026": "recommendation",
+            "glasgow-global-leadership-scholarship-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": false,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "no-result-lunar-botany",
+          "expected_relevant_ids": [],
+          "expect_no_results": true,
+          "status": "abstained",
+          "answer": "ScholarAgent abstained because it could not retrieve sufficient verified evidence.",
+          "final_query": "selenian moon botany crystal greenhouse grant",
+          "latency_seconds": 0.12154508500316297,
+          "retrieval_calls": 1,
+          "generation_calls": 0,
+          "query_rewrites": 0,
+          "repair_attempts": 0,
+          "fallback_used": false,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [],
+          "grounded_candidate_ids": [],
+          "candidate_roles": {},
+          "cited_scholarship_ids": [],
+          "relevant_grounded": null,
+          "relevant_citation": null,
+          "positive_completed": null,
+          "no_result_correct": true
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "no-result-neptune-opera",
+          "expected_relevant_ids": [],
+          "expect_no_results": true,
+          "status": "abstained",
+          "answer": "ScholarAgent abstained because it could not retrieve sufficient verified evidence.",
+          "final_query": "neptunian underwater opera vocal academy bursary",
+          "latency_seconds": 0.12379884199981461,
+          "retrieval_calls": 1,
+          "generation_calls": 0,
+          "query_rewrites": 0,
+          "repair_attempts": 0,
+          "fallback_used": false,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [],
+          "grounded_candidate_ids": [],
+          "candidate_roles": {},
+          "cited_scholarship_ids": [],
+          "relevant_grounded": null,
+          "relevant_citation": null,
+          "positive_completed": null,
+          "no_result_correct": true
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "no-result-mars-clockmaking",
+          "expected_relevant_ids": [],
+          "expect_no_results": true,
+          "status": "abstained",
+          "answer": "ScholarAgent abstained because it could not retrieve sufficient verified evidence.",
+          "final_query": "martian chronometer clockmaking fellowship red planet",
+          "latency_seconds": 0.127093489998515,
+          "retrieval_calls": 1,
+          "generation_calls": 0,
+          "query_rewrites": 0,
+          "repair_attempts": 0,
+          "fallback_used": false,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [],
+          "grounded_candidate_ids": [],
+          "candidate_roles": {},
+          "cited_scholarship_ids": [],
+          "relevant_grounded": null,
+          "relevant_citation": null,
+          "positive_completed": null,
+          "no_result_correct": true
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "no-result-pluto-puppetry",
+          "expected_relevant_ids": [],
+          "expect_no_results": true,
+          "status": "abstained",
+          "answer": "ScholarAgent abstained because it could not retrieve sufficient verified evidence.",
+          "final_query": "plutonian shadow puppetry marionette endowment",
+          "latency_seconds": 0.10738336099893786,
+          "retrieval_calls": 1,
+          "generation_calls": 0,
+          "query_rewrites": 0,
+          "repair_attempts": 0,
+          "fallback_used": false,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [],
+          "grounded_candidate_ids": [],
+          "candidate_roles": {},
+          "cited_scholarship_ids": [],
+          "relevant_grounded": null,
+          "relevant_citation": null,
+          "positive_completed": null,
+          "no_result_correct": true
+        }
+      ]
+    },
+    "no_repair_counterfactual": {
+      "total_cases": 24,
+      "positive_cases": 20,
+      "no_result_cases": 4,
+      "positive_completion_rate": 1.0,
+      "positive_citation_pass_rate": 1.0,
+      "positive_relevant_grounding_rate": 0.95,
+      "positive_relevant_citation_rate": 0.7,
+      "no_result_accuracy": 1.0,
+      "mean_latency_seconds": null,
+      "latency_note": "Not estimated because the counterfactual was derived from the frozen execution trace without additional LLM calls.",
+      "mean_retrieval_calls": 1.0,
+      "mean_generation_calls": 0.8333333333333334,
+      "mean_query_rewrites": 0.0,
+      "mean_repair_attempts": 0.0,
+      "positive_fallback_rate": 1.0
+    },
+    "cases": [
+      {
+        "case_id": "eligible-bristol-master-verified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": true,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "eligible-glasgow-master-verified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": true,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "eligible-aalto-bachelor-verified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": true,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "eligible-waikato-master-verified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": false,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "eligible-manitoba-phd-verified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": true,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "potential-bristol-bachelor-unverified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": true,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "potential-glasgow-master-unverified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": true,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "potential-aalto-master-unverified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": true,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "potential-waikato-bachelor-unverified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": true,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "potential-manitoba-master-unverified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": true,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "not-eligible-bristol-phd-degree",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": false,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": false,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "not-eligible-glasgow-bachelor-degree",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": true,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "not-eligible-aalto-phd-degree",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": true,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "not-eligible-manitoba-bachelor-degree",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": true,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "not-eligible-maastricht-low-gpa",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": true,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "insufficient-maastricht-ai-missing-gpa",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": false,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "insufficient-maastricht-data-missing-gpa",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": false,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "insufficient-maastricht-economics-missing-gpa",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": false,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "insufficient-maastricht-health-missing-gpa",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": true,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "insufficient-maastricht-engineering-missing-gpa",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "completed_fallback",
+        "positive_completed": true,
+        "citation_passed": true,
+        "relevant_citation": false,
+        "generation_calls": 1,
+        "repair_attempts": 0,
+        "fallback_used": true
+      },
+      {
+        "case_id": "no-result-lunar-botany",
+        "expect_no_results": true,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": null,
+        "no_result_correct": true,
+        "status": "abstained",
+        "positive_completed": null,
+        "citation_passed": true,
+        "relevant_citation": null,
+        "generation_calls": 0,
+        "repair_attempts": 0,
+        "fallback_used": false
+      },
+      {
+        "case_id": "no-result-neptune-opera",
+        "expect_no_results": true,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": null,
+        "no_result_correct": true,
+        "status": "abstained",
+        "positive_completed": null,
+        "citation_passed": true,
+        "relevant_citation": null,
+        "generation_calls": 0,
+        "repair_attempts": 0,
+        "fallback_used": false
+      },
+      {
+        "case_id": "no-result-mars-clockmaking",
+        "expect_no_results": true,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": null,
+        "no_result_correct": true,
+        "status": "abstained",
+        "positive_completed": null,
+        "citation_passed": true,
+        "relevant_citation": null,
+        "generation_calls": 0,
+        "repair_attempts": 0,
+        "fallback_used": false
+      },
+      {
+        "case_id": "no-result-pluto-puppetry",
+        "expect_no_results": true,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": null,
+        "no_result_correct": true,
+        "status": "abstained",
+        "positive_completed": null,
+        "citation_passed": true,
+        "relevant_citation": null,
+        "generation_calls": 0,
+        "repair_attempts": 0,
+        "fallback_used": false
+      }
+    ]
+  },
+  "deterministic_fallback_ablation": {
+    "method": "Trace-derived counterfactual in which each completed_fallback result is reclassified as citation_failed.",
+    "full_agentic_metrics": {
+      "system_name": "agentic_rag",
+      "generator_name": "tinyllama:latest",
+      "total_cases": 24,
+      "positive_cases": 20,
+      "no_result_cases": 4,
+      "positive_completion_rate": 1.0,
+      "positive_citation_pass_rate": 1.0,
+      "positive_relevant_grounding_rate": 0.95,
+      "positive_relevant_citation_rate": 0.7,
+      "no_result_accuracy": 1.0,
+      "mean_latency_seconds": 293.06379520137534,
+      "mean_retrieval_calls": 1.0,
+      "mean_generation_calls": 1.6666666666666667,
+      "mean_query_rewrites": 0.0,
+      "mean_repair_attempts": 0.8333333333333334,
+      "positive_fallback_rate": 1.0,
+      "cases": [
+        {
+          "system_name": "agentic_rag",
+          "case_id": "eligible-bristol-master-verified",
+          "expected_relevant_ids": [
+            "bristol-think-big-scholarships-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Think Big Scholarships is offered by University of Bristol. [bristol-think-big-scholarships-2026:source_identity]\n- The opportunity is hosted in United Kingdom. [bristol-think-big-scholarships-2026:host_countries]\n- Its listed funding type is tuition only. [bristol-think-big-scholarships-2026:funding_type]\n- The official eligibility information states: The University of Bristol Think Big scheme provides funding towards tuition fees for international students studying eligible undergraduate or postgraduate courses. Applicants must have applied for an eligible course beginning in September 2026 and must be classed as overseas students for fee purposes. Applications close at 10:00 UK time on 10 April 2026. Confirm final eligibility on the official source before applying. [bristol-think-big-scholarships-2026:eligibility_text]",
+          "final_query": "University of Bristol Think Big scholarship international postgraduate tuition funding September 2026",
+          "latency_seconds": 455.55047473300147,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "bristol-think-big-scholarships-2026",
+            "glasgow-global-leadership-scholarship-2026",
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "candidate_roles": {
+            "bristol-think-big-scholarships-2026": "recommendation",
+            "glasgow-global-leadership-scholarship-2026": "recommendation",
+            "maastricht-university-nl-high-potential-scholarship-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "bristol-think-big-scholarships-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "eligible-glasgow-master-verified",
+          "expected_relevant_ids": [
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Global Leadership Scholarship is offered by University of Glasgow. [glasgow-global-leadership-scholarship-2026:source_identity]\n- The opportunity is hosted in United Kingdom. [glasgow-global-leadership-scholarship-2026:host_countries]\n- Its listed funding type is tuition only. [glasgow-global-leadership-scholarship-2026:funding_type]\n- The official eligibility information states: The University of Glasgow Global Leadership Scholarship is a one-year tuition-fee discount for International fee students beginning an eligible postgraduate taught master's programme in any discipline in academic session 2026/2027. Applicants must demonstrate academic excellence equivalent to UK first-class honours and hold an eligible full-time programme offer. The stated deadline is 17 July 2026. Confirm final eligibility on the official source before applying. [glasgow-global-leadership-scholarship-2026:eligibility_text]",
+          "final_query": "University of Glasgow Global Leadership Scholarship international taught masters tuition fee discount",
+          "latency_seconds": 327.75091498599795,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "glasgow-global-leadership-scholarship-2026",
+            "waikato-vice-chancellors-international-excellence-scholarship",
+            "bristol-think-big-scholarships-2026"
+          ],
+          "candidate_roles": {
+            "glasgow-global-leadership-scholarship-2026": "recommendation",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation",
+            "bristol-think-big-scholarships-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "eligible-aalto-bachelor-verified",
+          "expected_relevant_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Aalto University Excellence Scholarship is offered by Aalto University. [aalto-university-excellence-scholarship:source_identity]\n- The opportunity is hosted in Finland. [aalto-university-excellence-scholarship:host_countries]\n- Its listed funding type is tuition only. [aalto-university-excellence-scholarship:funding_type]\n- The official eligibility information states: Aalto University Excellence Scholarships are competitive merit-based tuition-fee waivers covering the full tuition fee. Tuition-fee students apply during admission to an eligible bachelor's or master's programme. The award does not cover living or other study-related costs. Programme-specific selection criteria and deadlines require manual verification. Confirm final eligibility on the official source before applying. [aalto-university-excellence-scholarship:eligibility_text]",
+          "final_query": "Aalto University Excellence Scholarship Finland bachelor full tuition fee waiver competitive merit",
+          "latency_seconds": 519.3818975409995,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "aalto-university-excellence-scholarship",
+            "bristol-think-big-scholarships-2026"
+          ],
+          "candidate_roles": {
+            "aalto-university-excellence-scholarship": "recommendation",
+            "bristol-think-big-scholarships-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "eligible-waikato-master-verified",
+          "expected_relevant_ids": [
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Global Leadership Scholarship is offered by University of Glasgow. [glasgow-global-leadership-scholarship-2026:source_identity]\n- The opportunity is hosted in United Kingdom. [glasgow-global-leadership-scholarship-2026:host_countries]\n- Its listed funding type is tuition only. [glasgow-global-leadership-scholarship-2026:funding_type]\n- The official eligibility information states: The University of Glasgow Global Leadership Scholarship is a one-year tuition-fee discount for International fee students beginning an eligible postgraduate taught master's programme in any discipline in academic session 2026/2027. Applicants must demonstrate academic excellence equivalent to UK first-class honours and hold an eligible full-time programme offer. The stated deadline is 17 July 2026. Confirm final eligibility on the official source before applying. [glasgow-global-leadership-scholarship-2026:eligibility_text]",
+          "final_query": "University of Waikato Vice Chancellor International Excellence Scholarship postgraduate tuition 15000 New Zealand",
+          "latency_seconds": 390.28711083500093,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "glasgow-global-leadership-scholarship-2026",
+            "waikato-vice-chancellors-international-excellence-scholarship",
+            "bristol-think-big-scholarships-2026"
+          ],
+          "candidate_roles": {
+            "glasgow-global-leadership-scholarship-2026": "recommendation",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation",
+            "bristol-think-big-scholarships-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": false,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "eligible-manitoba-phd-verified",
+          "expected_relevant_ids": [
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- University of Manitoba Graduate Fellowship is offered by University of Manitoba. [university-of-manitoba-graduate-fellowship:source_identity]\n- The opportunity is hosted in Canada. [university-of-manitoba-graduate-fellowship:host_countries]\n- Its listed funding type is partially funded. [university-of-manitoba-graduate-fellowship:funding_type]\n- The official eligibility information states: The University of Manitoba Graduate Fellowship supports eligible master's and PhD students in graduate fields that qualify for Tri-Agency funding. Master's awards are valued at CAD 20,000 per year and doctoral awards at CAD 25,000 per year. All citizenships may apply. The page states a minimum admission GPA of 3.0 but does not identify its scale, so the numeric threshold remains a manual-review condition. Application timing and nomination are managed by departments or units. Confirm final eligibility on the official source before applying. [university-of-manitoba-graduate-fellowship:eligibility_text]",
+          "final_query": "University of Manitoba Graduate Fellowship doctoral PhD 25000 per year Canada all citizenships",
+          "latency_seconds": 1023.4280346190026,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "candidate_roles": {
+            "university-of-manitoba-graduate-fellowship": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "potential-bristol-bachelor-unverified",
+          "expected_relevant_ids": [
+            "bristol-think-big-scholarships-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Think Big Scholarships is offered by University of Bristol. [bristol-think-big-scholarships-2026:source_identity]\n- The opportunity is hosted in United Kingdom. [bristol-think-big-scholarships-2026:host_countries]\n- Its listed funding type is tuition only. [bristol-think-big-scholarships-2026:funding_type]\n- The official eligibility information states: The University of Bristol Think Big scheme provides funding towards tuition fees for international students studying eligible undergraduate or postgraduate courses. Applicants must have applied for an eligible course beginning in September 2026 and must be classed as overseas students for fee purposes. Applications close at 10:00 UK time on 10 April 2026. Confirm final eligibility on the official source before applying. [bristol-think-big-scholarships-2026:eligibility_text]",
+          "final_query": "Bristol Think Big international undergraduate scholarship tuition fees",
+          "latency_seconds": 281.619411892003,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "bristol-think-big-scholarships-2026",
+            "waikato-vice-chancellors-international-excellence-scholarship",
+            "aalto-university-excellence-scholarship"
+          ],
+          "candidate_roles": {
+            "bristol-think-big-scholarships-2026": "recommendation",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation",
+            "aalto-university-excellence-scholarship": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "bristol-think-big-scholarships-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "potential-glasgow-master-unverified",
+          "expected_relevant_ids": [
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Global Leadership Scholarship is offered by University of Glasgow. [glasgow-global-leadership-scholarship-2026:source_identity]\n- The opportunity is hosted in United Kingdom. [glasgow-global-leadership-scholarship-2026:host_countries]\n- Its listed funding type is tuition only. [glasgow-global-leadership-scholarship-2026:funding_type]\n- The official eligibility information states: The University of Glasgow Global Leadership Scholarship is a one-year tuition-fee discount for International fee students beginning an eligible postgraduate taught master's programme in any discipline in academic session 2026/2027. Applicants must demonstrate academic excellence equivalent to UK first-class honours and hold an eligible full-time programme offer. The stated deadline is 17 July 2026. Confirm final eligibility on the official source before applying. [glasgow-global-leadership-scholarship-2026:eligibility_text]",
+          "final_query": "Glasgow Global Leadership award postgraduate taught masters any discipline international fee student",
+          "latency_seconds": 275.90387570299936,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "glasgow-global-leadership-scholarship-2026",
+            "waikato-vice-chancellors-international-excellence-scholarship",
+            "aalto-university-excellence-scholarship"
+          ],
+          "candidate_roles": {
+            "glasgow-global-leadership-scholarship-2026": "recommendation",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation",
+            "aalto-university-excellence-scholarship": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "potential-aalto-master-unverified",
+          "expected_relevant_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Aalto University Excellence Scholarship is offered by Aalto University. [aalto-university-excellence-scholarship:source_identity]\n- The opportunity is hosted in Finland. [aalto-university-excellence-scholarship:host_countries]\n- Its listed funding type is tuition only. [aalto-university-excellence-scholarship:funding_type]\n- The official eligibility information states: Aalto University Excellence Scholarships are competitive merit-based tuition-fee waivers covering the full tuition fee. Tuition-fee students apply during admission to an eligible bachelor's or master's programme. The award does not cover living or other study-related costs. Programme-specific selection criteria and deadlines require manual verification. Confirm final eligibility on the official source before applying. [aalto-university-excellence-scholarship:eligibility_text]",
+          "final_query": "Aalto Excellence Scholarship master Finland full tuition waiver highest achieving applicants",
+          "latency_seconds": 325.1076487909995,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "aalto-university-excellence-scholarship",
+            "maastricht-university-nl-high-potential-scholarship-2026",
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "candidate_roles": {
+            "aalto-university-excellence-scholarship": "recommendation",
+            "maastricht-university-nl-high-potential-scholarship-2026": "recommendation",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "potential-waikato-bachelor-unverified",
+          "expected_relevant_ids": [
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Vice-Chancellor's International Excellence Scholarship is offered by University of Waikato. [waikato-vice-chancellors-international-excellence-scholarship:source_identity]\n- The opportunity is hosted in New Zealand. [waikato-vice-chancellors-international-excellence-scholarship:host_countries]\n- Its listed funding type is tuition only. [waikato-vice-chancellors-international-excellence-scholarship:funding_type]\n- The official eligibility information states: The University of Waikato Vice-Chancellor's International Excellence Scholarship provides up to NZD 15,000 towards tuition fees for talented international students enrolling for the first time in an undergraduate or taught postgraduate programme. It is available across all study areas. Applications are reviewed monthly and use different deadlines for different trimesters, so no single deadline is recorded. Confirm final eligibility on the official source before applying. [waikato-vice-chancellors-international-excellence-scholarship:eligibility_text]",
+          "final_query": "Waikato Vice Chancellor international undergraduate excellence scholarship New Zealand tuition",
+          "latency_seconds": 278.2437791299999,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "waikato-vice-chancellors-international-excellence-scholarship",
+            "aalto-university-excellence-scholarship",
+            "bristol-think-big-scholarships-2026"
+          ],
+          "candidate_roles": {
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation",
+            "aalto-university-excellence-scholarship": "recommendation",
+            "bristol-think-big-scholarships-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "potential-manitoba-master-unverified",
+          "expected_relevant_ids": [
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- University of Manitoba Graduate Fellowship is offered by University of Manitoba. [university-of-manitoba-graduate-fellowship:source_identity]\n- The opportunity is hosted in Canada. [university-of-manitoba-graduate-fellowship:host_countries]\n- Its listed funding type is partially funded. [university-of-manitoba-graduate-fellowship:funding_type]\n- The official eligibility information states: The University of Manitoba Graduate Fellowship supports eligible master's and PhD students in graduate fields that qualify for Tri-Agency funding. Master's awards are valued at CAD 20,000 per year and doctoral awards at CAD 25,000 per year. All citizenships may apply. The page states a minimum admission GPA of 3.0 but does not identify its scale, so the numeric threshold remains a manual-review condition. Application timing and nomination are managed by departments or units. Confirm final eligibility on the official source before applying. [university-of-manitoba-graduate-fellowship:eligibility_text]",
+          "final_query": "Manitoba Graduate Fellowship masters Canada 20000 annually all citizenships",
+          "latency_seconds": 333.56147998699817,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "university-of-manitoba-graduate-fellowship",
+            "maastricht-university-nl-high-potential-scholarship-2026",
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "candidate_roles": {
+            "university-of-manitoba-graduate-fellowship": "recommendation",
+            "maastricht-university-nl-high-potential-scholarship-2026": "recommendation",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "not-eligible-bristol-phd-degree",
+          "expected_relevant_ids": [
+            "bristol-think-big-scholarships-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Explanatory result only—not a recommendation. Vice-Chancellor's International Excellence Scholarship is offered by University of Waikato. [waikato-vice-chancellors-international-excellence-scholarship:source_identity]\n- The opportunity is hosted in New Zealand. [waikato-vice-chancellors-international-excellence-scholarship:host_countries]\n- Its listed funding type is tuition only. [waikato-vice-chancellors-international-excellence-scholarship:funding_type]\n- The official eligibility information states: The University of Waikato Vice-Chancellor's International Excellence Scholarship provides up to NZD 15,000 towards tuition fees for talented international students enrolling for the first time in an undergraduate or taught postgraduate programme. It is available across all study areas. Applications are reviewed monthly and use different deadlines for different trimesters, so no single deadline is recorded. Confirm final eligibility on the official source before applying. [waikato-vice-chancellors-international-excellence-scholarship:eligibility_text]",
+          "final_query": "Bristol Think Big international tuition scholarship undergraduate postgraduate",
+          "latency_seconds": 111.30479849900075,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "candidate_roles": {
+            "waikato-vice-chancellors-international-excellence-scholarship": "explanatory_ineligible"
+          },
+          "cited_scholarship_ids": [
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "relevant_grounded": false,
+          "relevant_citation": false,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "not-eligible-glasgow-bachelor-degree",
+          "expected_relevant_ids": [
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Explanatory result only—not a recommendation. Global Leadership Scholarship is offered by University of Glasgow. [glasgow-global-leadership-scholarship-2026:source_identity]\n- The opportunity is hosted in United Kingdom. [glasgow-global-leadership-scholarship-2026:host_countries]\n- Its listed funding type is tuition only. [glasgow-global-leadership-scholarship-2026:funding_type]\n- The official eligibility information states: The University of Glasgow Global Leadership Scholarship is a one-year tuition-fee discount for International fee students beginning an eligible postgraduate taught master's programme in any discipline in academic session 2026/2027. Applicants must demonstrate academic excellence equivalent to UK first-class honours and hold an eligible full-time programme offer. The stated deadline is 17 July 2026. Confirm final eligibility on the official source before applying. [glasgow-global-leadership-scholarship-2026:eligibility_text]",
+          "final_query": "Glasgow Global Leadership Scholarship taught masters tuition discount",
+          "latency_seconds": 304.4455654850026,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "glasgow-global-leadership-scholarship-2026",
+            "waikato-vice-chancellors-international-excellence-scholarship",
+            "aalto-university-excellence-scholarship"
+          ],
+          "candidate_roles": {
+            "glasgow-global-leadership-scholarship-2026": "explanatory_ineligible",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation",
+            "aalto-university-excellence-scholarship": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "not-eligible-aalto-phd-degree",
+          "expected_relevant_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Explanatory result only—not a recommendation. Aalto University Excellence Scholarship is offered by Aalto University. [aalto-university-excellence-scholarship:source_identity]\n- The opportunity is hosted in Finland. [aalto-university-excellence-scholarship:host_countries]\n- Its listed funding type is tuition only. [aalto-university-excellence-scholarship:funding_type]\n- The official eligibility information states: Aalto University Excellence Scholarships are competitive merit-based tuition-fee waivers covering the full tuition fee. Tuition-fee students apply during admission to an eligible bachelor's or master's programme. The award does not cover living or other study-related costs. Programme-specific selection criteria and deadlines require manual verification. Confirm final eligibility on the official source before applying. [aalto-university-excellence-scholarship:eligibility_text]",
+          "final_query": "Aalto University Excellence Scholarship full tuition waiver Finland",
+          "latency_seconds": 50.183532745002594,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "candidate_roles": {
+            "aalto-university-excellence-scholarship": "explanatory_ineligible"
+          },
+          "cited_scholarship_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "not-eligible-manitoba-bachelor-degree",
+          "expected_relevant_ids": [
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Explanatory result only—not a recommendation. University of Manitoba Graduate Fellowship is offered by University of Manitoba. [university-of-manitoba-graduate-fellowship:source_identity]\n- The opportunity is hosted in Canada. [university-of-manitoba-graduate-fellowship:host_countries]\n- Its listed funding type is partially funded. [university-of-manitoba-graduate-fellowship:funding_type]\n- The official eligibility information states: The University of Manitoba Graduate Fellowship supports eligible master's and PhD students in graduate fields that qualify for Tri-Agency funding. Master's awards are valued at CAD 20,000 per year and doctoral awards at CAD 25,000 per year. All citizenships may apply. The page states a minimum admission GPA of 3.0 but does not identify its scale, so the numeric threshold remains a manual-review condition. Application timing and nomination are managed by departments or units. Confirm final eligibility on the official source before applying. [university-of-manitoba-graduate-fellowship:eligibility_text]",
+          "final_query": "University Manitoba Graduate Fellowship masters doctoral annual award",
+          "latency_seconds": 311.4843590470009,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "university-of-manitoba-graduate-fellowship",
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "candidate_roles": {
+            "university-of-manitoba-graduate-fellowship": "explanatory_ineligible",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "not-eligible-maastricht-low-gpa",
+          "expected_relevant_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Explanatory result only—not a recommendation. Maastricht University NL-High Potential Scholarship is offered by Maastricht University. [maastricht-university-nl-high-potential-scholarship-2026:source_identity]\n- The opportunity is hosted in Netherlands. [maastricht-university-nl-high-potential-scholarship-2026:host_countries]\n- Its listed funding type is fully funded. [maastricht-university-nl-high-potential-scholarship-2026:funding_type]\n- The official eligibility information states: The Maastricht University NL-High Potential programme offers full scholarships including a tuition-fee waiver and monthly stipend for high-achieving applicants from outside the European Union who are admitted to a participating master's programme. Applicants must present a GPA of at least 7.5 on a 10.0 scale and must not be older than 35 on 1 September 2026. The scholarship deadline is 1 February 2026. Confirm final eligibility on the official source before applying. [maastricht-university-nl-high-potential-scholarship-2026:eligibility_text]",
+          "final_query": "Maastricht NL High Potential full scholarship master tuition stipend GPA 7.5",
+          "latency_seconds": 321.7636420050003,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026",
+            "aalto-university-excellence-scholarship",
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "candidate_roles": {
+            "maastricht-university-nl-high-potential-scholarship-2026": "explanatory_ineligible",
+            "aalto-university-excellence-scholarship": "recommendation",
+            "glasgow-global-leadership-scholarship-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "insufficient-maastricht-ai-missing-gpa",
+          "expected_relevant_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Aalto University Excellence Scholarship is offered by Aalto University. [aalto-university-excellence-scholarship:source_identity]\n- The opportunity is hosted in Finland. [aalto-university-excellence-scholarship:host_countries]\n- Its listed funding type is tuition only. [aalto-university-excellence-scholarship:funding_type]\n- The official eligibility information states: Aalto University Excellence Scholarships are competitive merit-based tuition-fee waivers covering the full tuition fee. Tuition-fee students apply during admission to an eligible bachelor's or master's programme. The award does not cover living or other study-related costs. Programme-specific selection criteria and deadlines require manual verification. Confirm final eligibility on the official source before applying. [aalto-university-excellence-scholarship:eligibility_text]",
+          "final_query": "Maastricht University NL High Potential master artificial intelligence full scholarship",
+          "latency_seconds": 367.23956730699865,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "aalto-university-excellence-scholarship",
+            "maastricht-university-nl-high-potential-scholarship-2026",
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "candidate_roles": {
+            "aalto-university-excellence-scholarship": "recommendation",
+            "maastricht-university-nl-high-potential-scholarship-2026": "recommendation",
+            "glasgow-global-leadership-scholarship-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": false,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "insufficient-maastricht-data-missing-gpa",
+          "expected_relevant_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Aalto University Excellence Scholarship is offered by Aalto University. [aalto-university-excellence-scholarship:source_identity]\n- The opportunity is hosted in Finland. [aalto-university-excellence-scholarship:host_countries]\n- Its listed funding type is tuition only. [aalto-university-excellence-scholarship:funding_type]\n- The official eligibility information states: Aalto University Excellence Scholarships are competitive merit-based tuition-fee waivers covering the full tuition fee. Tuition-fee students apply during admission to an eligible bachelor's or master's programme. The award does not cover living or other study-related costs. Programme-specific selection criteria and deadlines require manual verification. Confirm final eligibility on the official source before applying. [aalto-university-excellence-scholarship:eligibility_text]",
+          "final_query": "Maastricht High Potential scholarship data science tuition waiver stipend",
+          "latency_seconds": 341.6434972549978,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "aalto-university-excellence-scholarship",
+            "maastricht-university-nl-high-potential-scholarship-2026",
+            "bristol-think-big-scholarships-2026"
+          ],
+          "candidate_roles": {
+            "aalto-university-excellence-scholarship": "recommendation",
+            "maastricht-university-nl-high-potential-scholarship-2026": "recommendation",
+            "bristol-think-big-scholarships-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "aalto-university-excellence-scholarship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": false,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "insufficient-maastricht-economics-missing-gpa",
+          "expected_relevant_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Vice-Chancellor's International Excellence Scholarship is offered by University of Waikato. [waikato-vice-chancellors-international-excellence-scholarship:source_identity]\n- The opportunity is hosted in New Zealand. [waikato-vice-chancellors-international-excellence-scholarship:host_countries]\n- Its listed funding type is tuition only. [waikato-vice-chancellors-international-excellence-scholarship:funding_type]\n- The official eligibility information states: The University of Waikato Vice-Chancellor's International Excellence Scholarship provides up to NZD 15,000 towards tuition fees for talented international students enrolling for the first time in an undergraduate or taught postgraduate programme. It is available across all study areas. Applications are reviewed monthly and use different deadlines for different trimesters, so no single deadline is recorded. Confirm final eligibility on the official source before applying. [waikato-vice-chancellors-international-excellence-scholarship:eligibility_text]",
+          "final_query": "Maastricht Netherlands full scholarship international economics masters",
+          "latency_seconds": 317.47151663600016,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "waikato-vice-chancellors-international-excellence-scholarship",
+            "maastricht-university-nl-high-potential-scholarship-2026",
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "candidate_roles": {
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation",
+            "maastricht-university-nl-high-potential-scholarship-2026": "recommendation",
+            "glasgow-global-leadership-scholarship-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "waikato-vice-chancellors-international-excellence-scholarship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": false,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "insufficient-maastricht-health-missing-gpa",
+          "expected_relevant_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- Maastricht University NL-High Potential Scholarship is offered by Maastricht University. [maastricht-university-nl-high-potential-scholarship-2026:source_identity]\n- The opportunity is hosted in Netherlands. [maastricht-university-nl-high-potential-scholarship-2026:host_countries]\n- Its listed funding type is fully funded. [maastricht-university-nl-high-potential-scholarship-2026:funding_type]\n- The official eligibility information states: The Maastricht University NL-High Potential programme offers full scholarships including a tuition-fee waiver and monthly stipend for high-achieving applicants from outside the European Union who are admitted to a participating master's programme. Applicants must present a GPA of at least 7.5 on a 10.0 scale and must not be older than 35 on 1 September 2026. The scholarship deadline is 1 February 2026. Confirm final eligibility on the official source before applying. [maastricht-university-nl-high-potential-scholarship-2026:eligibility_text]",
+          "final_query": "NL High Potential Maastricht public health master monthly stipend",
+          "latency_seconds": 357.43782732800173,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026",
+            "waikato-vice-chancellors-international-excellence-scholarship",
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "candidate_roles": {
+            "maastricht-university-nl-high-potential-scholarship-2026": "recommendation",
+            "waikato-vice-chancellors-international-excellence-scholarship": "recommendation",
+            "university-of-manitoba-graduate-fellowship": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": true,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "insufficient-maastricht-engineering-missing-gpa",
+          "expected_relevant_ids": [
+            "maastricht-university-nl-high-potential-scholarship-2026"
+          ],
+          "expect_no_results": false,
+          "status": "completed_fallback",
+          "answer": "- University of Manitoba Graduate Fellowship is offered by University of Manitoba. [university-of-manitoba-graduate-fellowship:source_identity]\n- The opportunity is hosted in Canada. [university-of-manitoba-graduate-fellowship:host_countries]\n- Its listed funding type is partially funded. [university-of-manitoba-graduate-fellowship:funding_type]\n- The official eligibility information states: The University of Manitoba Graduate Fellowship supports eligible master's and PhD students in graduate fields that qualify for Tri-Agency funding. Master's awards are valued at CAD 20,000 per year and doctoral awards at CAD 25,000 per year. All citizenships may apply. The page states a minimum admission GPA of 3.0 but does not identify its scale, so the numeric threshold remains a manual-review condition. Application timing and nomination are managed by departments or units. Confirm final eligibility on the official source before applying. [university-of-manitoba-graduate-fellowship:eligibility_text]",
+          "final_query": "Maastricht University High Potential engineering master full funding",
+          "latency_seconds": 339.242329531,
+          "retrieval_calls": 1,
+          "generation_calls": 2,
+          "query_rewrites": 0,
+          "repair_attempts": 1,
+          "fallback_used": true,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [
+            false,
+            false,
+            true
+          ],
+          "grounded_candidate_ids": [
+            "university-of-manitoba-graduate-fellowship",
+            "maastricht-university-nl-high-potential-scholarship-2026",
+            "glasgow-global-leadership-scholarship-2026"
+          ],
+          "candidate_roles": {
+            "university-of-manitoba-graduate-fellowship": "recommendation",
+            "maastricht-university-nl-high-potential-scholarship-2026": "recommendation",
+            "glasgow-global-leadership-scholarship-2026": "recommendation"
+          },
+          "cited_scholarship_ids": [
+            "university-of-manitoba-graduate-fellowship"
+          ],
+          "relevant_grounded": true,
+          "relevant_citation": false,
+          "positive_completed": true,
+          "no_result_correct": null
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "no-result-lunar-botany",
+          "expected_relevant_ids": [],
+          "expect_no_results": true,
+          "status": "abstained",
+          "answer": "ScholarAgent abstained because it could not retrieve sufficient verified evidence.",
+          "final_query": "selenian moon botany crystal greenhouse grant",
+          "latency_seconds": 0.12154508500316297,
+          "retrieval_calls": 1,
+          "generation_calls": 0,
+          "query_rewrites": 0,
+          "repair_attempts": 0,
+          "fallback_used": false,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [],
+          "grounded_candidate_ids": [],
+          "candidate_roles": {},
+          "cited_scholarship_ids": [],
+          "relevant_grounded": null,
+          "relevant_citation": null,
+          "positive_completed": null,
+          "no_result_correct": true
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "no-result-neptune-opera",
+          "expected_relevant_ids": [],
+          "expect_no_results": true,
+          "status": "abstained",
+          "answer": "ScholarAgent abstained because it could not retrieve sufficient verified evidence.",
+          "final_query": "neptunian underwater opera vocal academy bursary",
+          "latency_seconds": 0.12379884199981461,
+          "retrieval_calls": 1,
+          "generation_calls": 0,
+          "query_rewrites": 0,
+          "repair_attempts": 0,
+          "fallback_used": false,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [],
+          "grounded_candidate_ids": [],
+          "candidate_roles": {},
+          "cited_scholarship_ids": [],
+          "relevant_grounded": null,
+          "relevant_citation": null,
+          "positive_completed": null,
+          "no_result_correct": true
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "no-result-mars-clockmaking",
+          "expected_relevant_ids": [],
+          "expect_no_results": true,
+          "status": "abstained",
+          "answer": "ScholarAgent abstained because it could not retrieve sufficient verified evidence.",
+          "final_query": "martian chronometer clockmaking fellowship red planet",
+          "latency_seconds": 0.127093489998515,
+          "retrieval_calls": 1,
+          "generation_calls": 0,
+          "query_rewrites": 0,
+          "repair_attempts": 0,
+          "fallback_used": false,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [],
+          "grounded_candidate_ids": [],
+          "candidate_roles": {},
+          "cited_scholarship_ids": [],
+          "relevant_grounded": null,
+          "relevant_citation": null,
+          "positive_completed": null,
+          "no_result_correct": true
+        },
+        {
+          "system_name": "agentic_rag",
+          "case_id": "no-result-pluto-puppetry",
+          "expected_relevant_ids": [],
+          "expect_no_results": true,
+          "status": "abstained",
+          "answer": "ScholarAgent abstained because it could not retrieve sufficient verified evidence.",
+          "final_query": "plutonian shadow puppetry marionette endowment",
+          "latency_seconds": 0.10738336099893786,
+          "retrieval_calls": 1,
+          "generation_calls": 0,
+          "query_rewrites": 0,
+          "repair_attempts": 0,
+          "fallback_used": false,
+          "citation_passed": true,
+          "invalid_citation_ids": [],
+          "uncited_bullet_count": 0,
+          "citation_errors": [],
+          "audit_history_passed": [],
+          "grounded_candidate_ids": [],
+          "candidate_roles": {},
+          "cited_scholarship_ids": [],
+          "relevant_grounded": null,
+          "relevant_citation": null,
+          "positive_completed": null,
+          "no_result_correct": true
+        }
+      ]
+    },
+    "no_fallback_counterfactual": {
+      "total_cases": 24,
+      "positive_cases": 20,
+      "no_result_cases": 4,
+      "positive_completion_rate": 0.0,
+      "positive_citation_pass_rate": 0.0,
+      "positive_relevant_grounding_rate": 0.95,
+      "positive_relevant_citation_rate": 0.0,
+      "no_result_accuracy": 1.0,
+      "mean_latency_seconds": null,
+      "latency_note": "Not estimated because the counterfactual was derived from the frozen execution trace without additional LLM calls.",
+      "mean_retrieval_calls": 1.0,
+      "mean_generation_calls": 1.6666666666666667,
+      "mean_query_rewrites": 0.0,
+      "mean_repair_attempts": 0.8333333333333334,
+      "positive_fallback_rate": 0.0
+    },
+    "cases": [
+      {
+        "case_id": "eligible-bristol-master-verified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "eligible-glasgow-master-verified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "eligible-aalto-bachelor-verified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "eligible-waikato-master-verified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "eligible-manitoba-phd-verified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "potential-bristol-bachelor-unverified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "potential-glasgow-master-unverified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "potential-aalto-master-unverified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "potential-waikato-bachelor-unverified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "potential-manitoba-master-unverified",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "not-eligible-bristol-phd-degree",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": false,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "not-eligible-glasgow-bachelor-degree",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "not-eligible-aalto-phd-degree",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "not-eligible-manitoba-bachelor-degree",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "not-eligible-maastricht-low-gpa",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "insufficient-maastricht-ai-missing-gpa",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "insufficient-maastricht-data-missing-gpa",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "insufficient-maastricht-economics-missing-gpa",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "insufficient-maastricht-health-missing-gpa",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "insufficient-maastricht-engineering-missing-gpa",
+        "expect_no_results": false,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": true,
+        "no_result_correct": null,
+        "status": "citation_failed",
+        "positive_completed": false,
+        "citation_passed": false,
+        "relevant_citation": false,
+        "generation_calls": 2,
+        "repair_attempts": 1,
+        "fallback_used": false
+      },
+      {
+        "case_id": "no-result-lunar-botany",
+        "expect_no_results": true,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": null,
+        "no_result_correct": true,
+        "status": "abstained",
+        "positive_completed": null,
+        "citation_passed": true,
+        "relevant_citation": null,
+        "generation_calls": 0,
+        "repair_attempts": 0,
+        "fallback_used": false
+      },
+      {
+        "case_id": "no-result-neptune-opera",
+        "expect_no_results": true,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": null,
+        "no_result_correct": true,
+        "status": "abstained",
+        "positive_completed": null,
+        "citation_passed": true,
+        "relevant_citation": null,
+        "generation_calls": 0,
+        "repair_attempts": 0,
+        "fallback_used": false
+      },
+      {
+        "case_id": "no-result-mars-clockmaking",
+        "expect_no_results": true,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": null,
+        "no_result_correct": true,
+        "status": "abstained",
+        "positive_completed": null,
+        "citation_passed": true,
+        "relevant_citation": null,
+        "generation_calls": 0,
+        "repair_attempts": 0,
+        "fallback_used": false
+      },
+      {
+        "case_id": "no-result-pluto-puppetry",
+        "expect_no_results": true,
+        "retrieval_calls": 1,
+        "query_rewrites": 0,
+        "relevant_grounded": null,
+        "no_result_correct": true,
+        "status": "abstained",
+        "positive_completed": null,
+        "citation_passed": true,
+        "relevant_citation": null,
+        "generation_calls": 0,
+        "repair_attempts": 0,
+        "fallback_used": false
+      }
+    ]
+  },
+  "interpretation": {
+    "generator": "TinyLlama failed citation verification on all positive cases, including after the single permitted repair attempt.",
+    "repair": "The citation-repair attempt produced no successful direct LLM repairs and therefore added generation cost without improving completion or citation metrics.",
+    "fallback": "Verified deterministic fallback was solely responsible for citation-safe completion of the positive held-out cases.",
+    "transport_failure": "One repair generation timed out and was handled as a failed bounded attempt before fallback.",
+    "scope": "These conclusions apply to this small held-out corpus and TinyLlama configuration, not to all models or RAG systems."
+  }
+}

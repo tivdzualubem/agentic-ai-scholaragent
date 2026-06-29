@@ -41,3 +41,5 @@ logs/
 *.egg-info/
 build/
 dist/
+!eval/results/held_out_rag_comparison.json
+!eval/results/held_out_rag_ablation.json

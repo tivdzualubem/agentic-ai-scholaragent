@@ -29,7 +29,8 @@ structurally.
 Current progress: six of six held-out scholarship identities, official
 source records, the balanced 24-case benchmark, the frozen retrieval
 comparison, and deterministic eligibility evaluation are complete. The
-held-out RAG comparison and ablation evaluation have not yet been run.
+held-out RAG comparison and preregistered ablation evaluation are also
+complete.
 
 The five `insufficient_information` benchmark cases use Maastricht's
 explicit `7.5/10` GPA requirement because it is the only held-out source

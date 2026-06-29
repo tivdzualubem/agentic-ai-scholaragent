@@ -1,5 +1,5 @@
 {
-  "status": "operationally_amended_for_generation_failure_handling",
+  "status": "held_out_rag_evaluation_completed",
   "partition": "held_out_test",
   "source_commit": "26ed0ee0730ba6ea1c3f0712cb974da9ab1bc71b",
   "held_out_rag_test_used": true,
@@ -94,7 +94,7 @@
     "comparison": "eval/results/held_out_rag_comparison.json",
     "ablation": "eval/results/held_out_rag_ablation.json"
   },
-  "held_out_rag_test_completed": false,
+  "held_out_rag_test_completed": true,
   "operational_parameter_amendment_after_partial_start": true,
   "preregistration_commit": "07b9b44f12d09e60736d0bc2609a653e89060867",
   "operational_amendment": {
@@ -168,5 +168,18 @@
     ],
     "reporting_requirement": "Final artifacts must report transport failures separately and must not describe timeout-recovered fallback answers as successful LLM generations.",
     "amendment_commit_parent": "307200829eb8e57d709591d27bd92cb26ed7c3f4"
+  },
+  "completion_metadata": {
+    "completed_at_utc": "2026-06-29T07:34:05.297223+00:00",
+    "baseline_cases": 24,
+    "agentic_cases": 24,
+    "positive_cases": 20,
+    "no_result_cases": 4,
+    "recorded_transport_failures": 1,
+    "post_test_tuning_performed": false,
+    "final_outputs": [
+      "eval/results/held_out_rag_comparison.json",
+      "eval/results/held_out_rag_ablation.json"
+    ]
   }
 }
