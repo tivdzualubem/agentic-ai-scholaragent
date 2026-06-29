@@ -346,3 +346,25 @@ They must not be presented as final publication-level evidence.
 Final conclusions will be based only on the frozen held-out test partition,
 with corpus size, class support, fallback dependence, model limitations, and
 latency trade-offs reported explicitly.
+
+## Post-hoc proposal-alignment supplement
+
+The submitted proposal named Recall@5, whereas the frozen confirmatory
+retrieval evaluation used Recall@3. After all primary held-out retrieval,
+eligibility and RAG results were completed, a descriptive Recall@5
+supplement was generated from the same six-record held-out corpus and
+24-case benchmark.
+
+The supplement retained:
+
+- `nomic-embed-text:latest`;
+- dense threshold `0.60`;
+- RRF constant `60`;
+- the unchanged held-out corpus and benchmark;
+- the existing no-result abstention policy.
+
+The reporting cutoff changed from three to five solely to fulfil the
+proposal's stated metric coverage. The supplemental result was not used
+for tuning, parameter selection, model selection or reinterpretation of
+the primary Recall@3 experiment. It is not independent confirmatory
+evidence.

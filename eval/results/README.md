@@ -157,3 +157,27 @@ the same verified fallback policy.
 
 These findings are configuration- and dataset-specific and must not be
 presented as universal conclusions about sparse retrieval or agentic RAG.
+
+## Supplemental held-out Recall@5
+
+`held_out_retrieval_recall5_supplement.json` reports a post-hoc,
+descriptive Recall@5 analysis because the submitted proposal explicitly
+named Recall@5 and MRR, while the preregistered primary held-out evaluation
+used Recall@3.
+
+The same held-out corpus, benchmark, embedding model, dense threshold and
+RRF constant were retained. No parameter selection, model selection or
+post-test tuning was performed.
+
+| Retriever | Precision@5 | Recall@5 | MRR | Top-1 | No-result |
+|---|---:|---:|---:|---:|---:|
+| BM25 | 0.2000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
+| Dense | 0.1900 | 0.9500 | 0.6042 | 0.4000 | 1.0000 |
+| Hybrid RRF | 0.2000 | 1.0000 | 0.8750 | 0.7500 | 1.0000 |
+
+The primary confirmatory retrieval result remains Recall@3. This
+supplement must not be presented as a second independent held-out
+experiment. It shows that increasing the reporting cutoff from three to
+five recovered one additional dense-retrieval hit, raising dense recall
+from `0.90` to `0.95`. BM25 and hybrid RRF already had complete recall at
+three and therefore remained at `1.00`.
