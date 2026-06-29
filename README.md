@@ -23,6 +23,8 @@ tags:
 - App: https://lubem-scholaragent.hf.space
 - Hugging Face Space: https://huggingface.co/spaces/lubem/scholaragent
 
+The live app defaults to a combined 15-scholarship corpus and also allows the official, calibration, and held-out corpora to be selected separately. Evaluation results remain based on the original frozen splits.
+
 
 ScholarAgent is an evidence-grounded Agentic RAG system for scholarship discovery and eligibility verification.
 

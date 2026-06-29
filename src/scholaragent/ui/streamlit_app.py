@@ -27,12 +27,36 @@ from scholaragent.ui import (
 
 ROOT = Path(__file__).resolve().parents[3]
 
-OFFICIAL_CORPUS = (
-    ROOT
-    / "data"
-    / "official"
-    / "official_scholarships.json"
-)
+CORPUS_PATHS: dict[str, Path] = {
+    "Combined demo corpus (15 scholarships)": (
+        ROOT / "data" / "demo" / "combined_scholarships.json"
+    ),
+    "Official development corpus (3 scholarships)": (
+        ROOT / "data" / "official" / "official_scholarships.json"
+    ),
+    "Calibration corpus (6 scholarships)": (
+        ROOT / "data" / "calibration" / "calibration_scholarships.json"
+    ),
+    "Held-out evaluation corpus (6 scholarships)": (
+        ROOT / "data" / "held_out" / "held_out_scholarships.json"
+    ),
+}
+
+CORPUS_EXAMPLES: dict[str, list[str]] = {
+    "Combined demo corpus (15 scholarships)": [
+        "University of Bristol Think Big Scholarship for an international master's applicant",
+        "ETH Excellence Scholarship for an outstanding master's applicant",
+    ],
+    "Official development corpus (3 scholarships)": [
+        "SI Scholarship for Global Professionals for a Nigerian master's applicant",
+    ],
+    "Calibration corpus (6 scholarships)": [
+        "ETH Excellence Scholarship and Opportunity Programme",
+    ],
+    "Held-out evaluation corpus (6 scholarships)": [
+        "University of Bristol Think Big Scholarship 2026",
+    ],
+}
 
 
 def readable(value: Any) -> str:
@@ -134,6 +158,21 @@ def render_execution(
 
     st.divider()
     st.header("ScholarAgent result")
+
+    st.caption(
+        f"Evidence corpus: {Path(execution.corpus_path).name} "
+        f"({execution.corpus_size} scholarships)"
+    )
+
+    if (
+        execution.execution_mode
+        == DemoExecutionMode.FAST_VERIFIED
+        and result.fallback_used
+    ):
+        st.info(
+            "Fast verified mode intentionally tests the deterministic "
+            "verification and fallback path without calling TinyLlama."
+        )
 
     if result.status == "abstained":
         st.info(
@@ -309,9 +348,25 @@ def main() -> None:
             }[item],
         )
 
+        corpus_label = st.selectbox(
+            "Scholarship corpus",
+            options=list(CORPUS_PATHS),
+            index=0,
+        )
+        selected_corpus = CORPUS_PATHS[corpus_label]
+
+        st.caption(
+            "The combined corpus is for the interactive demo only. "
+            "Frozen evaluation splits remain separate."
+        )
+
+        with st.expander("Example queries", expanded=False):
+            for example in CORPUS_EXAMPLES[corpus_label]:
+                st.markdown(f"- {example}")
+
         st.markdown(
             f"""
-**Corpus:** official development corpus
+**Corpus:** {corpus_label}
 
 **Embedding:** `{DEFAULT_EMBEDDING_MODEL}`
 
@@ -486,7 +541,7 @@ def main() -> None:
                 "Loading scholarship evidence..."
             ):
                 index, corpus_size = cached_index(
-                    str(OFFICIAL_CORPUS),
+                    str(selected_corpus),
                     retriever_mode.value,
                 )
 
@@ -497,7 +552,7 @@ def main() -> None:
                     query=query,
                     profile=profile,
                     index=index,
-                    corpus_path=OFFICIAL_CORPUS,
+                    corpus_path=selected_corpus,
                     corpus_size=corpus_size,
                     execution_mode=execution_mode,
                     retriever_mode=retriever_mode,
@@ -532,9 +587,24 @@ def main() -> None:
     )
 
     if stored is not None:
-        render_execution(
-            DemoExecution.model_validate(stored)
+        stored_execution = DemoExecution.model_validate(stored)
+
+        configuration_matches = (
+            stored_execution.corpus_path
+            == str(selected_corpus)
+            and stored_execution.execution_mode
+            == execution_mode
+            and stored_execution.retriever_mode
+            == retriever_mode
         )
+
+        if configuration_matches:
+            render_execution(stored_execution)
+        else:
+            st.info(
+                "The configuration changed. Run ScholarAgent again "
+                "to generate a result using the selected settings."
+            )
 
 
 if __name__ == "__main__":
